@@ -77,3 +77,39 @@ Help Center / FAQs
 Newsletter signup field (great for lead capture)
 
 Social media icons (LinkedIn, Instagram, Facebook — dentistry audience is often active here)
+
+
+
+
+General Questions
+What is an AI dental assistant?
+Our AI dental assistant is a cloud-based platform designed to manage patients, appointments, treatments, payments, and marketing for your clinic—saving you time and improving efficiency.
+
+Is this software only for dentists?
+Yes, it’s built specifically for dental clinics, with features that address the unique needs of dental practice management.
+
+Do I need technical skills to use it?
+Not at all! The system is designed to be intuitive and user-friendly, with guided onboarding.
+
+Features & Usage
+Can I track my revenue and pending payments?
+Yes, the dashboard provides real-time tracking of total revenue, pending payments, and monthly trends.
+
+Does it send appointment reminders?
+Absolutely! The system sends WhatsApp and email reminders automatically to reduce no-shows.
+
+How does AI help with marketing?
+Our AI generates ready-to-use social media posts and promotional emails tailored to your dental services.
+
+Can I customize treatment records and patient data?
+Yes, you can add, edit, and delete patient and treatment information at any time.
+
+Pricing & Support
+Do you offer a free trial?
+Yes, we offer a free trial so you can explore all features before committing.
+
+What if I need help while using the system?
+We provide customer support via email, chat, and phone, along with tutorials and guides.
+
+Can I upgrade or downgrade my plan later?
+Yes, you can switch plans anytime without losing your data.

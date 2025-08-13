@@ -7,7 +7,7 @@ export default function AuthLayout({ children }) {
       {/* Logo */}
       <div className="p-6">
         <Link to="/">
-        <div className="text-2xl font-bold text-[#0ea5e9] cursor-pointer">
+        <div className="text-2xl font-bold text-secondary cursor-pointer">
           DentalAI
         </div>
         </Link>

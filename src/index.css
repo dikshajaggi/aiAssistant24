@@ -39,6 +39,7 @@ body {
 
 @theme {
     --color-primary: #01CFC9 !important;
+    --color-secondary: #0ea5e9 !important;
     --color-success: rgb(27, 166, 114) !important;
     --color-neutral: #EEFBFA !important;
     --color-textdark: #374151 !important;

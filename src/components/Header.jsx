@@ -6,27 +6,27 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-neutral fixed w-full top-0 z-50 uppercase font-semibold text-textdark">
+    <header className="bg-neutral fixed w-full top-0 z-50 uppercase font-semibold">
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
         
         {/* Logo */}
         <Link to="/">
-          <div className="text-2xl font-bold text-[#0ea5e9] cursor-pointer">
+          <div className="text-2xl font-bold text-secondary cursor-pointer">
             DentalAI
           </div>
         </Link>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link to ="/walkthrough" className="hover:text-[#0ea5e9] transition">Walkthrough</Link>
-          <Link to ="/pricing" className="hover:text-[#0ea5e9] transition">Pricing</Link>
+          <Link to ="/walkthrough" className="hover:!text-secondary transition">Walkthrough</Link>
+          <Link to ="/pricing" className="hover:!text-secondary transition">Pricing</Link>
           <Link
             to="/bookdemo"
-            className="text-[#0ea5e9] font-semibold animate-bounce"
+            className="!text-secondary font-semibold animate-bounce"
           >
             Book a Demo
           </Link>
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="hover:!text-secondary transition">Login</Link>
 
           <Link
             to="/signup"
@@ -51,35 +51,35 @@ const Header = () => {
           <div className="flex flex-col p-4 space-y-4">
             <Link
               to="/walkthrough"
-              className="hover:text-[#0ea5e9] transition"
+              className="hover:!text-secondary transition"
               onClick={() => setMenuOpen(false)}
             >
               Walkthrough
             </Link>
             <Link
               to="/pricing"
-              className="hover:text-[#0ea5e9] transition"
+              className="hover:!text-secondary transition"
               onClick={() => setMenuOpen(false)}
             >
               Pricing
             </Link>
             <Link
               to="/bookdemo"
-              className="text-[#0ea5e9] font-semibold animate-bounce"
+              className="!text-secondary font-semibold animate-bounce"
               onClick={() => setMenuOpen(false)}
             >
               Book a Demo
             </Link>
             <Link
               to="/login"
-              className="hover:text-[#0ea5e9] transition"
+              className="hover:!text-secondary transition"
               onClick={() => setMenuOpen(false)}
             >
               Login
             </Link>
             <Link
               to="/signup"
-              className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] !text-white font-semibold hover:shadow-lg transition"
+              className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] !text-white font-semibold"
               onClick={() => setMenuOpen(false)}
             >
               Sign Up
