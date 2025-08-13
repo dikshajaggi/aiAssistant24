@@ -1,15 +1,17 @@
 import React, { useState } from 'react'
+import PageWrapper from './PageWrapper'
 
 const Pricing = () => {
   const [isActive, setIsActive] = useState("yearly")
 
   return (
-    <div className="flex flex-col items-center px-4 py-10">
+    <PageWrapper>
+      <div className="flex flex-col items-center px-4 py-10">
       <h1 className="font-bold text-xl md:text-3xl text-center">
         Pick a Plan & Let AI Do the Rest
       </h1>
 
-      <p className="font-semibold text-gray-700 text-sm md:text-base  text-center mt-6 max-w-2xl">
+      <p className="text-gray-700 text-sm md:text-base  text-center mt-6 max-w-2xl">
         Choose the plan that fits your clinic best, and watch our AI handle patients, appointments, 
         payments, and marketing—so you can focus on delivering exceptional dental care.
       </p>
@@ -37,6 +39,7 @@ const Pricing = () => {
         </button>
       </div>
     </div>
+    </PageWrapper>
   )
 }
 

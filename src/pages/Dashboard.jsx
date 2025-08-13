@@ -1,10 +1,11 @@
 import React from 'react'
+import PageWrapper from './PageWrapper'
 
 const Dashboard = () => {
   return (
-    <div>
+    <PageWrapper>
       
-    </div>
+    </PageWrapper>
   )
 }
 

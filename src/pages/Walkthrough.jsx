@@ -1,10 +1,11 @@
 import React from 'react'
+import PageWrapper from './PageWrapper'
 
 const Walkthrough = () => {
   return (
-    <div>
+    <PageWrapper>
       
-    </div>
+    </PageWrapper>
   )
 }
 
