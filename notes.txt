@@ -1,0 +1,79 @@
+    1.	Patient management (CRUD)
+	2.	Visit management (CRUD)
+	3.	Appointment tracking
+	4.	Treatment records
+	5.	Revenue and payment tracking
+	6.	Dashboard cards – total patients, total visits, total revenue, pending payments
+	7.	Visits per month chart
+	8.	Revenue per month chart
+	9.	Top treatments chart
+	10.	WhatsApp reminders
+	11.	Email reminders
+	12.	AI-generated social media posts
+	13.	AI-generated promotional emails
+	14.	FastAPI backend
+	15.	Supabase database integration
+	16.	Single /dashboard API for all cards + charts data
+
+
+
+1️⃣ All-in-One Patient & Visit Management
+From adding a new patient to tracking every visit and treatment, keep your clinic organized and stress-free. 
+Appointments, records, and schedules—handled in one smart dashboard.
+
+2️⃣ Smart Revenue & Growth Tracking
+Know your clinic’s performance at a glance. View total revenue, pending payments, monthly trends, and top treatments—all beautifully visualized in charts and cards.
+
+3️⃣ Effortless Communication & Reminders
+Never let a patient forget their appointment. Send friendly WhatsApp messages and email reminders automatically—no extra effort from you.
+
+4️⃣ AI-Powered Marketing for Your Clinic
+Stand out on social media and in your patients’ inboxes. Get ready-to-use AI-generated posts and promotional emails that attract and retain patients.
+
+5️⃣ Your Digital Dental Assistant
+One platform to handle patients, visits, payments, communication, and growth—so you can focus on creating healthy, happy smiles.
+
+
+
+
+
+demo walkthrough
+
+Introducing ‘Human-like’
+All-In-One AI Marketing Assistant
+
+
+
+logo ----> walkthrough, pricing, book a demo (bounce animation), login, signup
+
+
+1️⃣ Company
+
+About Us
+
+Terms of Service
+
+Privacy Policy
+
+
+2️⃣ Product
+
+Features
+
+Pricing
+
+Integrations (if any)
+
+
+3️⃣ Support
+
+Contact Us
+
+Help Center / FAQs
+
+
+4️⃣ Stay Connected
+
+Newsletter signup field (great for lead capture)
+
+Social media icons (LinkedIn, Instagram, Facebook — dentistry audience is often active here)

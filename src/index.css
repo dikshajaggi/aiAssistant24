@@ -1,0 +1,58 @@
+
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+:root {
+  --bs-primary: #01CFC9 !important;
+  --bs-primary-rgb: 1, 207, 201 !important;
+}
+
+a {
+  color: inherit !important; /* Use parent text color */
+  text-decoration: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+
+@font-face {
+  font-family: 'Gilroy-Bold';
+  src: local('Gilroy-Bold'), url(./fonts/gilroy/Gilroy-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Gilroy-Medium';
+  src: local('Gilroy-Medium'), url(./fonts/gilroy/Gilroy-Medium.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Gilroy-Light';
+  src: local('Gilroy-Light'), url(./fonts/gilroy/Gilroy-Light.ttf) format('truetype');
+}
+
+body {
+  font-family: 'Gilroy-Medium', sans-serif !important;
+}
+
+@theme {
+    --color-primary: #01CFC9 !important;
+    --color-success: rgb(27, 166, 114) !important;
+    --color-neutral: #EEFBFA !important;
+    --color-textdark: #374151 !important;
+    --color-textlight: #FFFFFF !important;
+    --color-alert: #fa4a5b !important;
+    --color-placeholder: #525252 !important;
+    --color-primaryhover: #02b3ad !important;
+}
+
+.accordion-button {
+  background-color: white !important;
+  --bs-accordion-btn-focus-box-shadow: none !important;
+  --bs-accordion-active-color: rgba(2, 6, 12, 0.92) !important;
+
+}
+
+ /* //#1ba672 */
