@@ -9,7 +9,7 @@ const Pricing = () => {
         Pick a Plan & Let AI Do the Rest
       </h1>
 
-      <p className="font-semibold text-gray-700 text-sm md:text-md text-center mt-6 max-w-2xl">
+      <p className="font-semibold text-gray-700 text-sm md:text-base  text-center mt-6 max-w-2xl">
         Choose the plan that fits your clinic best, and watch our AI handle patients, appointments, 
         payments, and marketing—so you can focus on delivering exceptional dental care.
       </p>
