@@ -10,9 +10,11 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center h-16">
         
         {/* Logo */}
-        <div className="text-2xl font-bold text-[#0ea5e9] cursor-pointer">
-          DentalAI
-        </div>
+        <Link to="/">
+          <div className="text-2xl font-bold text-[#0ea5e9] cursor-pointer">
+            DentalAI
+          </div>
+        </Link>
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">
