@@ -20,11 +20,11 @@ const Contact = () => {
         </div>
 
         {/* Contact Info + Image */}
-        <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl gap-10">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-10 px-10 h-full py-10">
           
           {/* Contact Info */}
-          <div className="flex flex-col gap-6 w-full">
-            <h1 className="font-bold md:text-3xl">Contact Us</h1>
+          <div className="flex flex-col gap-6 md:w-1/2">
+            <h1 className="font-bold md:text-3xl text-center md:text-left">Contact Us</h1>
             <div className="flex items-center gap-4 bg-white shadow p-4 rounded-lg">
               <Mail className="text-primary w-6 h-6" />
               <span className="text-lg font-medium">support@example.com</span>
@@ -36,21 +36,26 @@ const Contact = () => {
           </div>
 
           {/* Contact Image */}
-          <div className="relative flex justify-center w-full">
+          <div className="relative hidden justify-center items-center w-1/2 h-full md:flex">
             {/* Blob GIF as background */}
             <img
-              src={blob} // your blob gif path
+              src={blob}
               alt="Background Blob"
-              className="absolute top-1/2 left-1/2 w-[500px] h-[500px] -translate-x-1/2 -translate-y-1/2 object-cover z-0 opacity-45"
+              className="absolute top-1/2 left-1/2 
+                        h-auto 
+                        -translate-x-1/2 -translate-y-1/2 
+                        object-contain z-0 opacity-45"
             />
 
             {/* Foreground Contact Us Image */}
             <img
               src={contactus}
               alt="Contact Us"
-              className="relative w-80 md:w-[450px] lg:w-[500px] h-auto object-contain z-10"
+              className="relative w-[70vw] max-w-[500px] h-auto object-contain z-10"
             />
+
           </div>
+
         </div>
       </div>
     </PageWrapper>
