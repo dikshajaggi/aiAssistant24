@@ -20,7 +20,7 @@ const Home = () => {
       <div className='flex justify-center items-center flex-col px-6 md:px-4 mt-20'>
         <h1 className='text-[clamp(1.6rem,4vw,2.4rem)] font-bold text-center'>From Appointments to Payments — <span className='font-bold bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] bg-clip-text text-transparent'>Let AI Handle the Busywork</span>, <br></br> While You Handle the Smiles.</h1>
         <TypingHero />
-        <button className='cursor-pointer bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] text-textlight text-lg h-16 w-64 rounded-xl shadow-[0_0_20px_rgba(1,207,201,0.6)]
+        <button className='cursor-pointer bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] text-textlight md:text-lg h-16 w-64 rounded-xl shadow-[0_0_20px_rgba(1,207,201,0.6)]
         transform hover:-translate-y-1 transition-all duration-300 font-bold text-base' onClick={handleJoinCta}>Start Your FREE Trial</button>
         <section className="max-w-6xl mx-auto px-4 py-12 space-y-20 mt-20 md:mt-40">
         {features.map((feature, index) => (

@@ -7,6 +7,11 @@ import Pricing from "./pages/Pricing"
 import BookDemo from "./pages/BookDemo"
 import NotFound from "./pages/NotFound"
 import Walkthrough from "./pages/Walkthrough"
+import Privacy from "./pages/Privacy"
+import Features from "./pages/Features"
+import About from "./pages/About"
+import Contact from "./pages/Contact"
+import TermsOfService from "./pages/TermsOfService"
 import AuthLayout from "./layouts/AuthLayout"
 
 const router = createBrowserRouter([
@@ -18,6 +23,11 @@ const router = createBrowserRouter([
             {path: "/pricing", element: <Pricing />},
             {path: "/bookdemo", element: <BookDemo />},
             {path: "/walkthrough", element: <Walkthrough />},
+            {path: "/privacy", element: <Privacy />},
+            {path: "/terms", element: <TermsOfService />},
+            {path: "/about", element: <About />},
+            {path: "/contact", element: <Contact />},
+            {path: "/features", element: <Features />},
             //other routes having header and footer....
         ]
     },
