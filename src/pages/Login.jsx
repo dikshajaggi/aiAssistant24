@@ -31,7 +31,7 @@ const Login = () => {
       {/* Form Section */}
       <div className="relative z-10 bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-50px] max-w-md md:max-w-[439px] md:h-[500px] flex flex-col items-center justify-evenly shadow-lg backdrop-blur">
         <div className="flex flex-col items-center justify-center text-center">
-          <h4 className="text-lg md:text-xl font-bold mb-4">Welcome to Company Name!</h4>
+          <h4 className="text-lg md:text-xl font-bold mb-4">Welcome to <span className="text-secondary">Smilelytics</span>!</h4>
           <span className="text-placeholder text-sm sm:text-base  md:text-base">
             Smart Clinic Management – From Patients to Payments, AI-Powered and Effortlessly Organized.
           </span>
@@ -70,7 +70,7 @@ const Login = () => {
         <div className="mt-4 text-xs sm:text-sm text-placeholder text-center">
           Don’t have an account?{" "}
           <Link to="/signup">
-            <span className="text-primary hover:underline cursor-pointer font-bold">
+            <span className="text-secondary hover:underline cursor-pointer font-bold">
               Sign Up
             </span>
           </Link>
