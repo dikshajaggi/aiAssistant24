@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import PageWrapper from './PageWrapper'
 import { Check, Star, Sparkles } from "lucide-react";
+import { AnimatePresence } from 'framer-motion';
+import { motion } from "framer-motion";
+
 
 const Feature = ({ children }) => (
   <li className="flex items-start gap-3">
@@ -83,9 +86,17 @@ const Pricing = () => {
           </span>
         </div>}
 
+        <AnimatePresence mode="wait">
         {/* Pricing Cards */}
         {isActive==="yearly" ? 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <motion.div
+          key="yearly"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.2, ease: "easeInOut" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+        >
           {/* Starter */}
           <div className="group relative rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm hover:shadow-lg transition-all">
             <div className="mb-4 flex items-center justify-between">
@@ -163,7 +174,12 @@ const Pricing = () => {
               Choose Premium
             </button>
           </div>
-        </div> : <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        </motion.div> : <motion.div key="monthly"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.2, ease: "easeInOut" }} 
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {/* Starter */}
           <div className="group relative rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm hover:shadow-lg transition-all">
             <div className="mb-4 flex items-center justify-between">
@@ -238,8 +254,10 @@ const Pricing = () => {
               Choose Premium
             </button>
           </div>
-        </div> 
+        </motion.div> 
         }
+        </AnimatePresence>
+       
     </div>
     </PageWrapper>
   )
