@@ -11,7 +11,7 @@ const Contact = () => {
         
         {/* Heading Section */}
         <div className="text-center mb-16 mt-[-20px] w-full">
-          <h1 className="font-bold bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] bg-clip-text text-transparent text-4xl md:text-5xl mb-4">
+          <h1 className="font-bold bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] bg-clip-text text-transparent text-4xl md:text-5xl mb-4">
             Hello Let’s Talk!
           </h1>
           <h4 className="text-lg md:text-xl font-bold text-gray-700">

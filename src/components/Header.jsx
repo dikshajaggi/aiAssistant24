@@ -30,7 +30,7 @@ const Header = () => {
 
           <Link
             to="/signup"
-            className="px-4 py-1 rounded-lg bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] !text-white font-semibold"
+            className="px-4 py-1 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold"
           >
             Sign Up
           </Link>
@@ -79,7 +79,7 @@ const Header = () => {
             </Link>
             <Link
               to="/signup"
-              className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] !text-white font-semibold"
+              className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold"
               onClick={() => setMenuOpen(false)}
             >
               Sign Up

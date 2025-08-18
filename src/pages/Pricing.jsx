@@ -10,7 +10,7 @@ const Feature = ({ children }) => (
 );
 
 const Pricing = () => {
-  const [isActive, setIsActive] = useState("yearly")
+  const [isActive, setIsActive] = useState("monthly")
 
 
   return (
@@ -48,9 +48,9 @@ const Pricing = () => {
         </button>
       </div>
 
-              {/* 14-Day Trial Banner */}
+        {/* 14-Day Trial Banner */}
         <div className="relative overflow-hidden rounded-2xl p-[1px] mb-10 mt-10 md:mt-15">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#46D3FF] to-[#0ea5e9] opacity-90" />
           <div className="relative bg-white/70 backdrop-blur-md rounded-2xl p-5 md:p-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-start gap-3">
@@ -68,7 +68,7 @@ const Pricing = () => {
                 </div>
               </div>
               <button
-                className="shrink-0 bg-primary text-textlight px-5 py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner transition-all"
+                className="shrink-0 bg-textdark text-textlight px-5 py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300 "
               >
                 Start Free Trial
               </button>
@@ -76,7 +76,7 @@ const Pricing = () => {
           </div>
         </div>
 
-{/* Annual Plans Note */}
+        {/* Annual Plans Note */}
         {isActive === "yearly" && <div className="text-center mb-6">
           <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs md:text-sm font-semibold text-primary shadow">
             Save 2 months — Pay for 10, get 12
@@ -116,7 +116,7 @@ const Pricing = () => {
               </span>
             </div>
             {/* Gradient border wrapper */}
-            <div className="rounded-2xl bg-gradient-to-b from-[#01CFC9] to-[#0ea5e9] p-[1px]">
+            <div className="rounded-2xl bg-gradient-to-b from-[#0F2650] to-[#0ea5e9] p-[1px]">
               <div className="rounded-2xl bg-white p-6 md:p-7">
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-lg md:text-xl font-extrabold">Pro</h3>
@@ -171,10 +171,9 @@ const Pricing = () => {
             </div>
             <div className="mb-5">
               <div className="flex items-end gap-1">
-                <span className="text-2xl md:text-3xl font-extrabold">₹24,990</span>
-                <span className="text-sm text-placeholder">/year</span>
+                <span className="text-2xl md:text-3xl font-extrabold">₹2,499</span>
+                <span className="text-sm text-placeholder">/month</span>
               </div>
-              <div className="text-xs text-placeholder">≈ ₹2,082/month (billed annually)</div>
             </div>
             <ul className="space-y-3 mb-6">
               <Feature>Basic patient &amp; visit tracking</Feature>
@@ -194,20 +193,19 @@ const Pricing = () => {
               </span>
             </div>
             {/* Gradient border wrapper */}
-            <div className="rounded-2xl bg-gradient-to-b from-[#01CFC9] to-[#0ea5e9] p-[1px]">
+            <div className="rounded-2xl bg-gradient-to-b from-[#0F2650] to-[#0ea5e9] p-[1px]">
               <div className="rounded-2xl bg-white p-6 md:p-7">
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-lg md:text-xl font-extrabold">Pro</h3>
                 </div>
                 <div className="mb-5">
                   <div className="flex items-end gap-1">
-                    <span className="text-2xl md:text-3xl font-extrabold">₹49,990</span>
-                    <span className="text-sm text-placeholder">/year</span>
+                    <span className="text-2xl md:text-3xl font-extrabold">₹4,999</span>
+                    <span className="text-sm text-placeholder">/month</span>
                   </div>
-                  <div className="text-xs text-placeholder">≈ ₹4,165/month (billed annually)</div>
                 </div>
                 <ul className="space-y-3 mb-6">
-                  <Feature>Everything in Starter</Feature>
+                  <Feature>Includes Starter +</Feature>
                   <Feature>AI-powered social posts + promotional emails</Feature>
                   <Feature>Advanced monthly reports (charts, revenue, etc.)</Feature>
                   <Feature>10 clinic users included</Feature>
@@ -226,13 +224,12 @@ const Pricing = () => {
             </div>
             <div className="mb-5">
               <div className="flex items-end gap-1">
-                <span className="text-2xl md:text-3xl font-extrabold">₹99,990</span>
-                <span className="text-sm text-placeholder">/year</span>
+                <span className="text-2xl md:text-3xl font-extrabold">₹9,999</span>
+                <span className="text-sm text-placeholder">/month</span>
               </div>
-              <div className="text-xs text-placeholder">≈ ₹8,332/month (billed annually)</div>
             </div>
             <ul className="space-y-3 mb-6">
-              <Feature>Everything in Pro</Feature>
+              <Feature>Includes Pro +</Feature>
               <Feature>Unlimited users &amp; locations</Feature>
               <Feature>Priority support + custom dashboards</Feature>
               <Feature>Add-ons: invoice generation, WhatsApp bot integration</Feature>

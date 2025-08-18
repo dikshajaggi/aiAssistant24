@@ -38,11 +38,11 @@ body {
 }
 
 @theme {
-    --color-primary: #01CFC9 !important;
+    --color-primary: #46D3FF !important;
     --color-secondary: #0ea5e9 !important;
     --color-success: rgb(27, 166, 114) !important;
     --color-neutral: #EEFBFA !important;
-    --color-textdark: #374151 !important;
+    --color-textdark: #0F2650 !important;
     --color-textlight: #FFFFFF !important;
     --color-alert: #fa4a5b !important;
     --color-placeholder: #525252 !important;

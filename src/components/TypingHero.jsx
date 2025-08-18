@@ -73,7 +73,7 @@ export default function TypingHero({
 
       <h1 className="text-[clamp(1.6rem,4vw,2.4rem)] font-bold leading-tight">
         Let AI manage all your{" "}
-        <span className="inline-block ml-1 font-bold bg-gradient-to-r from-[#01CFC9] to-[#0ea5e9] bg-clip-text text-transparent">
+        <span className="inline-block ml-1 font-bold bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] bg-clip-text text-transparent">
           {displayText}
           <span style={blinkStyle} />
         </span>
