@@ -49,7 +49,7 @@ const About = () => {
             
             {/* Mission Text */}
             <p className='text-gray-400 text-sm md:text-base lg:text-lg leading-relaxed text-justify max-w-3xl'>
-              We’re on a mission to empower every dentist with an <span className='text-primary ml-1 md:font-semibold'>AI-powered assistant</span> that works as hard as they do. <br /><br />
+              We’re on a mission to empower every dentist with an <span className='text-primary md:font-semibold'>AI-powered assistant</span> that works as hard as they do. <br /><br />
               Our vision is to transform dental practices into smarter, more connected, and stress-free clinics — where patient care comes first, and paperwork takes a back seat. <br /><br />
               By blending intelligent automation with human creativity, we help dentists manage patients, track treatments, grow revenue, and engage patients effortlessly — so they can focus on what truly matters: <span className='md:font-semibold text-primary'>brighter smiles</span>.
             </p>
@@ -62,6 +62,30 @@ const About = () => {
             />
           </div>
         </div>
+
+        {/* Why We Built It Section */}
+        <div className= "py-8 px-4 md:px-10 w-full mt-10 mb-16">
+          <h4 className="text-textdark font-bold text-xl md:text-2xl">
+            Why We Built It
+          </h4>
+
+          <div className="gap-8 mt-8 mx-auto">
+            
+            {/* Content */}
+            <p className="text-sm md:text-base lg:text-lg leading-relaxed md:text-justify">
+              Dentists spend countless hours juggling patient files, finances, and follow-ups. 
+              We wanted to create an assistant that works quietly in the background, 
+              handling all the admin chaos while you focus on building brighter smiles.
+            </p>
+
+            <p className="text-sm md:text-base lg:text-lg leading-relaxed md:text-justify">
+              With the power of <span className="font-semibold text-secondary">AI & automation</span>, 
+              we’re not just helping dentists manage their clinics — 
+              we’re helping them grow them.
+            </p>
+          </div>
+        </div>
+
       </div>
     </PageWrapper>
   )
