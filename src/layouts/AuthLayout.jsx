@@ -1,5 +1,6 @@
 // src/layouts/AuthLayout.jsx
 import { Link } from "react-router-dom";
+import logo from "../assets/smilelytics.png"
 
 export default function AuthLayout({ children }) {
   return (
@@ -7,9 +8,10 @@ export default function AuthLayout({ children }) {
       {/* Logo */}
       <div className="p-6">
         <Link to="/">
-        <div className="text-2xl font-bold text-secondary cursor-pointer">
-          DentalAI
-        </div>
+          <div className="text-2xl flex font-bold text-secondary cursor-pointer capitalize items-center">
+            <img src = {logo} alt="SmileLytics-logo" className="h-20 py-2"/>
+            SmileLytics
+          </div>
         </Link>
       </div>
 
