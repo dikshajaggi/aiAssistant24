@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import authBg from "../assets/authBg.png";
+import smilelytics from "../assets/smilelytics.png";
 import { Link, useNavigate } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import { MainContext } from "../context/MainContext";
@@ -17,19 +17,19 @@ const Login = () => {
 
   return (
     <PageWrapper>
-      <div className="flex flex-col md:flex-row min-h-screen items-center justify-center overflow-hidden">
+      <div className="flex flex-col md:flex-row items-center justify-center">
       
       {/* Image Section */}
-      <div className="hidden md:w-[550px] md:flex justify-center items-center">
+      <div className="hidden md:flex md:w-1/2 justify-center items-center">
         <img
-          src={authBg}
+          src={smilelytics}
           alt="bg-image"
-          className="w-full max-h-screen object-contain md:object-cover"
+          className="w-full max-h-screen"
         />
       </div>
 
       {/* Form Section */}
-      <div className="relative z-10 bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-50px] max-w-md md:max-w-[439px] md:h-[500px] flex flex-col items-center justify-evenly shadow-lg backdrop-blur">
+      <div className="relative z-10 md:bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-50px] max-w-md md:max-w-[439px] md:h-[500px] flex flex-col items-center justify-evenly shadow-lg backdrop-blur">
         <div className="flex flex-col items-center justify-center text-center">
           <h4 className="text-lg md:text-xl font-bold mb-4">Welcome to <span className="text-secondary">SmileLytics</span>!</h4>
           <span className="text-placeholder text-sm sm:text-base  md:text-base">
@@ -64,17 +64,16 @@ const Login = () => {
           >
             Login
           </button>
+          {/* Signup link */}
+          <div className="text-xs sm:text-sm text-placeholder text-center">
+            Don’t have an account?{" "}
+            <Link to="/signup">
+              <span className="text-secondary hover:underline cursor-pointer font-bold">
+                Sign Up
+              </span>
+            </Link>
+          </div>
         </form>
-
-        {/* Signup link */}
-        <div className="mt-4 text-xs sm:text-sm text-placeholder text-center">
-          Don’t have an account?{" "}
-          <Link to="/signup">
-            <span className="text-secondary hover:underline cursor-pointer font-bold">
-              Sign Up
-            </span>
-          </Link>
-        </div>
       </div>
     </div>
     </PageWrapper>

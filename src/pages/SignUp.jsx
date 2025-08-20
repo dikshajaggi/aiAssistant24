@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import authBg from "../assets/authBg.png";
+import smilelytics from "../assets/smilelytics.png";
 import { Link } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import Modal from "../components/SignUpModal";
@@ -19,19 +19,19 @@ const SignUp = () => {
 
   return (
     <PageWrapper>
-      <div className="flex flex-col md:flex-row min-h-screen items-center justify-center overflow-hidden">
+      <div className="flex flex-col md:flex-row items-center justify-center overflow-hidden">
       
       {/* Image Section */}
-      <div className="hidden md:w-[550px] md:flex justify-center items-center">
+      <div className="hidden md:w-1/2 md:flex justify-center items-center">
         <img
-          src={authBg}
+          src={smilelytics}
           alt="bg-image"
           className="w-full max-h-screen object-contain md:object-cover"
         />
       </div>
 
       {/* Form Section */}
-      <div className="relative z-10 bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-50px] max-w-md md:max-w-[439px] md:h-[600px] flex flex-col items-center justify-evenly shadow-lg backdrop-blur">
+      <div className="relative z-10 md:bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-50px] max-w-md md:max-w-[439px] md:h-[600px] flex flex-col items-center justify-evenly shadow-lg backdrop-blur">
         <div className="flex flex-col items-center justify-center text-center">
           <h4 className="text-lg md:text-xl font-bold mb-4">Welcome to <span className="text-secondary">SmileLytics</span>!</h4>
           <span className="text-placeholder text-sm sm:text-base  md:text-base">
@@ -78,16 +78,15 @@ const SignUp = () => {
           >
             Sign Up
           </button>
+          <div className="text-xs sm:text-sm text-placeholder text-center">
+            Already have an account?{" "}
+            <Link to="/login">
+              <span className="text-secondary hover:underline cursor-pointer font-bold">
+                Login
+              </span>
+            </Link>
+          </div>
         </form>
-
-         <div className="mt-4 text-xs sm:text-sm text-placeholder text-center">
-          Already have an account?{" "}
-          <Link to="/login">
-            <span className="text-secondary hover:underline cursor-pointer font-bold">
-              Login
-            </span>
-          </Link>
-        </div>
       </div>
       <Modal isOpen={modalOpen} toggle={toggleModal} title={modalTitle}>
         <p>{modalDesc}</p>
