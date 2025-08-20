@@ -19,7 +19,7 @@ const Walkthrough = () => {
           Meet Your AI Dental Assistant
         </h1>
 
-         <p className="mt-4 text-center text-gray-600 text-sm md:text-lg max-w-2xl">
+         <p className="mt-4 text-center text-gray-600 text-base md:text-lg max-w-2xl">
           See how our AI-powered assistant helps you manage patients, track revenue, 
           and send reminders — so you can focus on what truly matters: <span className="text-primary font-semibold">brighter smiles</span>
         </p>
