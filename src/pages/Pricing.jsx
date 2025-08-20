@@ -81,7 +81,7 @@ const Pricing = () => {
 
         {/* Annual Plans Note */}
         {isActive === "yearly" && <div className="text-center mb-6">
-          <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs md:text-sm font-semibold text-primary shadow">
+          <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs md:text-sm font-semibold text-secondary border-3 border-textdark shadow">
             Save 2 months — Pay for 10, get 12
           </span>
         </div>}
