@@ -127,7 +127,7 @@ const Pricing = () => {
               </span>
             </div>
             {/* Gradient border wrapper */}
-            <div className="rounded-2xl bg-gradient-to-b from-[#0F2650] to-[#0ea5e9] p-[1px]">
+            <div className="rounded-2xl bg-gradient-to-b from-[#0F2650] to-[#0ea5e9] p-[4px]">
               <div className="rounded-2xl bg-white p-6 md:p-7">
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-lg md:text-xl font-extrabold">Pro</h3>
@@ -209,7 +209,7 @@ const Pricing = () => {
               </span>
             </div>
             {/* Gradient border wrapper */}
-            <div className="rounded-2xl bg-gradient-to-b from-[#0F2650] to-[#0ea5e9] p-[1px]">
+            <div className="rounded-2xl bg-gradient-to-b from-[#0F2650] to-[#0ea5e9] p-[4px]">
               <div className="rounded-2xl bg-white p-6 md:p-7">
                 <div className="mb-4 flex items-center justify-between">
                   <h3 className="text-lg md:text-xl font-extrabold">Pro</h3>
