@@ -13,8 +13,8 @@ const Header = () => {
         {/* Logo */}
         <Link to="/">
           <div className="flex items-center gap-2 font-bold text-secondary text-xl md:text-2xl cursor-pointer capitalize">
-            <img src={logo} alt="SmileLytics-logo" className="h-12 md:h-14 object-contain" />
-            <span>SmileLytics</span>
+            <img src={logo} alt="SmileLytics.AI-logo" className="h-12 md:h-14 object-contain" />
+            <span>SmileLytics.AI</span>
           </div>
         </Link>
 

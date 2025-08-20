@@ -23,7 +23,7 @@ const About = () => {
           
           {/* Text */}
           <p className="text-justify lg:w-2/3">
-            At <span className='text-secondary ml-1 font-semibold'> SmileLytics</span>, we believe dentistry should focus more on smiles and less on spreadsheets. That’s why we built an AI-powered dental companion designed to take the heavy lifting out of clinic management — so dentists can focus on what they do best: <span className='text-secondary ml-1 font-semibold'>caring for patients</span>.
+            At <span className='text-secondary ml-1 font-semibold'> SmileLytics.AI</span>, we believe dentistry should focus more on smiles and less on spreadsheets. That’s why we built an AI-powered dental companion designed to take the heavy lifting out of clinic management — so dentists can focus on what they do best: <span className='text-secondary ml-1 font-semibold'>caring for patients</span>.
             <br /><br />
             Our assistant is like your digital chairside partner — always attentive, always reliable, and always learning. From managing patients to keeping track of visits, payments, and reminders, it makes running a dental practice smoother, smarter, and stress-free.
           </p>

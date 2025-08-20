@@ -52,7 +52,7 @@ export default function Footer() {
 
       {/* Bottom Section */}
       <div className="mt-8 border-t border-gray-700 pt-6 text-center text-sm text-gray-400">
-        © {new Date().getFullYear()} <span className="text-primary">SmileLytics</span>. All rights reserved.
+        © {new Date().getFullYear()} <span className="text-primary">SmileLytics.AI</span>. All rights reserved.
       </div>
     </footer>
   );

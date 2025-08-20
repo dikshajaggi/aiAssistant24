@@ -9,8 +9,8 @@ export default function AuthLayout({ children }) {
       <div className="p-2">
         <Link to="/">
           <div className="text-2xl flex font-bold text-secondary cursor-pointer capitalize items-center">
-            <img src = {logo} alt="SmileLytics-logo" className="h-16"/>
-            SmileLytics
+            <img src = {logo} alt="SmileLytics.AI-logo" className="h-16"/>
+            SmileLytics.AI
           </div>
         </Link>
       </div>
