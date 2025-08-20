@@ -1,9 +1,17 @@
 import React from 'react'
 import PageWrapper from './PageWrapper'
 import { CheckCircle } from "lucide-react";
+import { toast } from 'react-toastify';
 
 
 const BookDemo = () => {
+
+  const handleBookDemo  = (e) => {
+    e.preventDefault()
+    // if (response.status === 200) {
+      toast.success("Demo booked Succesfully")
+    // }
+  }
   return (
     <PageWrapper>
     <div className="flex flex-col items-center min-h-screen bg-gray-50 px-6 py-12">
@@ -85,8 +93,8 @@ const BookDemo = () => {
           ></textarea>
 
           <button
-            type="submit"
             className="mt-4 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+            onClick={handleBookDemo}
           >
             Schedule Demo
           </button>
