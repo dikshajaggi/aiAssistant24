@@ -52,7 +52,7 @@ const BookDemo = () => {
           <input
             type="text"
             placeholder="Full Name"
-            className="border rounded-lg p-3 text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
+            className="border rounded-lg p-3 text-gray-700 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-primary"
           />
 
           {/* Phone Number with +91 */}
@@ -86,7 +86,7 @@ const BookDemo = () => {
 
           <button
             type="submit"
-            className="mt-4 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 transition shadow-md"
+            className="mt-4 bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary/90 shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
           >
             Schedule Demo
           </button>
