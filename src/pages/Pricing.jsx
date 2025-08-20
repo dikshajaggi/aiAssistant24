@@ -114,7 +114,7 @@ const Pricing = () => {
               <Feature>SMS + email reminders</Feature>
               <Feature>Simple analytics dashboard</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner transition-all">
+            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
               Choose Starter
             </button>
           </div>
@@ -145,7 +145,7 @@ const Pricing = () => {
                   <Feature>Advanced monthly reports (charts, revenue, etc.)</Feature>
                   <Feature>10 clinic users included</Feature>
                 </ul>
-                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner transition-all">
+                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
                   Choose Pro
                 </button>
               </div>
@@ -170,7 +170,7 @@ const Pricing = () => {
               <Feature>Priority support + custom dashboards</Feature>
               <Feature>Add-ons: invoice generation, WhatsApp bot integration</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner transition-all">
+            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
               Choose Premium
             </button>
           </div>
@@ -196,7 +196,7 @@ const Pricing = () => {
               <Feature>SMS + email reminders</Feature>
               <Feature>Simple analytics dashboard</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner transition-all">
+            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
               Choose Starter
             </button>
           </div>
@@ -226,7 +226,7 @@ const Pricing = () => {
                   <Feature>Advanced monthly reports (charts, revenue, etc.)</Feature>
                   <Feature>10 clinic users included</Feature>
                 </ul>
-                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner transition-all">
+                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
                   Choose Pro
                 </button>
               </div>
@@ -250,7 +250,7 @@ const Pricing = () => {
               <Feature>Priority support + custom dashboards</Feature>
               <Feature>Add-ons: invoice generation, WhatsApp bot integration</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner transition-all">
+            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
               Choose Premium
             </button>
           </div>
