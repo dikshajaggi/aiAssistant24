@@ -1,7 +1,7 @@
 import React from "react";
 import PageWrapper from "./PageWrapper";
-import contactus from "../assets/contactus.png";
-import blob from "../assets/blob.gif"
+import contactus from "/assets/contactus.png";
+import blob from "/assets/blob.gif"
 import { Mail, Phone } from "lucide-react";
 
 const Contact = () => {
@@ -40,6 +40,7 @@ const Contact = () => {
             {/* Blob GIF as background */}
             <img
               src={blob}
+              loading="lazy"
               alt="Background Blob"
               className="absolute top-1/2 left-1/2 
                         h-auto 
@@ -50,6 +51,7 @@ const Contact = () => {
             {/* Foreground Contact Us Image */}
             <img
               src={contactus}
+              loading="lazy"
               alt="Contact Us"
               className="relative w-[70vw] max-w-[500px] h-auto object-contain z-10"
             />

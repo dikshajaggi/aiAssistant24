@@ -1,6 +1,6 @@
 // src/layouts/AuthLayout.jsx
 import { Link } from "react-router-dom";
-import logo from "../assets/smilelytics.png"
+import logo from "/assets/smilelytics.png"
 
 export default function AuthLayout({ children }) {
   return (
@@ -9,7 +9,7 @@ export default function AuthLayout({ children }) {
       <div className="p-2">
         <Link to="/">
           <div className="text-2xl flex font-bold text-secondary cursor-pointer capitalize items-center">
-            <img src = {logo} alt="SmileLytics.AI-logo" className="h-16"/>
+            <img src = {logo} loading="lazy" alt="SmileLytics.AI-logo" className="h-16"/>
             SmileLytics.AI
           </div>
         </Link>

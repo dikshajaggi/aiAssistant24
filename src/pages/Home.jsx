@@ -33,6 +33,7 @@ const Home = () => {
               <img
                 src={feature.image}
                 alt={feature.caption}
+                loading="lazy"
                 className= "w-[500px] h-auto rounded-xl mb-10 md:mb-0"
               />
             </div>

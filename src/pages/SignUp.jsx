@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import smilelytics from "../assets/smilelytics.png";
+import smilelytics from "/assets/smilelytics.png";
 import { Link } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import Modal from "../components/SignUpModal";
@@ -25,6 +25,7 @@ const SignUp = () => {
       <div className="hidden md:w-1/2 md:flex justify-center items-center">
         <img
           src={smilelytics}
+          loading="lazy"
           alt="bg-image"
           className="w-full max-h-screen object-contain md:object-cover"
         />

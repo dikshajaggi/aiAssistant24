@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react"; 
 import { Link } from "react-router-dom";
-import logo from "../assets/smilelytics.png";
+import logo from "/assets/smilelytics.png";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,7 +13,7 @@ const Header = () => {
         {/* Logo */}
         <Link to="/">
           <div className="flex items-center gap-2 font-bold text-secondary text-xl md:text-2xl cursor-pointer capitalize">
-            <img src={logo} alt="SmileLytics.AI-logo" className="h-12 md:h-14 object-contain" />
+            <img src={logo} alt="SmileLytics.AI-logo" loading="lazy" className="h-12 md:h-14 object-contain" />
             <span>SmileLytics.AI</span>
           </div>
         </Link>

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import smilelytics from "../assets/smilelytics.png";
+import smilelytics from "/assets/smilelytics.png";
 import { Link, useNavigate } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import { MainContext } from "../context/MainContext";
@@ -24,6 +24,7 @@ const Login = () => {
         <img
           src={smilelytics}
           alt="bg-image"
+          loading="lazy"
           className="w-full max-h-screen"
         />
       </div>

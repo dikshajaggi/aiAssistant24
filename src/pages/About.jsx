@@ -1,7 +1,7 @@
 import React from 'react'
 import PageWrapper from './PageWrapper'
-import visionMission from "../assets/vision.jpg"
-import dentist from "../assets/dentist.png"
+import visionMission from "/assets/vision.jpg"
+import dentist from "/assets/dentist.png"
 
 const About = () => {
   return (
@@ -31,6 +31,7 @@ const About = () => {
           {/* Image */}
           <img 
             src={dentist} 
+            loading="lazy"
             alt="dentist-with-patient" 
             className='w-full max-w-[400px] lg:max-w-[500px] rounded-xl object-contain'
           />
@@ -57,6 +58,7 @@ const About = () => {
             {/* Mission Image */}
             <img 
               src={visionMission} 
+              loading="lazy"
               alt="vision-mission" 
               className='w-full max-w-[350px] md:max-w-[400px] rounded-2xl object-cover'
             />

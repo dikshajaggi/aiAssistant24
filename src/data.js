@@ -1,5 +1,5 @@
-import third from "./assets/third.png"
-import fourth from "./assets/fourth.png"
+import third from "/assets/third.png"
+import fourth from "/assets/fourth.png"
 
 
 export const features = [
