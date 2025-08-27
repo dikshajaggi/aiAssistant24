@@ -146,7 +146,7 @@ const AddPatientForm = () => {
         <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all"
+            className="w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all cursor-pointer"
         >
             {loading ? "Adding..." : "Add Patient"}
         </button>
