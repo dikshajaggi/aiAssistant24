@@ -111,3 +111,60 @@ We provide customer support via email, chat, and phone, along with tutorials and
 
 Can I upgrade or downgrade my plan later?
 Yes, you can switch plans anytime without losing your data.
+
+
+🖥️ Core Dashboard Sections
+
+Summary Cards (KPIs at a glance)
+
+Total Patients (lifetime)
+
+Total Visits (lifetime)
+
+Total Revenue (lifetime)
+
+Pending Payments (with quick link to payment screen)
+
+Upcoming Appointments (Today / This Week)
+
+Charts & Analytics
+
+Visits per Month (Line/Bar chart) → Shows patient footfall trend.
+
+Revenue per Month (Line/Bar chart) → See growth & financial health.
+
+Top Treatments (Pie/Bar chart) → Most frequently availed treatments.
+
+Patients Growth Chart (optional) → New patients added each month.
+
+Appointments & Reminders
+
+Today’s Appointments list with status (scheduled, completed, cancelled).
+
+Reminder Overview:
+
+WhatsApp reminders sent today.
+
+Email reminders sent today.
+
+Pending reminders (to be sent).
+
+AI-Powered Marketing
+
+Latest AI-Generated Social Media Posts preview (with quick copy/share).
+
+Promotional Email Suggestions (draft preview, with “Send” button).
+
+⚙️ Action Shortcuts / Quick Actions
+
+➕ Add Patient
+
+➕ Add Visit
+
+📅 Book Appointment
+
+💳 Record Payment
+
+📢 Generate AI Post
+
+✉️ Generate Promo Email

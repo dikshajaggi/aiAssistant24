@@ -9,6 +9,7 @@ import {
   Mail,
   Sparkles,
 } from "lucide-react";
+import Faq from "../components/Faq";
 
 const Walkthrough = () => {
   return (
@@ -46,82 +47,6 @@ const Walkthrough = () => {
         </Link>
       </section>
 
-      {/* Step-by-Step Walkthrough */}
-      <section className="px-6 py-12 space-y-16 max-w-6xl mx-auto">
-        {/* Step 1 */}
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <Users className="w-16 h-16 text-primary flex-shrink-0" />
-          <div>
-            <h2 className="text-2xl font-bold">1. Manage Patients with Ease</h2>
-            <p className="text-placeholder mt-2 text-base md:text-lg">
-              Add, update, and organize patient details in seconds. From medical
-              history to contact info — everything is stored securely in one
-              place.
-            </p>
-          </div>
-        </div>
-
-        {/* Step 2 */}
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <Calendar className="w-16 h-16 text-primary flex-shrink-0" />
-          <div>
-            <h2 className="text-2xl font-bold">2. Smarter Appointment Tracking</h2>
-            <p className="text-placeholder mt-2 text-base md:text-lg">
-              Schedule visits seamlessly and never worry about no-shows. Get
-              automated reminders via WhatsApp & Email.
-            </p>
-          </div>
-        </div>
-
-        {/* Step 3 */}
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <CreditCard className="w-16 h-16 text-primary flex-shrink-0" />
-          <div>
-            <h2 className="text-2xl font-bold">3. Revenue & Payments in One Place</h2>
-            <p className="text-placeholder mt-2 text-base md:text-lg">
-              Track revenue, manage pending payments, and keep your finances
-              transparent — without messy spreadsheets.
-            </p>
-          </div>
-        </div>
-
-        {/* Step 4 */}
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <BarChart3 className="w-16 h-16 text-primary flex-shrink-0" />
-          <div>
-            <h2 className="text-2xl font-bold">4. Insights at a Glance</h2>
-            <p className="text-placeholder mt-2 text-base md:text-lg">
-              See total patients, total visits, monthly revenue, and your most
-              popular treatments with interactive dashboards.
-            </p>
-          </div>
-        </div>
-
-        {/* Step 5 */}
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <MessageSquare className="w-16 h-16 text-primary flex-shrink-0" />
-          <div>
-            <h2 className="text-2xl font-bold">5. Automated Patient Engagement</h2>
-            <p className="text-placeholder mt-2 text-base md:text-lg">
-              Send timely WhatsApp & Email reminders so your patients stay
-              connected and never miss a visit.
-            </p>
-          </div>
-        </div>
-
-        {/* Step 6 */}
-        <div className="flex flex-col md:flex-row items-center gap-8">
-          <Sparkles className="w-16 h-16 text-primary flex-shrink-0" />
-          <div>
-            <h2 className="text-2xl font-bold">6. AI Superpowers for Growth</h2>
-            <p className="text-placeholder mt-2 text-base md:text-lg">
-              Generate ready-to-post social media content and promotional emails
-              with one click — helping your practice attract and retain patients.
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* Benefits Section */}
       <section className="bg-primary text-white py-12 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
@@ -143,6 +68,8 @@ const Walkthrough = () => {
           </div>
         </div>
       </section>
+
+      <Faq />
 
       {/* Final CTA */}
       <section className="py-16 text-center px-6">

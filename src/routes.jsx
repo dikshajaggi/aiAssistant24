@@ -13,6 +13,7 @@ import About from "./pages/About"
 import Contact from "./pages/Contact"
 import TermsOfService from "./pages/TermsOfService"
 import AuthLayout from "./layouts/AuthLayout"
+import Dashboard from "./pages/Dashboard"
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
             {path: "/about", element: <About />},
             {path: "/contact", element: <Contact />},
             {path: "/features", element: <Features />},
+            {path: "/dashboard", element: <Dashboard />},
             //other routes having header and footer....
         ]
     },
