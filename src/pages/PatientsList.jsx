@@ -2,19 +2,26 @@ import React, { useContext, useEffect, useState } from "react";
 import { formatDateWithDay } from "../utils/formatDateWithDay";
 import DeleteModal from "../components/DeleteConfirmationModal";
 import { MainContext } from "../context/MainContext";
+import EditPatientModal from "../components/EditPatientModal";
 
 const PatientsList = () => {
-    const {patients} = useContext(MainContext)
+    const {patients, setPatients} = useContext(MainContext)
     const [currentPatient, setCurrentPatient] = useState(null)
     const [loading, setLoading] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
+    const [editingPatient, setEditingPatient] = useState(null);
+
     const modalDesc = "Are you sure you want to delete this patient's data?"
     const modalTitle = "Confirm Deletion"
     
     const toggleModal = (id) => {
-            setModalOpen(!modalOpen)
-            setCurrentPatient(id)
-        }
+        setModalOpen(!modalOpen)
+        setCurrentPatient(id)
+    }
+
+    const handleUpdate = (updatedPatient) => {
+        setPatients(patients.map(p => (p.id === updatedPatient.id ? updatedPatient : p)));
+    };
 
     // Fetch patients on mount
     useEffect(() => {
@@ -72,7 +79,7 @@ const PatientsList = () => {
                     <td className="p-4">{formatDateWithDay(p.appointment_date)}</td>
                     <td className="p-4">{p.treatment}</td>
                     <td className="p-4 flex gap-3 justify-center">
-                    <button className="px-3 py-1 bg-secondary/90 text-white rounded-lg hover:bg-secondary cursor-pointer">
+                    <button onClick={() => setEditingPatient(p)} className="px-3 py-1 bg-secondary/90 text-white rounded-lg hover:bg-secondary cursor-pointer">
                       Edit
                     </button>
                     <button
@@ -113,12 +120,12 @@ const PatientsList = () => {
                   {p.treatment}
                 </p>
                 <div className="flex gap-3 mt-2">
-                  <button className="flex-1 px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                  <button onClick={() => setEditingPatient(p)} className="cursor-pointer flex-1 px-3 py-1 bg-secondary/90 text-white rounded-lg hover:bg-secondary">
                     Edit
                   </button>
                   <button
                     onClick={() => toggleModal(p.id)}
-                    className="flex-1 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                    className="cursor-pointer flex-1 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
                   >
                     Delete
                   </button>
@@ -131,6 +138,14 @@ const PatientsList = () => {
         <DeleteModal isOpen={modalOpen} toggle={toggleModal} title={modalTitle} currentPatient={currentPatient}>
             <p>{modalDesc}</p>
         </DeleteModal>
+
+        {editingPatient && (
+            <EditPatientModal
+            patient={editingPatient}
+            onClose={() => setEditingPatient(null)}
+            onUpdate={handleUpdate}
+            />
+        )}
     </div>
   );
 };

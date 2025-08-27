@@ -87,7 +87,7 @@ const Faq = () => {
                   >
                     <button
                       onClick={() => toggleFAQ(currentIndex)}
-                      className="flex w-full items-center justify-between p-4 text-left text-base md:text-lg font-medium text-gray-800 hover:bg-primary/10"
+                      className="flex w-full items-center justify-between p-4 text-left text-base md:text-lg font-medium text-gray-800 hover:bg-primary/10 cursor-pointer"
                     >
                       {item.q}
                       <ChevronDown
