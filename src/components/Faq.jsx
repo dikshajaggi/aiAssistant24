@@ -69,7 +69,7 @@ const Faq = () => {
   return (
     <div className="bg-neutral py-16 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl md:text-4xl font-extrabold text-center text-primary mb-10">
+        <h2 className="text-2xl md:text-4xl font-extrabold text-center text-secondary mb-10">
           Frequently Asked Questions
         </h2>
 

@@ -4,6 +4,48 @@ const MainContext = createContext()
 
 const MainContextProvider = (props) => {
     const [signedUp, setSignedUp] = useState(true)
+    const [patients, setPatients] = useState([
+        {
+            "id": 534672354,
+            "name": "Aarav Mehta",
+            "age": 32,
+            "gender": "male",
+            "appointment_date": "2025-09-05",
+            "treatment": "Dental Cleaning"
+        },
+        {
+            "id": 98908099,
+            "name": "Priya Sharma",
+            "age": 27,
+            "gender": "female",
+            "appointment_date": "2025-09-06",
+            "treatment": "Root Canal"
+        },
+        {
+            "id": 213123123,
+            "name": "Rohan Gupta",
+            "age": 45,
+            "gender": "male",
+            "appointment_date": "2025-09-07",
+            "treatment": "Tooth Extraction"
+        },
+        {
+            "id": 656435675,
+            "name": "Simran Kaur",
+            "age": 36,
+            "gender": "female",
+            "appointment_date": "2025-09-08",
+            "treatment": "Braces Consultation"
+        },
+        {
+            "id": 1268789753,
+            "name": "Aditya Verma",
+            "age": 52,
+            "gender": "male",
+            "appointment_date": "2025-09-09",
+            "treatment": "Dental Implant"
+        }
+        ])
     const [isSubscribed, setIsSubscribed] = useState(false)
 
     return (
@@ -11,7 +53,9 @@ const MainContextProvider = (props) => {
             signedUp,
             setSignedUp,
             isSubscribed,
-            setIsSubscribed
+            setIsSubscribed,
+            patients,
+            setPatients
         }}
        >
         {props.children}

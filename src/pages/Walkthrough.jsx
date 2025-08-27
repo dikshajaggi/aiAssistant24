@@ -1,14 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Users,
-  Calendar,
-  CreditCard,
-  BarChart3,
-  MessageSquare,
-  Mail,
-  Sparkles,
-} from "lucide-react";
 import Faq from "../components/Faq";
 
 const Walkthrough = () => {
@@ -16,13 +7,13 @@ const Walkthrough = () => {
     <div className="min-h-screen min-w-screen bg-neutral text-textdark px-10">
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center px-6 py-16">
-        <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-primary">
+        <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-secondary">
           Meet Your AI Dental Assistant
         </h1>
 
          <p className="mt-4 text-center text-gray-600 text-base md:text-lg max-w-2xl">
           See how our AI-powered assistant helps you manage patients, track revenue, 
-          and send reminders — so you can focus on what truly matters: <span className="text-primary font-semibold">brighter smiles</span>
+          and send reminders — so you can focus on what truly matters: <span className="text-secondary font-semibold">brighter smiles</span>
         </p>
 
         {/* Video Container */}

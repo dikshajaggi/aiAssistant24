@@ -1,83 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { formatDateWithDay } from "../utils/formatDateWithDay";
+import DeleteModal from "../components/DeleteConfirmationModal";
+import { MainContext } from "../context/MainContext";
 
 const PatientsList = () => {
-  const [patients, setPatients] = useState([]);
-  const [loading, setLoading] = useState(false);
+    const {patients} = useContext(MainContext)
+    const [currentPatient, setCurrentPatient] = useState(null)
+    const [loading, setLoading] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
+    const modalDesc = "Are you sure you want to delete this patient's data?"
+    const modalTitle = "Confirm Deletion"
+    
+    const toggleModal = (id) => {
+            setModalOpen(!modalOpen)
+            setCurrentPatient(id)
+        }
 
-  // Fetch patients on mount
-  useEffect(() => {
-    fetchPatients();
-  }, []);
+    // Fetch patients on mount
+    useEffect(() => {
+        fetchPatients();
+    }, []);
 
-  const fetchPatients = async () => {
-    try {
-      setLoading(true);
-    //   const token = localStorage.getItem("token");
-    //   const resp = await fetch("http://localhost:8000/patients", {
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //     },
-    //   });
-    //   const data = await resp.json();
-      setPatients([
-  {
-    "name": "Aarav Mehta",
-    "age": 32,
-    "gender": "male",
-    "appointment_date": "2025-09-05",
-    "treatment": "Dental Cleaning"
-  },
-  {
-    "name": "Priya Sharma",
-    "age": 27,
-    "gender": "female",
-    "appointment_date": "2025-09-06",
-    "treatment": "Root Canal"
-  },
-  {
-    "name": "Rohan Gupta",
-    "age": 45,
-    "gender": "male",
-    "appointment_date": "2025-09-07",
-    "treatment": "Tooth Extraction"
-  },
-  {
-    "name": "Simran Kaur",
-    "age": 36,
-    "gender": "female",
-    "appointment_date": "2025-09-08",
-    "treatment": "Braces Consultation"
-  },
-  {
-    "name": "Aditya Verma",
-    "age": 52,
-    "gender": "male",
-    "appointment_date": "2025-09-09",
-    "treatment": "Dental Implant"
-  }
-]
-);
-    } catch (err) {
-      console.error("Error fetching patients:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this patient?")) return;
-    try {
-      const token = localStorage.getItem("token");
-      await fetch(`http://localhost:8000/patients/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setPatients(patients.filter((p) => p.id !== id));
-    } catch (err) {
-      console.error("Error deleting patient:", err);
-    }
-  };
+    const fetchPatients = async () => {
+        try {
+        setLoading(true);
+        //   const token = localStorage.getItem("token");
+        //   const resp = await fetch("http://localhost:8000/patients", {
+        //     headers: {
+        //       Authorization: `Bearer ${token}`,
+        //     },
+        //   });
+        //   const data = await resp.json();
+        // setPatients(data);
+        } catch (err) {
+        console.error("Error fetching patients:", err);
+        } finally {
+        setLoading(false);
+        }
+    };
 
   return (
     <div className="mt-12  w-full max-w-6xl">
@@ -112,12 +72,12 @@ const PatientsList = () => {
                     <td className="p-4">{formatDateWithDay(p.appointment_date)}</td>
                     <td className="p-4">{p.treatment}</td>
                     <td className="p-4 flex gap-3 justify-center">
-                    <button className="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                    <button className="px-3 py-1 bg-secondary/90 text-white rounded-lg hover:bg-secondary cursor-pointer">
                       Edit
                     </button>
                     <button
-                      onClick={() => handleDelete(p.id)}
-                      className="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                      onClick={() => toggleModal(p.id)}
+                      className="px-3 py-1 bg-alert/90 text-white rounded-lg hover:bg-alert cursor-pointer"
                     >
                       Delete
                     </button>
@@ -157,7 +117,7 @@ const PatientsList = () => {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(p.id)}
+                    onClick={() => toggleModal(p.id)}
                     className="flex-1 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
                   >
                     Delete
@@ -168,6 +128,9 @@ const PatientsList = () => {
           </div>
         </div>
       )}
+        <DeleteModal isOpen={modalOpen} toggle={toggleModal} title={modalTitle} currentPatient={currentPatient}>
+            <p>{modalDesc}</p>
+        </DeleteModal>
     </div>
   );
 };
