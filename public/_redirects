@@ -1,1 +1,5 @@
 /*    /index.html   200
+
+/fonts/gilroy/*
+  Content-Type: font/ttf
+  Access-Control-Allow-Origin: *
