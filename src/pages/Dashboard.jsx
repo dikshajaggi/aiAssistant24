@@ -3,6 +3,7 @@ import PageWrapper from './PageWrapper'
 import SummaryCards from '../components/SummaryCards'
 import AddPatientForm from './AddPatientForm '
 import PatientsList from './PatientsList'
+import AppointmentsAndReminders from './AppointmentsAndReminders'
 
 const Dashboard = () => {
   return (
@@ -10,6 +11,7 @@ const Dashboard = () => {
       <SummaryCards />
       <AddPatientForm />
       <PatientsList />
+      <AppointmentsAndReminders />
     </PageWrapper>
   )
 }
