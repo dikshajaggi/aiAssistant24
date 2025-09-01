@@ -4,6 +4,7 @@ import SummaryCards from '../components/SummaryCards'
 import AddPatientForm from './AddPatientForm '
 import PatientsList from './PatientsList'
 import AppointmentsAndReminders from './AppointmentsAndReminders'
+import ChartsAnalytics from './ChartsAnalytics'
 
 const Dashboard = () => {
   return (
@@ -12,6 +13,7 @@ const Dashboard = () => {
       <AddPatientForm />
       <PatientsList />
       <AppointmentsAndReminders />
+      <ChartsAnalytics />
     </PageWrapper>
   )
 }

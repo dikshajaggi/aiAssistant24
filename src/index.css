@@ -33,6 +33,24 @@ a:hover {
   src: local('Gilroy-Light'), url(/fonts/gilroy/Gilroy-Light.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Light.ttf') format('truetype');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Medium.ttf') format('truetype');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/poppins/Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
 body {
   font-family: 'Gilroy-Medium', sans-serif !important;
 }
@@ -46,6 +64,7 @@ body {
     --color-textlight: #FFFFFF !important;
     --color-alert: #fa4a5b !important;
     --color-placeholder: #525252 !important;
+    --font-poppins: Poppins, "sans-serif"
 }
 
 .accordion-button {
