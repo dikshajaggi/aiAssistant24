@@ -25,7 +25,7 @@ const Sidebar = () => {
               to={item.path}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${
                 pathname === item.path
-                  ? "bg-primary text-white"
+                ? "bg-primary !text-white"
                   : "text-gray-700 hover:bg-gray-100"
               }`}
             >

@@ -53,7 +53,7 @@ const ChartsAnalytics = () => {
     );
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen w-full">
+    <div className="p-6 min-h-screen w-full">
       <h1 className="text-2xl font-bold mb-6 text-gray-800">
         Clinic Dashboard
       </h1>
