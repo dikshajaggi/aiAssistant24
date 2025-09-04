@@ -12,9 +12,16 @@ const SidebarLayout = () => {
       <ScrollToTop />
       <PageWrapper>
         <DashboardHeader />
-        <main className="flex justify-between min-h-screen min-w-screen pt-24">
+        <main className="flex min-h-screen w-screen pt-24">
+          {/* Sidebar with fixed width */}
+          <div className="w-20 flex-shrink-0">
             <Sidebar />
+          </div>
+
+          {/* Outlet expands to remaining space */}
+          <div className="flex-1">
             <Outlet />
+          </div>
         </main>
         <Footer />
       </PageWrapper>
