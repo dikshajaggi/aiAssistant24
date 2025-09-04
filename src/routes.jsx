@@ -14,6 +14,10 @@ import Contact from "./pages/Contact"
 import TermsOfService from "./pages/TermsOfService"
 import AuthLayout from "./layouts/AuthLayout"
 import Dashboard from "./pages/Dashboard"
+import Patients from "./pages/Patients"
+import Appointments from "./pages/Appointments"
+import Analytics from "./pages/Analytics"
+import SidebarLayout from "./layouts/SidebarLayout"
 
 const router = createBrowserRouter([
     {
@@ -30,8 +34,21 @@ const router = createBrowserRouter([
             {path: "/contact", element: <Contact />},
             {path: "/features", element: <Features />},
             {path: "/dashboard", element: <Dashboard />},
+            {path: "/patients", element: <Patients />},
+            {path: "/appointments", element: <Appointments />},
+            {path: "/analytics", element: <Analytics />},
             //other routes having header and footer....
         ]
+    },
+    {
+        path: "/dashboard",
+        element: <SidebarLayout />,
+        children: [
+        { index: true, element: <Dashboard /> },
+        { path: "patients", element: <Patients /> },
+        { path: "appointments", element: <Appointments /> },
+        { path: "analytics", element: <Analytics /> },
+        ],
     },
     {
         path: "/login",
