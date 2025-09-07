@@ -12,100 +12,92 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from "recharts";
-// import axios from "axios";
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+const COLORS = ["#2563EB", "#14B8A6", "#F59E0B", "#F43F5E"];
 
 const ChartsAnalytics = () => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    // axios.get("/dashboard").then((res) => {
-    //   setData(res.data);
-    // });
     setData({
-      "visitsPerMonth": [
-        { "month": "Jan", "visits": 120 },
-        { "month": "Feb", "visits": 90 }
+      visitsPerMonth: [
+        { month: "Jan", visits: 120 },
+        { month: "Feb", visits: 90 },
+        { month: "Mar", visits: 150 },
       ],
-      "revenuePerMonth": [
-        { "month": "Jan", "revenue": 30000 },
-        { "month": "Feb", "revenue": 45000 }
+      revenuePerMonth: [
+        { month: "Jan", revenue: 30000 },
+        { month: "Feb", revenue: 45000 },
+        { month: "Mar", revenue: 50000 },
       ],
-      "topTreatments": [
-        { "treatment": "Root Canal", "count": 40 },
-        { "treatment": "Whitening", "count": 25 }
+      topTreatments: [
+        { treatment: "Root Canal", count: 40 },
+        { treatment: "Whitening", count: 25 },
+        { treatment: "Implants", count: 18 },
       ],
-      "patientsGrowth": [
-        { "month": "Jan", "newPatients": 15 },
-        { "month": "Feb", "newPatients": 22 }
-      ]
+      patientsGrowth: [
+        { month: "Jan", newPatients: 15 },
+        { month: "Feb", newPatients: 22 },
+        { month: "Mar", newPatients: 28 },
+      ],
     });
   }, []);
 
   if (!data)
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex justify-center items-center h-screen bg-gray-50">
         <p className="text-gray-500">Loading dashboard...</p>
       </div>
     );
 
   return (
     <div className="p-6 min-h-screen w-full">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">
-        Clinic Dashboard
-      </h1>
 
       {/* Grid layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6">
         {/* Visits per Month */}
-        <div className="bg-white rounded-2xl shadow p-4">
-          <h2 className="text-lg font-semibold mb-3 text-gray-700">
+        <div className="bg-white rounded-2xl shadow-sm p-5 border border-gray-100">
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">
             Visits per Month
           </h2>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={data.visitsPerMonth}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
+              <CartesianGrid stroke="#E5E7EB" strokeDasharray="3 3" />
+              <XAxis dataKey="month" stroke="#6B7280" />
+              <YAxis stroke="#6B7280" />
               <Tooltip />
-              <Legend />
               <Line
                 type="monotone"
                 dataKey="visits"
-                stroke="#0088FE"
-                strokeWidth={2}
+                stroke="#2563EB"
+                strokeWidth={3}
+                dot={{ r: 5 }}
               />
             </LineChart>
           </ResponsiveContainer>
         </div>
 
         {/* Revenue per Month */}
-        <div className="bg-white rounded-2xl shadow p-4">
-          <h2 className="text-lg font-semibold mb-3 text-gray-700">
+        <div className="bg-white rounded-2xl shadow-sm p-5 border border-gray-100">
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">
             Revenue per Month
           </h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={data.revenuePerMonth}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
+              <CartesianGrid stroke="#E5E7EB" strokeDasharray="3 3" />
+              <XAxis dataKey="month" stroke="#6B7280" />
+              <YAxis stroke="#6B7280" />
               <Tooltip />
-              <Legend />
-              <Bar
-                dataKey="revenue"
-                fill="#00C49F"
-                radius={[8, 8, 0, 0]}
-              />
+              <Bar dataKey="revenue" fill="#14B8A6" radius={[10, 10, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
         {/* Top Treatments */}
-        <div className="bg-white rounded-2xl shadow p-4">
-          <h2 className="text-lg font-semibold mb-3 text-gray-700">
+        <div className="bg-white rounded-2xl shadow-sm p-5 border border-gray-100">
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">
             Top Treatments
           </h2>
           <ResponsiveContainer width="100%" height={300}>
@@ -120,10 +112,7 @@ const ChartsAnalytics = () => {
                 label
               >
                 {data.topTreatments.map((_, index) => (
-                  <Cell
-                    key={index}
-                    fill={COLORS[index % COLORS.length]}
-                  />
+                  <Cell key={index} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
               <Tooltip />
@@ -133,22 +122,22 @@ const ChartsAnalytics = () => {
         </div>
 
         {/* Patients Growth */}
-        <div className="bg-white rounded-2xl shadow p-4">
-          <h2 className="text-lg font-semibold mb-3 text-gray-700">
+        <div className="bg-white rounded-2xl shadow-sm p-5 border border-gray-100">
+          <h2 className="text-lg font-semibold mb-4 text-gray-700">
             Patients Growth
           </h2>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={data.patientsGrowth}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
+              <CartesianGrid stroke="#E5E7EB" strokeDasharray="3 3" />
+              <XAxis dataKey="month" stroke="#6B7280" />
+              <YAxis stroke="#6B7280" />
               <Tooltip />
-              <Legend />
               <Line
                 type="monotone"
                 dataKey="newPatients"
-                stroke="#FF8042"
-                strokeWidth={2}
+                stroke="#F59E0B"
+                strokeWidth={3}
+                dot={{ r: 5 }}
               />
             </LineChart>
           </ResponsiveContainer>
@@ -156,7 +145,6 @@ const ChartsAnalytics = () => {
       </div>
     </div>
   );
-}
+};
 
-
-export default ChartsAnalytics
+export default ChartsAnalytics;

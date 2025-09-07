@@ -57,8 +57,7 @@ const AddPatientForm = () => {
 
 
   return (
-  <div className="bg-neutral px-6 py-12 w-full">
-    <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-2xl mx-auto">
+  <div className="bg-white shadow-md rounded-2xl p-6 w-full max-w-7xl mx-auto mt-10">
         <h2 className="text-2xl font-bold text-textdark mb-6 text-center">
         Add New Patient
         </h2>
@@ -155,7 +154,6 @@ const AddPatientForm = () => {
             {message && (
             <p className="mt-4 text-center text-sm font-medium">{message}</p>
             )}
-        </div>
     </div>
 
   );
