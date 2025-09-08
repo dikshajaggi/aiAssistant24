@@ -13,31 +13,36 @@ const SummaryCards = () => {
       title: "Total Patients",
       value: "1,250",
       icon: Users,
-      color: "bg-blue-100 text-blue-600"
+      bgColor: "bg-primary/30",
+      color: "bg-white text-primary-600 border border-primary/40"
     },
     {
       title: "Total Visits",
       value: "3,480",
       icon: Calendar,
-      color: "bg-green-100 text-green-600"
+      bgColor: "bg-green-200",
+      color: "bg-white text-green-600 border border-green-300"
     },
     {
       title: "Total Revenue",
       value: "₹8,75,000",
       icon: BarChart3,
-      color: "bg-purple-100 text-purple-600"
+      bgColor: "bg-purple-200",
+      color: "bg-white text-purple-600 border border-purple-300"
     },
     {
       title: "Pending Payments",
       value: "₹45,000",
       icon: CreditCard,
-      color: "bg-red-100 text-red-600"
+      bgColor: "bg-red-200",
+      color: "bg-white text-red-600 border border-red-300"
     },
     {
       title: "Upcoming Appointments",
       value: "12 Today / 35 This Week",
+      bgColor: "bg-yellow-200",
       icon: Clock,
-      color: "bg-yellow-100 text-yellow-600"
+      color: "bg-white text-yellow-600 border border-yellow-300"
     },
   ];
 
@@ -50,7 +55,7 @@ const SummaryCards = () => {
           return (
             <div
               key={idx}
-              className="flex flex-col justify-between bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className={`flex flex-col justify-between ${card.bgColor} rounded-2xl shadow-lg p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300`}
             >
               {/* Icon + Title */}
               <div className="flex items-center gap-3">
