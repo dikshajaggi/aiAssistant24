@@ -31,7 +31,7 @@ const Walkthrough = () => {
         </div>
 
 
-        <Link to="/book-demo">
+        <Link to="/bookdemo">
           <button className="mt-8 px-6 py-3 bg-secondary text-white font-bold rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
             Book a Free Demo
           </button>
@@ -71,7 +71,7 @@ const Walkthrough = () => {
           Book a free demo today and see how our AI Dental Assistant can make
           your clinic smarter, faster, and more connected.
         </p>
-        <Link to="/book-demo">
+        <Link to="/bookdemo">
           <button className="px-8 py-4 bg-secondary text-white font-bold rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
             Book Your Demo
           </button>
