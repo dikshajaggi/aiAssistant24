@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
 import PageWrapper from "../pages/PageWrapper";
 import DashboardHeader from "../components/DashboardHeader";
+import MobileSidebar from "../components/MobileSidebar";
 
 const SidebarLayout = () => {
   return (
@@ -12,17 +13,17 @@ const SidebarLayout = () => {
       <ScrollToTop />
       <PageWrapper>
         <DashboardHeader />
-        <main className="flex min-h-screen w-screen pt-24">
-          {/* Sidebar with fixed width */}
-          <div className="w-20 flex-shrink-0">
+        <main className="flex min-h-screen w-full pt-24">
+          <div className="hidden md:flex w-20 flex-shrink-0">
             <Sidebar />
           </div>
-
-          {/* Outlet expands to remaining space */}
-          <div className="flex-1">
+          <div className="md:hidden fixed left-0 top-16 z-40">
+          </div>
+          <div className="flex-1 px-4 md:px-6">
             <Outlet />
           </div>
         </main>
+        <MobileSidebar />
         <Footer />
       </PageWrapper>
     </>

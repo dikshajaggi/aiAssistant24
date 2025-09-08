@@ -7,7 +7,6 @@ import logo from "/assets/smilelytics.png";
 const DashboardHeader = () => {
   const [open, setOpen] = useState(false);
 
-  // Example user data (replace with real user info)
   const user = {
     name: "Aakash Gupta",
     email: "aakash09gupta@gmail.com",
@@ -16,10 +15,10 @@ const DashboardHeader = () => {
 
   return (
     <header className="bg-neutral fixed w-full top-0 z-50 uppercase font-semibold">
-      <div className="mx-auto px-6 flex justify-between items-center py-3">
+      <div className="mx-auto px-4 md:px-6 flex justify-between items-center py-3">
         {/* Logo */}
         <Link to="/">
-          <div className="flex items-center gap-2 font-semibold text-secondary text-xl md:text-2xl cursor-pointer capitalize font-poppins">
+          <div className="flex items-center gap-2 font-semibold text-secondary text-lg md:text-2xl cursor-pointer capitalize font-poppins">
             <img
               src={logo}
               alt="SmileLytics.AI-logo"
@@ -32,8 +31,8 @@ const DashboardHeader = () => {
 
         {/* Avatar Dropdown */}
         <div className="relative"
-          onMouseEnter={() => setOpen(true)}
-          onMouseLeave={() => setOpen(false)}
+          // onMouseEnter={() => setOpen(true)} ---> on hover
+          // onMouseLeave={() => setOpen(false)}
         >
           <button onClick={() => setOpen(!open)} className="focus:outline-none">
             <Avatar
@@ -71,7 +70,7 @@ const DashboardHeader = () => {
                 onClick={() => {
                   // handle logout
                 }}
-                className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition w-full text-left"
+                className="cursor-pointer flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-gray-100 transition w-full text-left"
               >
                 <LogOut size={18} />
                 Logout

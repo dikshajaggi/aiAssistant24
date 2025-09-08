@@ -13,7 +13,7 @@ const Sidebar = () => {
   const { pathname } = useLocation();
 
   return (
-    <div className="fixed h-auto bg-neutral z-50 flex flex-col transition-all duration-300 w-20">
+    <div className="fixed h-screen bg-neutral z-50 flex flex-col transition-all duration-300 w-20">
       {/* Nav Items */}
       <nav className="flex flex-col gap-2 p-4">
         {navItems.map((item) => {

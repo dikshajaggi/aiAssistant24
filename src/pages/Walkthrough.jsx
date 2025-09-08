@@ -39,21 +39,21 @@ const Walkthrough = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-primary text-white py-12 px-6">
+      <section className="bg-primary text-textdark py-12 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
-          <div className="bg-white/25 p-6 rounded-xl">
+          <div className="bg-neutral p-6 rounded-xl">
             <h3 className="font-bold text-lg">Save Time</h3>
             <p className="text-base mt-2">Spend more time with patients, less on admin work.</p>
           </div>
-          <div className="bg-white/25 p-6 rounded-xl">
+          <div className="bg-neutral p-6 rounded-xl">
             <h3 className="font-bold text-lg">Grow Revenue</h3>
             <p className="text-base mt-2">Stay on top of payments and maximize earnings.</p>
           </div>
-          <div className="bg-white/25 p-6 rounded-xl">
+          <div className="bg-neutral p-6 rounded-xl">
             <h3 className="font-bold text-lg">Engage Patients</h3>
             <p className="text-base mt-2">Smart reminders keep patients loyal & consistent.</p>
           </div>
-          <div className="bg-white/25 p-6 rounded-xl">
+          <div className="bg-neutral p-6 rounded-xl">
             <h3 className="font-bold text-lg">Stress-Free Clinic</h3>
             <p className="text-base mt-2">AI handles the busywork so you can focus on smiles.</p>
           </div>
