@@ -12,7 +12,7 @@ const Header = () => {
         
         {/* Logo */}
         <Link to="/">
-          <div className="flex items-center gap-2 font-bold text-secondary text-xl md:text-2xl cursor-pointer capitalize font-poppins">
+          <div className="flex items-center gap-2 font-bold text-secondary text-lg md:text-xl cursor-pointer capitalize font-poppins">
             <img src={logo} alt="SmileLytics.AI-logo" loading="lazy" className="h-12 md:h-14 object-contain" />
             <span>SmileLytics.AI</span>
           </div>

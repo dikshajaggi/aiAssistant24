@@ -18,7 +18,7 @@ const DashboardHeader = () => {
       <div className="mx-auto px-4 md:px-6 flex justify-between items-center py-3">
         {/* Logo */}
         <Link to="/">
-          <div className="flex items-center gap-2 font-semibold text-secondary text-lg md:text-2xl cursor-pointer capitalize font-poppins">
+          <div className="flex items-center gap-2 font-semibold text-secondary text-lg md:text-xl cursor-pointer capitalize font-poppins">
             <img
               src={logo}
               alt="SmileLytics.AI-logo"
@@ -32,7 +32,6 @@ const DashboardHeader = () => {
         {/* Avatar Dropdown */}
         <div className="relative"
           // onMouseEnter={() => setOpen(true)} ---> on hover
-          // onMouseLeave={() => setOpen(false)}
         >
           <button onClick={() => setOpen(!open)} className="focus:outline-none">
             <Avatar

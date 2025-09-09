@@ -67,15 +67,12 @@ const SignUp = () => {
               type="password"
               className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary"
             />
-            <span className="self-end mt-1 text-xs sm:text-sm text-primary hover:underline cursor-pointer">
-              Forgot Password?
-            </span>
           </div>
 
           {/* Submit Button */}
           <button
             onClick={handleSignUp}
-            className="bg-primary cursor-pointer text-white p-2 rounded-xl shadow-md shadow-primary/40 hover:shadow-lg hover:shadow-primary/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150"
+            className="bg-secondary cursor-pointer text-white p-2 rounded-xl shadow-md shadow-primary/40 hover:shadow-lg hover:shadow-primary/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150"
           >
             Sign Up
           </button>

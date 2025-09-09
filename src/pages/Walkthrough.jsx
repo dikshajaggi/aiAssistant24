@@ -32,7 +32,7 @@ const Walkthrough = () => {
 
 
         <Link to="/bookdemo">
-          <button className="mt-8 px-6 py-3 bg-secondary text-white font-bold rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+          <button className="mt-8 px-6 py-3 bg-secondary text-white font-[500] rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
             Book a Free Demo
           </button>
         </Link>
@@ -72,7 +72,7 @@ const Walkthrough = () => {
           your clinic smarter, faster, and more connected.
         </p>
         <Link to="/bookdemo">
-          <button className="px-8 py-4 bg-secondary text-white font-bold rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+          <button className="px-8 py-4 bg-secondary text-white font-[500] rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
             Book Your Demo
           </button>
         </Link>

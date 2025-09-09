@@ -17,12 +17,16 @@ const Home = () => {
 
   return (
     <PageWrapper>
-      <div className='flex justify-center items-center flex-col px-6 md:px-4 mt-20'>
-        <h1 className='text-[clamp(1.6rem,4vw,2.4rem)] font-bold text-center'>From Appointments to Payments — <span className='font-bold bg-gradient-to-r from-[#0ea5e9] to-[#46D3FF] bg-clip-text text-transparent'>Let AI Handle the Busywork</span>, <br></br> While You Handle the Smiles.</h1>
-        <TypingHero />
-        <button className='cursor-pointer bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] text-textlight md:text-lg h-16 w-64 rounded-xl shadow-[0_0_20px_rgba(15,38,80,0.6)]
-        transform hover:-translate-y-1 transition-all duration-300 font-bold text-base' onClick={handleJoinCta}>Start Your FREE Trial</button>
-        <section className="max-w-6xl mx-auto px-4 py-12 space-y-20 mt-20 md:mt-40">
+      <div className='min-w-screen flex justify-center items-center flex-col px-6 md:px-4 mt-20'>
+        
+        <div className='w-full flex flex-col justify-center items-center py-10'>
+          <h1 className='text-[clamp(1.6rem,4vw,2.4rem)] font-bold text-center'>From Appointments to Payments — <span className='font-bold bg-gradient-to-r from-[#0ea5e9] to-[#46D3FF] bg-clip-text text-transparent'>Let AI Handle the Busywork</span>, <br></br> While You Handle the Smiles.</h1>
+          <TypingHero />
+          <button className='cursor-pointer bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] text-textlight md:text-lg h-16 w-64 rounded-xl shadow-[0_0_14px_rgba(15,38,80,0.6)]
+          transform hover:-translate-y-1 transition-all duration-300 font-[500] text-base' onClick={handleJoinCta}>Start Your FREE Trial</button>
+        </div>
+
+        <section className="max-w-6xl mx-auto px-4 py-12 space-y-20 md:mt-20">
         {features.map((feature, index) => (
           <div
             key={index}
@@ -47,7 +51,7 @@ const Home = () => {
                 {feature.desc}
               </p>
               <button className='px-6 py-2 mt-4 cursor-pointer bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] text-textlight h-10 w-36 rounded-xl
-              transform hover:-translate-y-1 transition-all duration-300 font-bold' onClick={handleJoinCta}>Join Now </button>
+              transform hover:-translate-y-1 transition-all duration-300 font-medium' onClick={handleJoinCta}>Join Now </button>
             </div>
           </div>
         ))}

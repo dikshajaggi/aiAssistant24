@@ -28,12 +28,12 @@ const DateTimeDisplay = () => {
       initial={{ opacity: 0, y: -2 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="flex items-center mt-6 md:mt-0 gap-6 bg-white shadow-sm rounded-xl px-5 py-3 border border-gray-100"
+      className="flex items-center mt-6 md:mt-0 gap-6 bg-secondary shadow-sm rounded-xl px-5 py-3 border border-textdark"
     >
       {/* Date */}
       <div className="flex items-center gap-2 text-textdark/90">
-        <Calendar size={20} className="text-secondary" />
-        <span className="font-bold">{formattedDate}</span>
+        <Calendar size={20} className="text-neutral" />
+        <span className="font-bold text-neutral">{formattedDate}</span>
       </div>
 
       {/* Divider */}
@@ -41,8 +41,8 @@ const DateTimeDisplay = () => {
 
       {/* Time */}
       <div className="flex items-center gap-2 text-textdark/90">
-        <Clock size={20} className="text-secondary" />
-        <span className="font-semibold text-lg">{formattedTime}</span>
+        <Clock size={20} className="text-neutral" />
+        <span className="font-semibold text-neutral text-lg">{formattedTime}</span>
       </div>
     </motion.div>
   );

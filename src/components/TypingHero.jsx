@@ -78,7 +78,7 @@ export default function TypingHero({
           <span style={blinkStyle} />
         </span>
       </h1>
-      <p className="mt-3 text-placeholder text-base font-bold md:text-lg">
+      <p className="mt-3 text-placeholder text-base font-medium md:text-lg">
         Save time, reduce no-shows, and boost revenue — while you focus on care.
       </p>
     </section>
