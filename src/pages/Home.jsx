@@ -38,7 +38,7 @@ const Home = () => {
               transition-all duration-300 relative z-10"
             onClick={handleJoinCta}
           >
-            🚀 Start Your FREE Trial
+            Start Your FREE Trial
           </button>
 
           <p className="mt-3 text-sm md:text-base text-gray-600 relative z-10 font-medium">
