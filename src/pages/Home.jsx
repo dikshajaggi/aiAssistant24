@@ -17,14 +17,32 @@ const Home = () => {
 
   return (
     <PageWrapper>
-      <div className='min-w-screen flex justify-center items-center flex-col px-6 md:px-4 mt-20'>
+      <div className='min-w-screen flex justify-center items-center flex-col px-6 md:px-4 mt-10'>
         
-        <div className='w-full flex flex-col justify-center items-center py-10'>
-          <h1 className='text-[clamp(1.6rem,4vw,2.4rem)] font-bold text-center'>From Appointments to Payments — <span className='font-bold bg-gradient-to-r from-[#0ea5e9] to-[#46D3FF] bg-clip-text text-transparent'>Let AI Handle the Busywork</span>, <br></br> While You Handle the Smiles.</h1>
-          <TypingHero />
-          <button className='cursor-pointer bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] text-textlight md:text-lg h-16 w-64 rounded-xl shadow-[0_0_14px_rgba(15,38,80,0.6)]
-          transform hover:-translate-y-1 transition-all duration-300 font-[500] text-base' onClick={handleJoinCta}>Start Your FREE Trial</button>
-        </div>
+      <div className="rounded-2xl flex flex-col justify-center items-center text-center px-16 py-10 
+        bg-gradient-to-b from-[#b0ecfe] via-white to-white relative overflow-hidden">
+
+        <h1 className="text-[clamp(1.6rem,4vw,2.4rem)] font-bold text-gray-900 relative z-10">
+          From Appointments to Payments — 
+          <span className="font-bold bg-gradient-to-r from-[#0ea5e9] to-[#46D3FF] bg-clip-text text-secondary">
+            Let AI Handle the Busywork
+          </span>, <br /> While You Handle the Smiles.
+        </h1>
+
+        <TypingHero />
+
+        <button
+          className="cursor-pointer bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] text-white md:text-lg h-16 w-64 rounded-xl 
+          shadow-[0_0_14px_rgba(15,38,80,0.6)] transform hover:-translate-y-1 transition-all duration-300 font-[500] text-base relative z-10"
+          onClick={handleJoinCta}
+        >
+          Start Your FREE Trial
+        </button>
+
+        <p className="mt-2 text-base text-gray-500 relative z-10">
+          14-day free trial, no credit card required
+        </p>
+      </div>
 
         <section className="max-w-6xl mx-auto px-4 py-12 space-y-20 md:mt-20">
         {features.map((feature, index) => (
