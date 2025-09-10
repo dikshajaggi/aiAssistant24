@@ -33,7 +33,7 @@ const Home = () => {
 
           <button
             className="mt-8 cursor-pointer bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] text-white 
-              h-16 w-64 rounded-2xl text-lg font-semibold shadow-lg 
+              h-16 w-64 rounded-2xl text-lg font-medium shadow-lg 
               hover:shadow-[0_0_25px_rgba(14,165,233,0.6)] hover:-translate-y-1 active:scale-95 
               transition-all duration-300 relative z-10"
             onClick={handleJoinCta}
