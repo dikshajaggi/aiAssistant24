@@ -12,24 +12,23 @@ const SidebarLayout = () => {
     <>
       <ScrollToTop />
       <PageWrapper>
-        <DashboardHeader />
-        <main className="flex min-h-screen w-full pt-24">
-          <div className="hidden md:flex w-20 flex-shrink-0">
+        <div className="flex min-h-screen w-full bg-[#fafafa] p-4">
+          {/* Sidebar (Desktop) */}
+          <div className="hidden md:flex fixed top-4 left-4 h-[calc(100%-2rem)] w-64 rounded-xl shadow-lg bg-neutral">
             <Sidebar />
           </div>
-          <div className="md:hidden fixed left-0 top-16 z-40">
-          </div>
-          <div className="flex-1 px-4 md:px-6">
+
+          {/* Main Content Area */}
+          <div className="flex-1 flex flex-col md:ml-[268px]">
             <Outlet />
           </div>
-        </main>
-        <MobileSidebar />
-        <Footer />
+
+          {/* Mobile Sidebar (Drawer) */}
+          <MobileSidebar />
+        </div>
       </PageWrapper>
     </>
   );
 };
 
 export default SidebarLayout;
-
-

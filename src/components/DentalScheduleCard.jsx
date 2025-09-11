@@ -58,7 +58,7 @@ export default function DentalScheduleCard() {
   };
 
   return (
-    <div className="w-full max-w-md border border-gray-200 rounded-2xl p-5 shadow-sm">
+    <div className="w-full bg-[#fafafa] border border-gray-200 rounded-2xl p-5 shadow-sm">
       {/* Calendar Header */}
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-gray-800 font-semibold text-lg">
@@ -118,7 +118,7 @@ export default function DentalScheduleCard() {
       <div className="mt-4 bg-textdark text-white rounded-2xl p-4">
         {selectedAppointments.length > 0 ? (
           <>
-            <h3 className="text-lg font-semibold">Upcoming Appointments</h3>
+            <h3 className="text-lg font-medium">Upcoming Appointments</h3>
             <ul className="mt-2 space-y-2">
               {selectedAppointments.map((appt, i) => (
                 <li
@@ -138,7 +138,7 @@ export default function DentalScheduleCard() {
             </ul>
           </>
         ) : (
-          <p className="text-white font-bold">No appointments for this day</p>
+          <p className="text-white font-medium">No appointments for this day</p>
         )}
       </div>
     </div>

@@ -19,7 +19,7 @@ const QuickActions = () => {
   ];
 
   return (
-    <div className=" bg-neutral border border-gray-200 rounded-2xl p-5 shadow-sm w-full max-w-md h-[250px]">
+    <div className=" bg-[#fafafa] border border-gray-200 rounded-2xl p-5 shadow-sm w-full max-w-md h-[250px]">
       <h3 className="text-lg md:text-xl font-semibold text-textdark mb-4">
         Quick Actions
       </h3>

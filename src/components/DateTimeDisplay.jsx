@@ -28,7 +28,7 @@ const DateTimeDisplay = () => {
       initial={{ opacity: 0, y: -2 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="flex items-center mt-6 md:mt-0 gap-6 bg-secondary shadow-sm rounded-xl px-5 py-3 border border-textdark"
+      className="flex items-center mt-6 md:mt-0 gap-6 bg-secondary shadow-md rounded-xl px-5 py-3"
     >
       {/* Date */}
       <div className="flex items-center gap-2 text-textdark/90">
