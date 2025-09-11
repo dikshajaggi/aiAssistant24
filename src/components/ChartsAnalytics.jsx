@@ -15,7 +15,15 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const COLORS = ["#2563EB", "#14B8A6", "#F59E0B", "#F43F5E"];
+const COLORS = [
+  "#390080", // violet
+  "#EBB813", // yellow
+  "#34F005", //pink
+  "#E65B10", //orange
+  "#FF009D", // bright
+  "#08805C", // deep/dark green
+];
+
 
 const ChartsAnalytics = () => {
   const [data, setData] = useState(null);
@@ -71,7 +79,7 @@ const ChartsAnalytics = () => {
               <Line
                 type="monotone"
                 dataKey="visits"
-                stroke="#2563EB"
+                stroke="#EBB813"
                 strokeWidth={3}
                 dot={{ r: 5 }}
               />
@@ -90,7 +98,7 @@ const ChartsAnalytics = () => {
               <XAxis dataKey="month" stroke="#6B7280" />
               <YAxis stroke="#6B7280" />
               <Tooltip />
-              <Bar dataKey="revenue" fill="#14B8A6" radius={[10, 10, 0, 0]} />
+              <Bar dataKey="revenue" fill="#FF009D" radius={[10, 10, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -135,7 +143,7 @@ const ChartsAnalytics = () => {
               <Line
                 type="monotone"
                 dataKey="newPatients"
-                stroke="#F59E0B"
+                stroke="#08805C"
                 strokeWidth={3}
                 dot={{ r: 5 }}
               />

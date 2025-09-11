@@ -60,7 +60,7 @@ useEffect(() => {
 }, [data])
 
   return (
-    <div className="pb-4 w-full mx-auto p-4">
+    <div className="pb-4 w-full p-4">
       {/* Responsive Grid */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {sortedData.map((card, idx) => {

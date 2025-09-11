@@ -20,11 +20,11 @@ const mainNavItems = [
   { path: "/dashboard/analytics", label: "Analytics", icon: <BarChart3 size={20} /> },
 ];
 
-const generalNavItems = [
-  { path: "/dashboard/settings", label: "Settings", icon: <Settings size={20} /> },
-  { path: "/dashboard/help", label: "Help", icon: <HelpCircle size={20} /> },
-  { path: "/logout", label: "Logout", icon: <LogOut size={20} /> },
-];
+// const generalNavItems = [
+//   { path: "/dashboard/settings", label: "Settings", icon: <Settings size={20} /> },
+//   { path: "/dashboard/help", label: "Help", icon: <HelpCircle size={20} /> },
+//   { path: "/logout", label: "Logout", icon: <LogOut size={20} /> },
+// ];
 
 const Sidebar = () => {
   const { pathname } = useLocation();

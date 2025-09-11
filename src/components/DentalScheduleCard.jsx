@@ -58,7 +58,7 @@ export default function DentalScheduleCard() {
   };
 
   return (
-    <div className="w-full bg-[#fafafa] border border-gray-200 rounded-2xl p-5 shadow-sm">
+    <div className="w-full max-w-md bg-[#fafafa] border border-gray-200 rounded-2xl p-5 shadow-sm">
       {/* Calendar Header */}
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-gray-800 font-semibold text-lg">

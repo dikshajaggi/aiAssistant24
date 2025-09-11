@@ -5,7 +5,7 @@ import { features } from '../data'
 import { useNavigate } from 'react-router-dom'
 import { MainContext } from '../context/MainContext'
 import robo from "/assets/robo.png"
-import robo2 from "/assets/robo2.png"
+import doctor from "/assets/doctor.png"
 import {motion} from "framer-motion"
 
 const Home = () => {
@@ -26,21 +26,21 @@ const Home = () => {
           <motion.img
             src={robo}
             alt="robo"
-            className="absolute scale-x-[-1] left-0 top-1/2 -translate-y-1/2 
-                      hidden md:block h-60 w-60
+            className="absolute left-0 top-1/2 -translate-y-1/2 
+                      hidden md:block h-60 w-70
                       opacity-90"
             animate={{ y: [0, -15, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
 
           <motion.img
-            src={robo2}
-            alt="robo2"
-            className="absolute right-0 top-3/4 -translate-y-1/2 
-                      hidden md:block h-60 w-50
+            src={doctor}
+            alt="doctor"
+            className="absolute right-0 top-1/2 -translate-y-1/2 
+                      hidden md:block h-60 w-60
                       opacity-90"
             animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
 
           <h1 className="text-[clamp(1.8rem,4vw,2.6rem)] font-extrabold text-gray-900 leading-snug relative z-10">
