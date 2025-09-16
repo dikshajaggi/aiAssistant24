@@ -75,7 +75,7 @@ const Dashboard = () => {
             {/* Left Column */}
             <div className="flex flex-col gap-6 min-w-0">
               {data && (
-                <div className="w-full bg-white rounded-2xl shadow-sm p-5 border border-gray-100">
+                <div className="w-full bg-[#fafafa] rounded-2xl shadow-sm p-5 border border-gray-100">
                   <h2 className="text-lg font-semibold mb-4 text-gray-700">
                     Revenue per Month
                   </h2>

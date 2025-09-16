@@ -142,13 +142,15 @@ const AddPatientForm = () => {
         </div>
 
         {/* Submit */}
-        <button
+        <div className="md:col-span-2 flex justify-center">
+          <button
             type="submit"
             disabled={loading}
-            className="w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all cursor-pointer"
-        >
+            className="px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all cursor-pointer"
+          >
             {loading ? "Adding..." : "Add Patient"}
-        </button>
+          </button>
+        </div>
     </form>
 
             {message && (

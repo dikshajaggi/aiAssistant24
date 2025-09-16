@@ -19,12 +19,13 @@ const SignUp = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState(null)
 
   const handleSignUp = async (e) => {
     e.preventDefault()
     setError('')
 
-    const { error } = await supabase.auth.signUp({ email, password })
+    const { error } = await supabase.auth.signUp({ email, password, phoneNumber})
 
     if (error) {
       setError(error.message)
@@ -75,6 +76,7 @@ const SignUp = () => {
           <input
             placeholder="Enter phone no."
             type="number"
+            onChange={(e) => setPhoneNumber(e.target.value)}
             className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary"
           />
 

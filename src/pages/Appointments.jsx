@@ -15,12 +15,12 @@ const reminders = {
 
   return (
     <PageWrapper>
-      <div className="w-full max-w-7xl mx-auto mt-10 px-4">
+      <div className="w-full max-w-7xl mx-auto pt-4 pb-10">
         {/* Heading */}
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Appointments & Reminders</h2>
 
         {/* Reminders Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 mb-10">
           <div className="bg-white shadow-md rounded-2xl p-6 text-center">
             <h3 className="text-lg font-semibold text-gray-700 flex items-center justify-center gap-2">
             <MessageCircle className="w-5 h-5 text-green-600" />
