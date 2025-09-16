@@ -4,8 +4,8 @@ import TypingHero from '../components/TypingHero'
 import { features } from '../data'
 import { useNavigate } from 'react-router-dom'
 import { MainContext } from '../context/MainContext'
-import robo from "/assets/robo.png"
-import doctor from "/assets/doctor.png"
+// import robo from "/assets/robo.png"
+// import doctor from "/assets/doctor.png"
 import {motion} from "framer-motion"
 
 const Home = () => {
@@ -23,7 +23,7 @@ const Home = () => {
       <div className='min-w-screen flex justify-center items-center flex-col px-6 md:px-4 mt-10'>
         <div className="relative overflow-hidden flex flex-col justify-center items-center text-center px-6 md:px-16 py-16">
           
-          <motion.img
+          {/* <motion.img
             src={robo}
             alt="robo"
             className="absolute left-0 top-1/2 -translate-y-1/2 
@@ -41,7 +41,7 @@ const Home = () => {
                       opacity-90"
             animate={{ y: [0, 15, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
+          /> */}
 
           <h1 className="text-[clamp(1.8rem,4vw,2.6rem)] font-extrabold text-gray-900 leading-snug relative z-10">
             From Appointments to Payments — 

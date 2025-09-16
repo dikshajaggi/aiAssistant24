@@ -1,6 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Modal({ isOpen, toggle, title, children }) {
+  
+  const navigate = useNavigate()
+
+  const openDashboard = () => {
+    navigate("/dashboard")
+  }
+
   if (!isOpen) return null; // Don't render if closed
 
   return (
@@ -35,7 +43,7 @@ export default function Modal({ isOpen, toggle, title, children }) {
           >
             Cancel
           </button>
-          <button className="cursor-pointer px-4 py-2 bg-primary text-white rounded hover:bg-secondary">
+          <button className="cursor-pointer px-4 py-2 bg-primary text-white rounded hover:bg-secondary" onClick={openDashboard}>
             Start Building
           </button>
         </div>

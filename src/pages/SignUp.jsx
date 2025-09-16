@@ -3,6 +3,8 @@ import authBg from "/assets/authBg.png";
 import { Link } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import Modal from "../components/SignUpModal";
+import { supabase } from "../utils/supabaseClient";
+import { Eye, EyeOff } from "lucide-react";
 
 const SignUp = () => {
 
@@ -12,9 +14,23 @@ const SignUp = () => {
 
   const toggleModal = () => setModalOpen(!modalOpen);
 
-  const handleSignUp  = (e) => {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleSignUp = async (e) => {
     e.preventDefault()
-    toggleModal()
+    setError('')
+
+    const { error } = await supabase.auth.signUp({ email, password })
+
+    if (error) {
+      setError(error.message)
+    } else {
+      toggleModal()
+    }
   }
 
   return (
@@ -51,6 +67,8 @@ const SignUp = () => {
           <input
             placeholder="Enter email"
             type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary"
           />
 
@@ -61,12 +79,20 @@ const SignUp = () => {
           />
 
           {/* Password + Forgot Password */}
-          <div className="flex flex-col">
+          <div className="relative flex flex-col">
             <input
               placeholder="Enter password"
-              type="password"
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary"
             />
+            <span
+                className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </span>
           </div>
 
           {/* Submit Button */}
