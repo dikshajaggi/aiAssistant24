@@ -18,6 +18,7 @@ import Patients from "./pages/Patients"
 import Appointments from "./pages/Appointments"
 import Analytics from "./pages/Analytics"
 import SidebarLayout from "./layouts/SidebarLayout"
+import ConfirmEmail from "./pages/ConfirmEmail"
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,7 @@ const router = createBrowserRouter([
             {path: "/patients", element: <Patients />},
             {path: "/appointments", element: <Appointments />},
             {path: "/analytics", element: <Analytics />},
+            {path: "/confirmation", element: <ConfirmEmail />}
             //other routes having header and footer....
         ]
     },
