@@ -10,6 +10,7 @@ export default function ConfirmEmail() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
+    console.log(params, window.location.search, "window.location.search" )
     const access_token = params.get("access_token")
     const refresh_token = params.get("refresh_token")
     const type = params.get("type")
