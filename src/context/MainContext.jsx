@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 const MainContext = createContext()
 
 const MainContextProvider = (props) => {
-    const [signedUp, setSignedUp] = useState(true)
+    const [signedUp, setSignedUp] = useState(null)
     const [patients, setPatients] = useState([
         {
             "id": 534672354,

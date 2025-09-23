@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Menu, X } from "lucide-react"; 
 import { Link } from "react-router-dom";
 import logo from "/assets/smilelytics.png";
+import { MainContext } from "../context/MainContext";
 
 const Header = () => {
+  const { signedUp } = useContext(MainContext);
+  console.log(signedUp, "signedUp")
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -28,13 +31,13 @@ const Header = () => {
           >
             Book a Demo
           </Link>
-          <Link to="/login" className="hover:text-secondary transition">Login</Link>
-          <Link
+          {signedUp?.email ? <span className="hover:text-secondary transition">{signedUp?.email}</span> : <Link to="/login" className="hover:text-secondary transition">Login</Link>}
+          {!signedUp?.email && <Link
             to="/signup"
             className="px-4 py-1 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold"
           >
             Sign Up
-          </Link>
+          </Link>}
         </nav>
 
         {/* Hamburger Button */}
@@ -56,8 +59,8 @@ const Header = () => {
           <Link to="/walkthrough" className="hover:text-secondary transition" onClick={() => setMenuOpen(false)}>Walkthrough</Link>
           <Link to="/pricing" className="hover:text-secondary transition" onClick={() => setMenuOpen(false)}>Pricing</Link>
           <Link to="/bookdemo" className="!text-secondary font-semibold animate-bounce" onClick={() => setMenuOpen(false)}>Book a Demo</Link>
-          <Link to="/login" className="hover:text-secondary transition" onClick={() => setMenuOpen(false)}>Login</Link>
-          <Link to="/signup" className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold" onClick={() => setMenuOpen(false)}>Sign Up</Link>
+          {signedUp?.email ? <span className="hover:text-secondary transition">{signedUp?.email}</span> : <Link to="/login" className="hover:text-secondary transition">Login</Link>}
+          {!signedUp.email && <Link to="/signup" className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold" onClick={() => setMenuOpen(false)}>Sign Up</Link>}
         </div>
       </div>
     </header>

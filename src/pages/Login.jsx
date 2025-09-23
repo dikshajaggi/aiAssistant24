@@ -7,30 +7,49 @@ import { supabase } from "../utils/supabaseClient";
 import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
-  const { isSubscribed } = useContext(MainContext);
+  const { isSubscribed, setSignedUp } = useContext(MainContext);
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    setError("");
+ const handleLogin = async (e) => {
+  e.preventDefault();
+  setError("");
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+  const { data: dataUser, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    setError(error.message);
+    return;
+  }
+
+  const user = dataUser.user;
+  setSignedUp(user)
+
+  if (!user.email_confirmed_at) {
+    // resend confirmation email
+    await supabase.auth.resend({
+      type: "signup",
       email,
-      password,
     });
 
-    if (error) {
-      setError(error.message);
-    } else {
-      localStorage.setItem("token", data.session?.access_token);
-      if (isSubscribed) navigate("/dashboard");
-      else navigate("/pricing");
-    }
-  };
+    setError(
+      "Your email is not confirmed. We've sent you a new confirmation link. Please check your inbox."
+    );
+    return;
+  }
+
+  localStorage.setItem("token", dataUser.session?.access_token);
+
+  if (isSubscribed) navigate("/dashboard");
+  else navigate("/pricing");
+};
+
 
   return (
     <PageWrapper>
