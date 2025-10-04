@@ -3,6 +3,7 @@ import { formatDateWithDay } from "../utils/formatDateWithDay";
 import DeleteModal from "../components/DeleteConfirmationModal";
 import { MainContext } from "../context/MainContext";
 import EditPatientModal from "../components/EditPatientModal";
+import { getAllPatients } from "../apis";
 
 const PatientsList = () => {
     const {patients, setPatients} = useContext(MainContext)
@@ -19,8 +20,8 @@ const PatientsList = () => {
         setCurrentPatient(id)
     }
 
-    const handleUpdate = (updatedPatient) => {
-        setPatients(patients.map(p => (p.id === updatedPatient.id ? updatedPatient : p)));
+    const handleUpdate = () => {
+       fetchPatients()
     };
 
     // Fetch patients on mount
@@ -30,15 +31,10 @@ const PatientsList = () => {
 
     const fetchPatients = async () => {
         try {
-        setLoading(true);
-        //   const token = localStorage.getItem("token");
-        //   const resp = await fetch("http://localhost:8000/patients", {
-        //     headers: {
-        //       Authorization: `Bearer ${token}`,
-        //     },
-        //   });
-        //   const data = await resp.json();
-        // setPatients(data);
+        setLoading(true)
+        const data = await getAllPatients()
+        console.log(data, "ddatataaaa")
+        setPatients(data.data);
         } catch (err) {
         console.error("Error fetching patients:", err);
         } finally {
@@ -63,19 +59,19 @@ const PatientsList = () => {
             <thead className="bg-primary text-white">
               <tr>
                 <th className="p-4 text-left">Name</th>
-                <th className="p-4 text-left">Age</th>
-                <th className="p-4 text-left">Gender</th>
+                {/* <th className="p-4 text-left">Age</th> */}
+                {/* <th className="p-4 text-left">Gender</th> */}
                 <th className="p-4 text-left">Appointment Date</th>
                 <th className="p-4 text-left">Treatment</th>
                 <th className="p-4 text-center">Actions</th>
               </tr>
             </thead>
             <tbody>
-              {patients.map((p) => (
+              {patients?.map((p) => (
                 <tr key={p.id} className="border-b hover:bg-gray-50">
                     <td className="p-4">{p.name}</td>
-                    <td className="p-4">{p.age}</td>
-                    <td className="p-4 capitalize">{p.gender}</td>
+                    {/* <td className="p-4">{p.age}</td> */}
+                    {/* <td className="p-4 capitalize">{p.gender}</td> */}
                     <td className="p-4">{formatDateWithDay(p.appointment_date)}</td>
                     <td className="p-4">{p.treatment}</td>
                     <td className="p-4 flex gap-3 justify-center">

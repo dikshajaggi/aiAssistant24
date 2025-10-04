@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { formatDateWithDay } from "../utils/formatDateWithDay";
+import { editPatientData } from "../apis";
 
 const EditPatientModal = ({ patient, onClose, onUpdate }) => {
   console.log(onUpdate, "onUpdate")
   const [form, setForm] = useState({
     name: "",
-    age: "",
-    gender: "",
+    phone: "",
+    email: "",
+    // age: "",
+    // gender: "",
     appointment_date: "",
     treatment: "",
   });
@@ -15,8 +18,10 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
     if (patient) {
       setForm({
         name: patient.name || "",
-        age: patient.age || "",
-        gender: patient.gender || "",
+        phone: patient.phone || "",
+        email: patient.email || "",
+        // age: patient.age || "",
+        // gender: patient.gender || "",
         appointment_date: patient.appointment_date || "",
         treatment: patient.treatment || "",
       });
@@ -30,23 +35,14 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const token = localStorage.getItem("token");
-      // const resp = await fetch(`http://localhost:8000/patients/${patient.id}`, {
-      //   method: "PUT",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: `Bearer ${token}`,
-      //   },
-      //   body: JSON.stringify(form),
-      // });
-
-      // const data = await resp.json();
-      // if (resp.ok) {
-        // onUpdate(data); // update parent list
+      const res = await editPatientData(patient.id, form)
+      console.log(res, "edit patient")
+      if (res.status === 200) {
+        onUpdate(); // update parent list
         onClose(); // close modal
-      // } else {
-        // alert("Error updating patient: " + (data.detail || "Something went wrong"));
-      // }
+      } else {
+        alert("Error updating patient: " + ("Something went wrong"));
+      }
     } catch (err) {
       alert("Error: " + err.message);
     }
@@ -76,17 +72,28 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-700 font-medium">Age</label>
+              <label className="block text-gray-700 font-medium">Phone</label>
               <input
-                type="number"
-                name="age"
-                value={form.age}
+                type="string"
+                name="phone"
+                value={form.phone}
                 onChange={handleChange}
                 required
                 className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
               />
             </div>
             <div>
+              <label className="block text-gray-700 font-medium">Email</label>
+              <input
+                type="string"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+            {/* <div>
               <label className="block text-gray-700 font-medium">Gender</label>
               <select
                 name="gender"
@@ -100,7 +107,7 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
-            </div>
+            </div> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

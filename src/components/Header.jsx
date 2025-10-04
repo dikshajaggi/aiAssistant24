@@ -1,13 +1,31 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Menu, X } from "lucide-react"; 
 import { Link } from "react-router-dom";
 import logo from "/assets/smilelytics.png";
 import { MainContext } from "../context/MainContext";
+import { supabase } from "../utils/supabaseClient";
 
 const Header = () => {
-  const { signedUp } = useContext(MainContext);
-  console.log(signedUp, "signedUp")
+  const { signedUp, setSignedUp, isLoggedIn } = useContext(MainContext);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  async function getUserInfo() {
+    const { data: { user }, error } = await supabase.auth.getUser(localStorage.getItem("token"))
+
+    if (error) {
+      console.error(error)
+      return null
+    }
+    setSignedUp(user)
+    
+    console.log(signedUp, "signedUp")
+  }
+
+  useEffect(() => {
+    if(isLoggedIn) {
+      getUserInfo()
+    }
+  }, [isLoggedIn])
 
   return (
     <header className="bg-neutral fixed w-full top-0 z-50 uppercase font-semibold">
@@ -60,7 +78,7 @@ const Header = () => {
           <Link to="/pricing" className="hover:text-secondary transition" onClick={() => setMenuOpen(false)}>Pricing</Link>
           <Link to="/bookdemo" className="!text-secondary font-semibold animate-bounce" onClick={() => setMenuOpen(false)}>Book a Demo</Link>
           {signedUp?.email ? <span className="hover:text-secondary transition">{signedUp?.email}</span> : <Link to="/login" className="hover:text-secondary transition">Login</Link>}
-          {!signedUp.email && <Link to="/signup" className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold" onClick={() => setMenuOpen(false)}>Sign Up</Link>}
+          {!signedUp?.email && <Link to="/signup" className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold" onClick={() => setMenuOpen(false)}>Sign Up</Link>}
         </div>
       </div>
     </header>

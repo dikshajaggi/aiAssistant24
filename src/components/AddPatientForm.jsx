@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { formatDateWithDay } from "../utils/formatDateWithDay";
+import { addPatients } from "../apis";
 
 const AddPatientForm = () => {
   const [form, setForm] = useState({
     name: "",
-    age: "",
-    gender: "",
+    // age: "",
+    // gender: "",
+    phone: "",
+    email: "",
     appointment_date: "",
     treatment: "",
   });
@@ -23,33 +26,25 @@ const AddPatientForm = () => {
     setMessage("");
 
     try {
-      const token = localStorage.getItem("token"); // assuming token is stored in localStorage
 
-      const resp = await fetch("http://localhost:8000/add_patient", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(form),
-      });
-
-      const data = await resp.json();
+      const resp = await addPatients(form)
 
       if (resp.ok) {
-        setMessage("✅ Patient added successfully!");
+        setMessage("Patient added successfully!");
         setForm({
           name: "",
-          age: "",
-          gender: "",
+          email: "",
+          phone: "",
+          // age: "",
+          // gender: "",
           appointment_date: "",
           treatment: "",
         });
       } else {
-        setMessage("❌ Error: " + (data.detail || "Something went wrong"));
+        setMessage("Error: " + (resp || "Something went wrong"));
       }
     } catch (err) {
-      setMessage("❌ Error: " + err.message);
+      setMessage("Error: " + err.message);
     } finally {
       setLoading(false);
     }
@@ -78,6 +73,17 @@ const AddPatientForm = () => {
            </div>
 
             <div>
+              <label className="block text-gray-700 font-medium">Email</label>
+              <input
+                  type="text"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+              />
+            </div>
+            {/* <div>
                 <label className="block text-gray-700 font-medium">Age</label>
                 <input
                     type="number"
@@ -87,12 +93,12 @@ const AddPatientForm = () => {
                     required
                     className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
                 />
-            </div>
+            </div> */}
         </div>
 
       {/* Age & Gender in a row (on md+) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
+            {/* <div>
             <label className="block text-gray-700 font-medium">Gender</label>
             <select
                 name="gender"
@@ -106,6 +112,18 @@ const AddPatientForm = () => {
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select>
+            </div> */}
+
+            <div>
+              <label className="block text-gray-700 font-medium">Phone</label>
+              <input
+                  type="string"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+              />
             </div>
 
             <div>

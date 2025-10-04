@@ -1,8 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 const MainContext = createContext()
 
 const MainContextProvider = (props) => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [signedUp, setSignedUp] = useState(null)
     const [patients, setPatients] = useState([
         {
@@ -48,8 +49,15 @@ const MainContextProvider = (props) => {
         ])
     const [isSubscribed, setIsSubscribed] = useState(false)
 
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) setIsLoggedIn(true)
+    }, [])
+
     return (
        <MainContext.Provider value ={{
+            isLoggedIn,
+            setIsLoggedIn,
             signedUp,
             setSignedUp,
             isSubscribed,

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { MainContext } from "../context/MainContext";
+import { deletePatient } from "../apis";
 
 export default function DeleteModal({ isOpen, toggle, title, currentPatient, children }) {
 
@@ -7,16 +8,12 @@ export default function DeleteModal({ isOpen, toggle, title, currentPatient, chi
 
     const deleteData = async () => {
         try {
-        // const token = localStorage.getItem("token");
-        // const res = await fetch(`http://localhost:8000/patients/${currentPatient}`, {
-        //     method: "DELETE",
-        //     headers: { Authorization: `Bearer ${token}` },
-        // });
-        // if(res.status === 200) {
-                const filtered = patients.filter((p) => p.id !== currentPatient)
-                setPatients(filtered);
-                if (isOpen) toggle()
-            // }
+        const res = deletePatient(currentPatient)
+        if(res.status === 200) {
+          const filtered = patients.filter((p) => p.id !== currentPatient)
+          setPatients(filtered);
+          if (isOpen) toggle()
+        }
         } catch (err) {
         console.error("Error deleting patient:", err);
         }
