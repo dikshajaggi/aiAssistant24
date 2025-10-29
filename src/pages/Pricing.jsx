@@ -3,6 +3,8 @@ import PageWrapper from './PageWrapper'
 import { Check, Star, Sparkles } from "lucide-react";
 import { AnimatePresence } from 'framer-motion';
 import { motion } from "framer-motion";
+import PaymentModal from '../components/PaymentModal';
+import FreeTrialModal from '../components/FreeTrialModal';
 
 
 const Feature = ({ children }) => (
@@ -14,6 +16,12 @@ const Feature = ({ children }) => (
 
 const Pricing = () => {
   const [isActive, setIsActive] = useState("monthly")
+  const [selectedPlan, setSelectedPlan] = useState(null)
+  const [isOpen, setIsOpen] = useState(false)
+ const [isFreeOpen, setIsFreeOpen] = useState(false)
+
+  const toggle = () => setIsOpen(!isOpen)
+  const toggleFree = () => setIsFreeOpen(!isFreeOpen)
 
 
   return (
@@ -72,6 +80,7 @@ const Pricing = () => {
               </div>
               <button
                 className="shrink-0 bg-textdark text-textlight px-5 py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300 "
+                onClick={() => setIsFreeOpen(true)}
               >
                 Start Free Trial
               </button>
@@ -114,7 +123,18 @@ const Pricing = () => {
               <Feature>SMS + email reminders</Feature>
               <Feature>Simple analytics dashboard</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+            onClick={() => {
+              setIsOpen(true)
+              setSelectedPlan({
+              id: "starter_yearly",          
+              name: "Starter",
+              price: 24990,                  
+              billingPeriod: "Yearly",      
+              displayPrice: "₹24,990",     
+              approxMonthly: "₹2,082/month (billed annually)",
+              currency: "INR",
+            })}}>
               Choose Starter
             </button>
           </div>
@@ -145,7 +165,18 @@ const Pricing = () => {
                   <Feature>Advanced monthly reports (charts, revenue, etc.)</Feature>
                   <Feature>10 clinic users included</Feature>
                 </ul>
-                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+                 onClick={() => {
+                  setIsOpen(true)
+                  setSelectedPlan({
+                    id: "pro_yearly",          
+                    name: "Pro",
+                    price: 49990,                  
+                    billingPeriod: "Yearly",      
+                    displayPrice: "₹49,990",     
+                    approxMonthly: "₹4,165/month (billed annually)",
+                    currency: "INR",
+                  })}}>
                   Choose Pro
                 </button>
               </div>
@@ -170,7 +201,18 @@ const Pricing = () => {
               <Feature>Priority support + custom dashboards</Feature>
               <Feature>Add-ons: invoice generation, WhatsApp bot integration</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+             onClick={() => {
+              setIsOpen(true)
+              setSelectedPlan({
+                  id: "premium_yearly",          
+                  name: "Premium",
+                  price: 99990,                  
+                  billingPeriod: "Yearly",      
+                  displayPrice: "₹99,990",     
+                  approxMonthly: "₹8,332/month (billed annually)",
+                  currency: "INR",
+                })}}>
               Choose Premium
             </button>
           </div>
@@ -196,7 +238,18 @@ const Pricing = () => {
               <Feature>SMS + email reminders</Feature>
               <Feature>Simple analytics dashboard</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+            onClick={() => {
+              setIsOpen(true)
+              setSelectedPlan({
+                id: "starter_monthly",
+                name: "Starter",
+                price: 2499,              
+                billingPeriod: "Monthly",
+                displayPrice: "₹2,499",
+                currency: "INR",
+              })
+            }}>
               Choose Starter
             </button>
           </div>
@@ -226,7 +279,18 @@ const Pricing = () => {
                   <Feature>Advanced monthly reports (charts, revenue, etc.)</Feature>
                   <Feature>10 clinic users included</Feature>
                 </ul>
-                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+                 onClick={() => {
+                  setIsOpen(true)
+                    setSelectedPlan( {
+                      id: "pro_monthly",
+                      name: "Pro",
+                      price: 4999,              
+                      billingPeriod: "Monthly",
+                      displayPrice: "₹4,999",
+                      currency: "INR",
+                    })
+                  }}>
                   Choose Pro
                 </button>
               </div>
@@ -250,14 +314,26 @@ const Pricing = () => {
               <Feature>Priority support + custom dashboards</Feature>
               <Feature>Add-ons: invoice generation, WhatsApp bot integration</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+              onClick={() => {
+                setIsOpen(true)
+                setSelectedPlan( {
+                  id: "premium_monthly",
+                  name: "Premium",
+                  price: 9999,              
+                  billingPeriod: "Monthly",
+                  displayPrice: "₹9,999",
+                  currency: "INR",
+                })
+              }}>
               Choose Premium
             </button>
           </div>
         </motion.div> 
         }
         </AnimatePresence>
-       
+       {isOpen && <PaymentModal planInfo={selectedPlan} isOpen={isOpen} toggle={toggle} />}
+       {isFreeOpen && <FreeTrialModal isFreeOpen={isFreeOpen} toggleFree={toggleFree} />}
     </div>
     </PageWrapper>
   )

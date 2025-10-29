@@ -23,9 +23,9 @@ const SignUp = () => {
 
   const handleSignUp = async (e) => {
     e.preventDefault()
-    setError('')
+    // setError('')
 
-    const { error } = await supabase.auth.signUp({ email, password, phoneNumber})
+    // const { error } = await supabase.auth.signUp({ email, password, phoneNumber})
 
     if (error) {
       setError(error.message)

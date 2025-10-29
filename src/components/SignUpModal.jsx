@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { MainContext } from "../context/MainContext";
 
 export default function Modal({ isOpen, toggle, title, children }) {
   
   const navigate = useNavigate()
+  const {isSubscribed} = useContext(MainContext)
 
   const openDashboard = () => {
-    navigate("/dashboard")
+    if(isSubscribed) navigate("/dashboard")
+    else navigate("/pricing/payment")
   }
 
   if (!isOpen) return null; // Don't render if closed

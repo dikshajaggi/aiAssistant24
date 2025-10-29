@@ -7,48 +7,48 @@ import { supabase } from "../utils/supabaseClient";
 import { Eye, EyeOff } from "lucide-react";
 
 const Login = () => {
-  const { isSubscribed, setSignedUp } = useContext(MainContext);
-  const navigate = useNavigate();
-  const [error, setError] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+    const { isSubscribed, setSignedUp } = useContext(MainContext);
+    const navigate = useNavigate();
+    const [error, setError] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
- const handleLogin = async (e) => {
-  e.preventDefault();
-  setError("");
+  const handleLogin = async (e) => {
+      e.preventDefault();
+      setError("");
 
-  const { data: dataUser, error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
+      // const { data: dataUser, error } = await supabase.auth.signInWithPassword({
+      //   email,
+      //   password,
+      // });
 
-  if (error) {
-    setError(error.message);
-    return;
-  }
+      // if (error) {
+      //   setError(error.message);
+      //   return;
+      // }
 
-  const user = dataUser.user;
-  setSignedUp(user)
+      // const user = dataUser.user;
+      // setSignedUp(user)
 
-  if (!user.email_confirmed_at) {
-    // resend confirmation email
-    await supabase.auth.resend({
-      type: "signup",
-      email,
-    });
+      // if (!user.email_confirmed_at) {
+      //   // resend confirmation email
+      //   await supabase.auth.resend({
+      //     type: "signup",
+      //     email,
+      //   });
 
-    setError(
-      "Your email is not confirmed. We've sent you a new confirmation link. Please check your inbox."
-    );
-    return;
-  }
+      //   setError(
+      //     "Your email is not confirmed. We've sent you a new confirmation link. Please check your inbox."
+      //   );
+      //   return;
+      // }
 
-  localStorage.setItem("token", dataUser.session?.access_token);
+      // localStorage.setItem("token", dataUser.session?.access_token);
 
-  if (isSubscribed) navigate("/dashboard");
-  else navigate("/pricing");
-};
+      if (isSubscribed) navigate("/dashboard");
+      else navigate("/pricing");
+  };
 
 
   return (
