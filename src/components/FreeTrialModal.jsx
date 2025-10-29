@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FreeTrialModal = ({ isFreeOpen, toggleFree }) => {
   const [step, setStep] = useState("email"); // "email" → "otp"
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
+  const navigate = useNavigate()
 
   if (!isFreeOpen) return null;
 
@@ -17,6 +19,7 @@ const FreeTrialModal = ({ isFreeOpen, toggleFree }) => {
     if (!otp.trim()) return alert("Please enter the OTP");
     alert("Free trial activated successfully!");
     toggleFree();
+    navigate("/dashboard")
   };
 
   return (

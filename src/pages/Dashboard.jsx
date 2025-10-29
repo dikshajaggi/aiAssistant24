@@ -61,7 +61,7 @@ const Dashboard = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center p-4 rounded-xl bg-neutral shadow-md mb-3">
           <h2 className="text-lg md:text-xl font-extrabold text-textdark">
-            Welcome Dr. Aakash Gupta
+            Welcome Dr. Sarthak Jaggi
           </h2>
           <DateTimeDisplay />
         </div>

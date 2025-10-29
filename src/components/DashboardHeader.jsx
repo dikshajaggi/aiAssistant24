@@ -8,8 +8,8 @@ const DashboardHeader = () => {
   const [open, setOpen] = useState(false);
 
   const user = {
-    name: "Aakash Gupta",
-    email: "aakash09gupta@gmail.com",
+    name: "Sarthak Jaggi",
+    email: "jaggisarthak4@gmail.com",
     avatarUrl: "", // add image URL if available
   };
 

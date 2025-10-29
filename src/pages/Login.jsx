@@ -46,7 +46,7 @@ const Login = () => {
 
       // localStorage.setItem("token", dataUser.session?.access_token);
 
-      if (isSubscribed) navigate("/dashboard");
+      if (email === "jaggisarthak4@gmail.com") navigate("/dashboard");
       else navigate("/pricing");
   };
 
