@@ -1,92 +1,92 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import {
-  Home,
-  Users,
-  Calendar,
-  BarChart3,
-  Settings,
-  HelpCircle,
-  LogOut,
-  Users2,
-} from "lucide-react";
-import logo from "/assets/smilelytics.png"
-
+import { Home, Users, Calendar, BarChart3, ChevronLeft, ChevronRight } from "lucide-react";
+import logo from "/assets/smilelytics.png";
 
 const mainNavItems = [
   { path: "/dashboard", label: "Dashboard", icon: <Home size={20} /> },
-  { path: "/dashboard/patients", label: "Tasks", icon: <Users size={20} /> },
-  { path: "/dashboard/appointments", label: "Calendar", icon: <Calendar size={20} /> },
+  { path: "/dashboard/patients", label: "Patients", icon: <Users size={20} /> },
+  { path: "/dashboard/appointments", label: "Appointments", icon: <Calendar size={20} /> },
   { path: "/dashboard/analytics", label: "Analytics", icon: <BarChart3 size={20} /> },
 ];
 
-// const generalNavItems = [
-//   { path: "/dashboard/settings", label: "Settings", icon: <Settings size={20} /> },
-//   { path: "/dashboard/help", label: "Help", icon: <HelpCircle size={20} /> },
-//   { path: "/logout", label: "Logout", icon: <LogOut size={20} /> },
-// ];
-
-const Sidebar = () => {
+const Sidebar = ({ collapsed, setCollapsed }) => {
   const { pathname } = useLocation();
 
   return (
-    <div className="fixed h-screen flex flex-col w-64 bg-neutral shadow-sm rounded-2xl">
+    <div
+      className={`relative h-full flex flex-col rounded-2xl bg-neutral shadow-sm
+        transition-all duration-300
+        ${collapsed ? "w-20 items-center" : "w-64"}
+      `}
+    >
+      {/* Expand / Collapse Button */}
+      <button
+        onClick={() => setCollapsed(!collapsed)}
+        className="
+          absolute top-4 
+          bg-white border shadow rounded-md p-1
+          transition-all duration-300
+          hover:bg-gray-100
+        "
+        style={{
+          right: collapsed ? "50%" : "1rem",
+          transform: collapsed ? "translateX(50%)" : "none"
+        }}
+      >
+        {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+      </button>
+
       {/* Logo */}
-      <div className="flex items-center gap-2 px-6 py-4">
-       <div className="text-lg md:text-xl flex font-[600] text-secondary cursor-pointer capitalize items-center font-poppins">
-          <Link to="/" className="flex justify-center items-center"> 
-            <img src = {logo} loading="lazy" alt="SmileLytics.AI-logo" className="h-12 md:h-14 mr-2"/>
-            SmileLytics.AI
-          </Link>
-        </div>
+      <div
+        className={`flex items-center px-4 py-6 transition-all
+          ${collapsed ? "justify-center" : "justify-start"}
+        `}
+      >
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src={logo}
+            alt="SmileLytics.AI"
+            className={`transition-all duration-300 
+              ${collapsed ? "h-10" : "h-12 mr-2"}
+            `}
+          />
+          {!collapsed && (
+            <span className="text-xl font-bold text-secondary">
+              SmileLytics.AI
+            </span>
+          )}
+        </Link>
       </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 overflow-y-auto px-4 py-6">
-        <ul className="space-y-1">
+      {/* Nav Menu */}
+      <nav className="flex-1 w-full px-3 py-4">
+        <ul className="space-y-2">
           {mainNavItems.map((item) => {
             const isActive = pathname === item.path;
+
             return (
               <li key={item.path}>
                 <Link
                   to={item.path}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${
-                    isActive
-                      ? "bg-secondary !text-white"
-                      : "text-gray-700 hover:bg-secondary/20"
-                  }`}
+                  className={`
+                    flex items-center px-3 py-2 rounded-lg font-medium 
+                    transition-all duration-200
+                    ${collapsed ? "justify-center" : "gap-3"}
+                    ${
+                      isActive
+                        ? "bg-secondary text-white"
+                        : "text-gray-700 hover:bg-secondary/20"
+                    }
+                  `}
                 >
                   {item.icon}
-                  <span>{item.label}</span>
+                  {!collapsed && <span>{item.label}</span>}
                 </Link>
               </li>
             );
           })}
         </ul>
-
-        {/* Divider */}
-        {/* <div className="border-t my-6"></div>
-
-        <ul className="space-y-1">
-          {generalNavItems.map((item) => {
-            const isActive = pathname === item.path;
-            return (
-              <li key={item.path}>
-                <Link
-                  to={item.path}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-lg font-medium transition-colors ${
-                    isActive
-                      ? "bg-secondary text-white"
-                      : "text-gray-700 hover:bg-green-100"
-                  }`}
-                >
-                  {item.icon}
-                  <span>{item.label}</span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul> */}
       </nav>
     </div>
   );

@@ -1,5 +1,5 @@
 import { RouterProvider } from "react-router-dom"
-import router from "./routes"
+import router from "./routes/routes"
 import { MainContextProvider } from "./context/MainContext"
 import { ToastContainer } from "react-toastify"
 

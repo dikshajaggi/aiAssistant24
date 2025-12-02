@@ -18,6 +18,8 @@ import {
   YAxis,
 } from "recharts";
 
+import {dashboardData} from "../apis"
+
 const COLORS = [
   "#390080", // violet
   "#EBB813", // yellow
@@ -55,11 +57,20 @@ const Dashboard = () => {
     });
   }, []);
 
+  const getDashboardData = async () => {
+    const res = await dashboardData()
+    console.log(res, "dashboard res")
+  }
+
+  useEffect(() => {
+    getDashboardData()
+  }, [])
+
   return (
     <PageWrapper>
       <div className="w-full mx-auto flex flex-col h-full">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center p-4 rounded-xl bg-neutral shadow-md mb-3">
+        <div className="flex flex-col md:flex-row justify-between items-center p-4 rounded-xl shadow-md mb-3">
           <h2 className="text-lg md:text-xl font-extrabold text-textdark">
             Welcome Dr. Sarthak Jaggi
           </h2>
@@ -67,13 +78,14 @@ const Dashboard = () => {
         </div>
 
         {/* Body */}
-        <div className="flex flex-col p-4 rounded-xl bg-neutral shadow-md h-full">
+        <div className="flex flex-col p-4 rounded-xl shadow-md h-full">
           <SummaryCards />
 
           {/* Main Content - 2 Columns on md+, stacked on mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
             {/* Left Column */}
             <div className="flex flex-col gap-6 min-w-0">
+              <DentalScheduleCard />
               {data && (
                 <div className="w-full bg-[#fafafa] rounded-2xl shadow-sm p-5 border border-gray-100">
                   <h2 className="text-lg font-semibold mb-4 text-gray-700">
@@ -95,8 +107,6 @@ const Dashboard = () => {
                   </ResponsiveContainer>
                 </div>
               )}
-
-              <DentalScheduleCard />
             </div>
 
             {/* Right Column */}

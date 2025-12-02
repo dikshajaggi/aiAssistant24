@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import PageWrapper from './PageWrapper'
 import TypingHero from '../components/TypingHero'
 import { features } from '../data'
@@ -7,7 +7,6 @@ import { MainContext } from '../context/MainContext'
 // import robo from "/assets/robo.png"
 // import doctor from "/assets/doctor.png"
 import {motion} from "framer-motion"
-import { dashboardData } from '../apis'
 
 const Home = () => {
 
@@ -21,11 +20,6 @@ const Home = () => {
     if (signedUp) navigate("/pricing")
     else navigate("/signup")
   }
-
-  useEffect(() => {
-    const res = dashboardData()
-    console.log(res, "dashboard res")
-  }, [])
 
   return (
     <PageWrapper>
