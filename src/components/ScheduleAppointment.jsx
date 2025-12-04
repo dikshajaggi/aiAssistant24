@@ -1,5 +1,5 @@
 import React from "react";
-import { Calendar, Clock, User, FileText, Stethoscope } from "lucide-react";
+import { Calendar, Clock, User, FileText, BriefcaseMedical } from "lucide-react";
 
 const ScheduleAppointment = ({formdata, handleChange}) => {
 
@@ -25,27 +25,24 @@ const ScheduleAppointment = ({formdata, handleChange}) => {
             onChange={handleChange}
             required
             placeholder="Enter patient name"
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-secondary1 focus:outline-none"
           />
         </div>
 
         {/* Doctor */}
         <div className="flex flex-col">
           <label className="text-sm font-medium text-gray-600 mb-2 flex items-center gap-2">
-            <Stethoscope className="w-4 h-4 text-gray-500" /> Doctor
+            <BriefcaseMedical className="w-4 h-4 text-gray-500" /> Cause of concern
           </label>
-          <select
-            name="doctor"
-            value={formdata.doctor}
+           <input
+            type="text"
+            name="treatment"
+            value={formdata.treatment}
             onChange={handleChange}
             required
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
-          >
-            <option value="">Select Doctor</option>
-            <option value="Dr. Sharma">Dr. Sharma</option>
-            <option value="Dr. Patel">Dr. Patel</option>
-            <option value="Dr. Mehta">Dr. Mehta</option>
-          </select>
+            placeholder="Enter cause of concern"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-secondary1 focus:outline-none"
+          />
         </div>
 
         {/* Date */}
@@ -59,7 +56,7 @@ const ScheduleAppointment = ({formdata, handleChange}) => {
             value={formdata.date}
             onChange={handleChange}
             required
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-secondary1 focus:outline-none"
           />
         </div>
 
@@ -74,7 +71,7 @@ const ScheduleAppointment = ({formdata, handleChange}) => {
             value={formdata.time}
             onChange={handleChange}
             required
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-secondary1 focus:outline-none"
           />
         </div>
 
@@ -89,14 +86,14 @@ const ScheduleAppointment = ({formdata, handleChange}) => {
             onChange={handleChange}
             placeholder="Add notes (optional)"
             rows={3}
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-secondary1 focus:outline-none"
           ></textarea>
         </div>
 
         {/* Submit Button */}
         {/* <div className="md:col-span-2 flex justify-center">
           <button
-            className="px-6 py-3 bg-primary1 text-white font-semibold cursor-pointer rounded-xl transition-all"
+            className="px-6 py-3 bg-secondary1 text-white font-semibold cursor-pointer rounded-xl transition-all"
           >
             Schedule Appointment
           </button>

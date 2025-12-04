@@ -83,7 +83,7 @@ const PatientModal = ({ isOpen, onClose, saveLabel, headingLabel, caption}) => {
           </button>
           <button
             onClick={handleSubmit}
-            className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium cursor-pointer"
+            className="bg-blue-600 text-sm text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium cursor-pointer"
           >
             {saveLabel}
           </button>
