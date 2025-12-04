@@ -20,7 +20,7 @@ const SearchData = ({globalFilter, setGlobalFilter}) => {
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
       <input
         type="text"
-        placeholder="Search patients..."
+        placeholder="Search appointments..."
         className="w-full border border-gray-200 bg-gray-50 hover:bg-white rounded-xl pl-9 pr-4 py-2 text-sm text-gray-700 placeholder:text-gray-400 transition-all shadow-sm hover:shadow focus:outline-none focus:ring-0 focus:border-gray-300"
         value={globalFilter}
         onChange={(e) => setGlobalFilter(e.target.value)}
@@ -29,11 +29,11 @@ const SearchData = ({globalFilter, setGlobalFilter}) => {
   )
 }
 
-const PatientsTableView = ({ patients, loading}) => {
-  console.log(patients, "patients")
+const AppointmentTableView = ({ appointments, loading}) => {
+  console.log(appointments, "appointments")
   const [globalFilter, setGlobalFilter] = useState("");
 
-  const data = useMemo(() => patients, [patients]);
+  const data = useMemo(() => appointments, [appointments]);
 
   // 🔹 Define columns with icons where appropriate
   const columns = useMemo(
@@ -70,7 +70,7 @@ const PatientsTableView = ({ patients, loading}) => {
     },
 
       {
-        accessorKey: "patient_pid",
+        accessorKey: "id",
         header: () => (
           <div className="flex items-center gap-1">
             {/* <Users size={14} className="text-gray-400" />  */}
@@ -110,8 +110,8 @@ const PatientsTableView = ({ patients, loading}) => {
         size: 100,
       },
        {
-        accessorKey: "appointment_date",
-        header: "Appointment Date",
+        accessorKey: "status",
+        header: "Status",
         size: 100,
       },
       // {
@@ -120,8 +120,8 @@ const PatientsTableView = ({ patients, loading}) => {
       //   size: 100,
       // },
       {
-        accessorKey: "phone",
-        header: "Phone",
+        accessorKey: "time",
+        header: "Time",
         size: 100,
       },
       {
@@ -175,7 +175,7 @@ const PatientsTableView = ({ patients, loading}) => {
     enableRowSelection: true,
   });
 
-  if(loading) return "Loading patients..."
+  if(loading) return "Loading appointments..."
 
   return (
     <div className="w-full bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
@@ -256,4 +256,4 @@ const PatientsTableView = ({ patients, loading}) => {
   );
 };
 
-export default PatientsTableView;
+export default AppointmentTableView;
