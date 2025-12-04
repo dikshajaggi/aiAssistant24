@@ -11,7 +11,7 @@ const MainLayout = () => {
       <ScrollToTop />
       <PageWrapper>
         <Header />
-        <main className="min-h-screen pt-24">
+        <main className="min-h-screen pt-24 w-screen overflow-hidden">
             <Outlet />
         </main>
         <Footer />

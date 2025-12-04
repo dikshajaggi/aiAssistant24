@@ -46,7 +46,7 @@ export default function Modal({ isOpen, toggle, title, children }) {
           >
             Cancel
           </button>
-          <button className="cursor-pointer px-4 py-2 bg-primary text-white rounded hover:bg-secondary" onClick={openDashboard}>
+          <button className="cursor-pointer px-4 py-2 bg-primary1 text-white rounded hover:bg-secondary1" onClick={openDashboard}>
             Start Building
           </button>
         </div>

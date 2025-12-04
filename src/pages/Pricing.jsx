@@ -9,7 +9,7 @@ import FreeTrialModal from '../components/FreeTrialModal';
 
 const Feature = ({ children }) => (
   <li className="flex items-start gap-3">
-    <Check className="mt-1 h-5 w-5 text-primary shrink-0" />
+    <Check className="mt-1 h-5 w-5 text-primary1 shrink-0" />
     <span className="text-sm md:text-[15px] text-gray-700">{children}</span>
   </li>
 );
@@ -40,8 +40,8 @@ const Pricing = () => {
       <div className="flex justify-center items-center gap-4 mt-14 flex-wrap">
         <button
           className={`${isActive === "monthly"
-              ? "bg-secondary text-white border-2 border-secondary"
-              : "bg-transparent border-2 border-secondary"
+              ? "bg-secondary1 text-white border-2 border-secondary1"
+              : "bg-transparent border-2 border-secondary1"
             } cursor-pointer font-semibold px-8 md:px-12 py-3 rounded-2xl transition-all duration-300 ease-in-out`}
           onClick={() => setIsActive("monthly")}
         >
@@ -50,8 +50,8 @@ const Pricing = () => {
 
         <button
           className={`${isActive === "yearly"
-              ? "bg-secondary text-white border-2 border-secondary"
-              : "bg-transparent border-2 border-secondary"
+              ? "bg-secondary1 text-white border-2 border-secondary1"
+              : "bg-transparent border-2 border-secondary1"
             } cursor-pointer font-semibold px-8 md:px-12 py-3 rounded-2xl transition-all duration-300 ease-in-out`}
           onClick={() => setIsActive("yearly")}
         >
@@ -65,7 +65,7 @@ const Pricing = () => {
           <div className="relative bg-white/70 backdrop-blur-md rounded-2xl p-5 md:p-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-start gap-3">
-                <Sparkles className="h-6 w-6 text-primary mt-0.5" />
+                <Sparkles className="h-6 w-6 text-primary1 mt-0.5" />
                 <div>
                   <p className="font-bold text-base md:text-lg">
                     14-Day Free Trial <span className="font-medium">(₹0 – No credit card required)</span>
@@ -90,7 +90,7 @@ const Pricing = () => {
 
         {/* Annual Plans Note */}
         {isActive === "yearly" && <div className="text-center mb-6">
-          <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs md:text-sm font-semibold text-secondary border-3 border-textdark shadow">
+          <span className="inline-flex items-center rounded-full bg-white px-3 py-1 text-xs md:text-sm font-semibold text-secondary1 border-3 border-textdark shadow">
             Save 2 months — Pay for 10, get 12
           </span>
         </div>}
@@ -123,7 +123,7 @@ const Pricing = () => {
               <Feature>SMS + email reminders</Feature>
               <Feature>Simple analytics dashboard</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+            <button className="w-full bg-primary1 text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
             onClick={() => {
               setIsOpen(true)
               setSelectedPlan({
@@ -142,7 +142,7 @@ const Pricing = () => {
           {/* Pro (Most Popular) */}
           <div className="group relative rounded-2xl border border-transparent bg-white p-[1px] shadow-lg">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span className="inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-textlight shadow">
+              <span className="inline-flex items-center gap-1 rounded-full bg-primary1 px-3 py-1 text-xs font-semibold text-textlight shadow">
                 <Star className="h-4 w-4" /> Most Popular
               </span>
             </div>
@@ -165,7 +165,7 @@ const Pricing = () => {
                   <Feature>Advanced monthly reports (charts, revenue, etc.)</Feature>
                   <Feature>10 clinic users included</Feature>
                 </ul>
-                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+                <button className="w-full bg-primary1 text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
                  onClick={() => {
                   setIsOpen(true)
                   setSelectedPlan({
@@ -201,7 +201,7 @@ const Pricing = () => {
               <Feature>Priority support + custom dashboards</Feature>
               <Feature>Add-ons: invoice generation, WhatsApp bot integration</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+            <button className="w-full bg-primary1 text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
              onClick={() => {
               setIsOpen(true)
               setSelectedPlan({
@@ -238,7 +238,7 @@ const Pricing = () => {
               <Feature>SMS + email reminders</Feature>
               <Feature>Simple analytics dashboard</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+            <button className="w-full bg-primary1 text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
             onClick={() => {
               setIsOpen(true)
               setSelectedPlan({
@@ -257,7 +257,7 @@ const Pricing = () => {
           {/* Pro (Most Popular) */}
           <div className="group relative rounded-2xl border border-transparent bg-white p-[1px] shadow-lg">
             <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <span className="inline-flex items-center gap-1 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-textlight shadow">
+              <span className="inline-flex items-center gap-1 rounded-full bg-primary1 px-3 py-1 text-xs font-semibold text-textlight shadow">
                 <Star className="h-4 w-4" /> Most Popular
               </span>
             </div>
@@ -279,7 +279,7 @@ const Pricing = () => {
                   <Feature>Advanced monthly reports (charts, revenue, etc.)</Feature>
                   <Feature>10 clinic users included</Feature>
                 </ul>
-                <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+                <button className="w-full bg-primary1 text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
                  onClick={() => {
                   setIsOpen(true)
                     setSelectedPlan( {
@@ -314,7 +314,7 @@ const Pricing = () => {
               <Feature>Priority support + custom dashboards</Feature>
               <Feature>Add-ons: invoice generation, WhatsApp bot integration</Feature>
             </ul>
-            <button className="w-full bg-primary text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+            <button className="w-full bg-primary1 text-textlight py-3 rounded-xl shadow-md hover:shadow-lg active:shadow-inner cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
               onClick={() => {
                 setIsOpen(true)
                 setSelectedPlan( {

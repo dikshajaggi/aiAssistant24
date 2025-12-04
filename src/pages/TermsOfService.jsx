@@ -18,7 +18,7 @@ const TermsOfService = ({
             Effective Date: <span className="font-medium">{effectiveDate}</span>
           </p>
           <p className="mt-6 text-gray-700">
-            Welcome to <span className="text-primary font-semibold">{companyName}</span>. These Terms of Service
+            Welcome to <span className="text-primary1 font-semibold">{companyName}</span>. These Terms of Service
             (“Terms”) govern your access to and use of our website, platform, and related
             products and services (collectively, the “Services”). By accessing or using the
             Services, you agree to be bound by these Terms.
@@ -83,7 +83,7 @@ const TermsOfService = ({
               You retain ownership of patient data you input into the Services. You represent that
               you have obtained all necessary consents and have lawful grounds to process such data.
               We process patient data solely to provide and improve the Services, consistent with our{" "}
-              <a href="/privacy" className="text-primary underline">Privacy Policy</a>. You are
+              <a href="/privacy" className="text-primary1 underline">Privacy Policy</a>. You are
               responsible for ensuring your use complies with applicable privacy, data protection,
               and healthcare regulations in your jurisdiction.
             </p>
@@ -161,8 +161,8 @@ const TermsOfService = ({
             <h2 className="text-xl md:text-2xl font-bold">13) Contact</h2>
             <p className="mt-3 text-gray-700">
               Questions about these Terms? Contact us at{" "}
-              <a className="text-primary underline" href={`mailto:${contactEmail}`}>
-                <span className="text-primary font-semibold">{contactEmail}</span>
+              <a className="text-primary1 underline" href={`mailto:${contactEmail}`}>
+                <span className="text-primary1 font-semibold">{contactEmail}</span>
               </a>.
             </p>
           </div>

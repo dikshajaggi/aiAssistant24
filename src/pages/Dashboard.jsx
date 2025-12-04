@@ -19,6 +19,7 @@ import {
 } from "recharts";
 
 import {dashboardData} from "../apis"
+import DashboardHeader from "@/components/DashboardHeader";
 
 const COLORS = [
   "#390080", // violet
@@ -69,20 +70,13 @@ const Dashboard = () => {
   return (
     <PageWrapper>
       <div className="w-full mx-auto flex flex-col h-full">
-        {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-center p-4 rounded-xl shadow-md mb-3">
-          <h2 className="text-lg md:text-xl font-extrabold text-textdark">
-            Welcome Dr. Sarthak Jaggi
-          </h2>
-          <DateTimeDisplay />
-        </div>
 
         {/* Body */}
         <div className="flex flex-col p-4 rounded-xl shadow-md h-full">
           <SummaryCards />
 
           {/* Main Content - 2 Columns on md+, stacked on mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start mt-10">
             {/* Left Column */}
             <div className="flex flex-col gap-6 min-w-0">
               <DentalScheduleCard />

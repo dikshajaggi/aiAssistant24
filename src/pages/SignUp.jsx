@@ -51,7 +51,7 @@ const SignUp = () => {
       {/* Form Section */}
       <div className="relative z-10 md:bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-100px] max-w-md md:max-w-[439px] md:h-[600px] flex flex-col items-center justify-evenly shadow-lg">
         <div className="flex flex-col items-center justify-center text-center">
-          <h4 className="text-lg md:text-xl font-bold mb-4">Welcome to <span className="text-secondary">SmileLytics.AI</span>!</h4>
+          <h4 className="text-lg md:text-xl font-bold mb-4">Welcome to <span className="text-secondary1">SmileLytics.AI</span>!</h4>
           <span className="text-placeholder text-sm sm:text-base  md:text-base">
             Smart Clinic Management – From Patients to Payments, AI-Powered and Effortlessly Organized.
           </span>
@@ -62,7 +62,7 @@ const SignUp = () => {
           <input
             placeholder="Enter username"
             type="text"
-            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary"
+            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary1"
           />
 
           <input
@@ -70,14 +70,14 @@ const SignUp = () => {
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary"
+            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary1"
           />
 
           <input
             placeholder="Enter phone no."
             type="number"
             onChange={(e) => setPhoneNumber(e.target.value)}
-            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary"
+            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1"
           />
 
           {/* Password + Forgot Password */}
@@ -87,7 +87,7 @@ const SignUp = () => {
               type={showPassword ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary"
+              className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1"
             />
             <span
                 className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
@@ -100,14 +100,14 @@ const SignUp = () => {
           {/* Submit Button */}
           <button
             onClick={handleSignUp}
-            className="bg-secondary cursor-pointer text-white p-2 rounded-xl shadow-md shadow-primary/40 hover:shadow-lg hover:shadow-primary/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150"
+            className="bg-secondary1 cursor-pointer text-white p-2 rounded-xl shadow-md shadow-primary1/40 hover:shadow-lg hover:shadow-primary1/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150"
           >
             Sign Up
           </button>
           <div className="text-xs sm:text-sm text-placeholder text-center">
             Already have an account?{" "}
             <Link to="/login">
-              <span className="text-secondary hover:underline cursor-pointer font-bold">
+              <span className="text-secondary1 hover:underline cursor-pointer font-bold">
                 Login
               </span>
             </Link>

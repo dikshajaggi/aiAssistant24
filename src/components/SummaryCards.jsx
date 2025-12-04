@@ -12,8 +12,8 @@ const data = [
     title: "Total Patients",
     value: 1250,
     icon: Users,
-    // bgColor: "bg-gradient-to-r from-primary/40 to-primary/60",
-    // color: "bg-white text-primary-600 border border-primary/40",
+    // bgColor: "bg-gradient-to-r from-primary1/40 to-primary1/60",
+    // color: "bg-white text-primary1-600 border border-primary1/40",
     color: "bg-green-100 text-green-600"
   },
   {

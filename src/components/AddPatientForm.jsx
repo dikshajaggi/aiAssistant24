@@ -1,61 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { formatDateWithDay } from "../utils/formatDateWithDay";
-import { addPatients } from "../apis";
 
-const AddPatientForm = () => {
-  const [form, setForm] = useState({
-    name: "",
-    // age: "",
-    // gender: "",
-    phone: "",
-    email: "",
-    appointment_date: "",
-    treatment: "",
-  });
-
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+const AddPatientForm = ({message, handleSubmit, formdata, setForm}) => {
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    setForm({ ...formdata, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage("");
-
-    try {
-
-      const resp = await addPatients(form)
-
-      if (resp.ok) {
-        setMessage("Patient added successfully!");
-        setForm({
-          name: "",
-          email: "",
-          phone: "",
-          // age: "",
-          // gender: "",
-          appointment_date: "",
-          treatment: "",
-        });
-      } else {
-        setMessage("Error: " + (resp || "Something went wrong"));
-      }
-    } catch (err) {
-      setMessage("Error: " + err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-
+// className="bg-white shadow-md rounded-2xl p-6 w-full max-w-7xl mx-auto mt-10"
   return (
-  <div className="bg-white shadow-md rounded-2xl p-6 w-full max-w-7xl mx-auto mt-10">
-        <h2 className="text-2xl font-bold text-textdark mb-6 text-center">
+  <div>
+        {/* <h2 className="text-2xl font-bold text-textdark mb-6 text-center">
         Add New Patient
-        </h2>
+        </h2> */}
 
     <form className="space-y-5" onSubmit={handleSubmit}>
       {/* Name */}
@@ -65,10 +22,10 @@ const AddPatientForm = () => {
                 <input
                 type="text"
                 name="name"
-                value={form.name}
+                value={formdata.name}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
                 />
            </div>
 
@@ -77,10 +34,10 @@ const AddPatientForm = () => {
               <input
                   type="text"
                   name="email"
-                  value={form.email}
+                  value={formdata.email}
                   onChange={handleChange}
                   required
-                  className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
               />
             </div>
             {/* <div>
@@ -88,10 +45,10 @@ const AddPatientForm = () => {
                 <input
                     type="number"
                     name="age"
-                    value={form.age}
+                    value={formdata.age}
                     onChange={handleChange}
                     required
-                    className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                    className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
                 />
             </div> */}
         </div>
@@ -102,10 +59,10 @@ const AddPatientForm = () => {
             <label className="block text-gray-700 font-medium">Gender</label>
             <select
                 name="gender"
-                value={form.gender}
+                value={formdata.gender}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
             >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
@@ -119,10 +76,10 @@ const AddPatientForm = () => {
               <input
                   type="string"
                   name="phone"
-                  value={form.phone}
+                  value={formdata.phone}
                   onChange={handleChange}
                   required
-                  className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                  className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
               />
             </div>
 
@@ -133,13 +90,13 @@ const AddPatientForm = () => {
                 <input
                     type="date"
                     name="appointment_date"
-                    value={form.appointment_date}
+                    value={formdata.appointment_date}
                     onChange={handleChange}
                     required
-                    className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                    className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
                 />
                 <p className="mt-1 text-gray-600">
-                    {form.appointment_date && `Selected: ${formatDateWithDay(form.appointment_date)}`}
+                    {formdata.appointment_date && `Selected: ${formatDateWithDay(formdata.appointment_date)}`}
                 </p>
             </div>
         </div>
@@ -151,24 +108,24 @@ const AddPatientForm = () => {
             <input
                 type="text"
                 name="treatment"
-                value={form.treatment}
+                value={formdata.treatment}
                 onChange={handleChange}
                 required
-                className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
             />
             </div>
         </div>
 
         {/* Submit */}
-        <div className="md:col-span-2 flex justify-center">
+        {/* <div className="md:col-span-2 flex justify-center">
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all cursor-pointer"
+            className="px-6 py-3 bg-secondary1 text-white font-bold rounded-xl hover:bg-secondary1/90 transition-all cursor-pointer"
           >
             {loading ? "Adding..." : "Add Patient"}
           </button>
-        </div>
+        </div> */}
     </form>
 
             {message && (

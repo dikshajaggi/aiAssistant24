@@ -66,7 +66,7 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
               value={form.name}
               onChange={handleChange}
               required
-              className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+              className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary1 focus:outline-none"
             />
           </div>
 
@@ -79,7 +79,7 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
                 value={form.phone}
                 onChange={handleChange}
                 required
-                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary1 focus:outline-none"
               />
             </div>
             <div>
@@ -90,7 +90,7 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary1 focus:outline-none"
               />
             </div>
             {/* <div>
@@ -100,7 +100,7 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
                 value={form.gender}
                 onChange={handleChange}
                 required
-                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary1 focus:outline-none"
               >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
@@ -119,7 +119,7 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
                 value={form.appointment_date}
                 onChange={handleChange}
                 required
-                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary1 focus:outline-none"
               />
               {form.appointment_date && (
                 <p className="mt-1 text-gray-600">{formatDateWithDay(form.appointment_date)}</p>
@@ -133,7 +133,7 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
                 value={form.treatment}
                 onChange={handleChange}
                 required
-                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary focus:outline-none"
+                className="w-full mt-1 px-3 py-2 border rounded-xl focus:ring-2 focus:ring-primary1 focus:outline-none"
               />
             </div>
           </div>
@@ -148,7 +148,7 @@ const EditPatientModal = ({ patient, onClose, onUpdate }) => {
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-secondary/90 text-white rounded-xl hover:bg-secondary cursor-pointer"
+              className="px-4 py-2 bg-secondary1/90 text-white rounded-xl hover:bg-secondary1 cursor-pointer"
             >
               Save
             </button>

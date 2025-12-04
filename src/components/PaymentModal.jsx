@@ -18,7 +18,7 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
             Order summary
           </h3>
 
-          <h2 className="text-xl font-extrabold text-secondary">
+          <h2 className="text-xl font-extrabold text-secondary1">
             14 days free
           </h2>
           <p className="text-sm text-gray-600 mb-4">
@@ -76,8 +76,8 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                 onClick={() => setShowPayment(false)}
                 className={`transition ${
                     !showPayment
-                    ? "text-secondary font-bold"
-                    : "text-gray-500 hover:text-secondary/80"
+                    ? "text-secondary1 font-bold"
+                    : "text-gray-500 hover:text-secondary1/80"
                 }`}
                 >
                 Your details
@@ -87,8 +87,8 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                 onClick={() => setShowPayment(true)}
                 className={`transition ${
                     showPayment
-                    ? "text-secondary font-bold"
-                    : "text-gray-500 hover:text-secondary/80"
+                    ? "text-secondary1 font-bold"
+                    : "text-gray-500 hover:text-secondary1/80"
                 }`}
                 >
                 Payment
@@ -103,7 +103,7 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                   <input
                     type="email"
                     placeholder="you@example.com"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1"
                   />
                 </div>
 
@@ -112,7 +112,7 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                     Country
                   </label>
                   <select
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1"
                   >
                     <option>India</option>
                     <option>United States</option>
@@ -127,7 +127,7 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                   <input
                     type="text"
                     placeholder="110078"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1"
                   />
                 </div>
 
@@ -141,7 +141,7 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                 <button
                   type="button"
                   onClick={() => setShowPayment(true)}
-                  className="w-full bg-secondary hover:bg-secondary/80 text-white font-semibold py-2 px-4 rounded-lg mt-4 transition cursor-pointer"
+                  className="w-full bg-secondary1 hover:bg-secondary1/80 text-white font-semibold py-2 px-4 rounded-lg mt-4 transition cursor-pointer"
                 >
                   Continue
                 </button>
@@ -154,8 +154,8 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                 onClick={() => setShowPayment(false)}
                 className={`transition ${
                     !showPayment
-                    ? "text-secondary font-bold"
-                    : "text-gray-500 hover:text-secondary/80"
+                    ? "text-secondary1 font-bold"
+                    : "text-gray-500 hover:text-secondary1/80"
                 }`}
                 >
                 Your details
@@ -165,8 +165,8 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                 onClick={() => setShowPayment(true)}
                 className={`transition ${
                     showPayment
-                    ? "text-secondary font-bold"
-                    : "text-gray-500 hover:text-secondary/80"
+                    ? "text-secondary1 font-bold"
+                    : "text-gray-500 hover:text-secondary1/80"
                 }`}
                 >
                 Payment
@@ -181,7 +181,7 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                   <input
                     type="text"
                     placeholder="xxxx xxxx xxxx xxxx"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1"
                   />
                 </div>
 
@@ -192,7 +192,7 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                   <input
                     type="text"
                     placeholder="Full name"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1"
                   />
                 </div>
 
@@ -204,7 +204,7 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                     <input
                       type="text"
                       placeholder="MM / YY"
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1"
                     />
                   </div>
                   <div>
@@ -214,14 +214,14 @@ const PaymentModal = ({ planInfo, isOpen, toggle }) => {
                     <input
                       type="text"
                       placeholder="CVV"
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1"
                     />
                   </div>
                 </div>
 
                 <button
                   type="button"
-                  className="w-full bg-secondary hover:bg-secondary/80 text-white font-semibold py-2 px-4 rounded-lg mt-4 transition"
+                  className="w-full bg-secondary1 hover:bg-secondary1/80 text-white font-semibold py-2 px-4 rounded-lg mt-4 transition"
                 >
                   Start your free trial
                 </button>

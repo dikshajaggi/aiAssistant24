@@ -93,10 +93,10 @@ export default function DentalScheduleCard() {
                 className={`relative flex flex-col items-center justify-center py-2 rounded-lg cursor-pointer transition
                 ${
                     isSelected
-                    ? "bg-secondary text-white font-bold"
+                    ? "bg-secondary1 text-white font-bold"
                     : isToday
-                    ? "bg-success text-white font-bold"
-                    : "text-textdark hover:bg-secondary/60"
+                    ? "bg-success1 text-white font-bold"
+                    : "text-textdark hover:bg-secondary1/60"
                 }`}
                 onClick={() => setSelectedDate(dateKey)}
                 >
@@ -107,7 +107,7 @@ export default function DentalScheduleCard() {
 
                 {/* Small dot under today's date */}
                 {isToday && !isSelected && (
-                    <span className="absolute bottom-1 w-1.5 h-1.5 bg-secondary rounded-full"></span>
+                    <span className="absolute bottom-1 w-1.5 h-1.5 bg-secondary1 rounded-full"></span>
                 )}
                 </div>
             );
@@ -123,7 +123,7 @@ export default function DentalScheduleCard() {
               {selectedAppointments.map((appt, i) => (
                 <li
                   key={i}
-                  className="flex items-center justify-between bg-secondary rounded-lg p-2"
+                  className="flex items-center justify-between bg-secondary1 rounded-lg p-2"
                 >
                   <div>
                     <p className="font-medium">{appt.type}</p>

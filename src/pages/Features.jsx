@@ -14,47 +14,47 @@ import {
 
 const features = [
   {
-    icon: <User className="w-8 h-8 text-secondary" />,
+    icon: <User className="w-8 h-8 text-secondary1" />,
     title: "Patient Management",
     desc: "Add, edit, and organize patient records with ease.",
   },
   {
-    icon: <ClipboardList className="w-8 h-8 text-secondary" />,
+    icon: <ClipboardList className="w-8 h-8 text-secondary1" />,
     title: "Visit Management",
     desc: "Track every visit like a perfectly filled cavity.",
   },
   {
-    icon: <CalendarDays className="w-8 h-8 text-secondary" />,
+    icon: <CalendarDays className="w-8 h-8 text-secondary1" />,
     title: "Appointment Tracking",
     desc: "Never miss a booking again.",
   },
   {
-    icon: <FileText className="w-8 h-8 text-secondary" />,
+    icon: <FileText className="w-8 h-8 text-secondary1" />,
     title: "Treatment Records",
     desc: "Keep a detailed history of treatments for quick reference.",
   },
   {
-    icon: <DollarSign className="w-8 h-8 text-secondary" />,
+    icon: <DollarSign className="w-8 h-8 text-secondary1" />,
     title: "Revenue & Payments",
     desc: "See what’s paid, pending, and planned.",
   },
   {
-    icon: <LayoutDashboard className="w-8 h-8 text-secondary" />,
+    icon: <LayoutDashboard className="w-8 h-8 text-secondary1" />,
     title: "Smart Dashboards",
     desc: "Instant insights into patients, visits, revenue, and pending payments.",
   },
   {
-    icon: <BarChart3 className="w-8 h-8 text-secondary" />,
+    icon: <BarChart3 className="w-8 h-8 text-secondary1" />,
     title: "Charts That Speak",
     desc: "Visualize visits, revenue trends, and top treatments.",
   },
   {
-    icon: <Bell className="w-8 h-8 text-secondary" />,
+    icon: <Bell className="w-8 h-8 text-secondary1" />,
     title: "Smart Reminders",
     desc: "Gentle nudges to patients via WhatsApp & email.",
   },
   {
-    icon: <Megaphone className="w-8 h-8 text-secondary" />,
+    icon: <Megaphone className="w-8 h-8 text-secondary1" />,
     title: "AI Marketing Boost",
     desc: "Auto-generated social posts and promotional emails to keep your practice thriving.",
   },
@@ -81,7 +81,7 @@ const Features = () => {
               key={idx}
               className="flex flex-col items-start gap-3 bg-white rounded-2xl shadow-sm p-6 hover:shadow-md transition-shadow duration-200"
             >
-              <div className="p-3 bg-secondary/10 rounded-xl">
+              <div className="p-3 bg-secondary1/10 rounded-xl">
                 {feature.icon}
               </div>
               <h3 className="text-lg font-semibold text-textdark">

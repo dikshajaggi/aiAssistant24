@@ -44,7 +44,7 @@ const QuickActions = () => {
 
               {/* Add Button */}
               <Link to = {action.link}>
-                <button className="cursor-pointer px-4 py-1.5 text-sm md:text-base font-medium text-white bg-secondary border border-secondary rounded-full hover:bg-bg-secondary/70 transition">
+                <button className="cursor-pointer px-4 py-1.5 text-sm md:text-base font-medium text-white bg-secondary1 border border-secondary1 rounded-xl hover:bg-bg-secondary1/70 transition">
                   Add
                 </button>
               </Link>

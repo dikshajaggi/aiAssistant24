@@ -7,13 +7,13 @@ const Walkthrough = () => {
     <div className="min-h-screen min-w-screen bg-neutral text-textdark px-10">
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center px-6 py-16">
-        <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-secondary">
+        <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-secondary1">
           Meet Your AI Dental Assistant
         </h1>
 
          <p className="mt-4 text-center text-gray-600 text-base md:text-lg max-w-2xl">
           See how our AI-powered assistant helps you manage patients, track revenue, 
-          and send reminders — so you can focus on what truly matters: <span className="text-secondary font-semibold">brighter smiles</span>
+          and send reminders — so you can focus on what truly matters: <span className="text-secondary1 font-semibold">brighter smiles</span>
         </p>
 
         {/* Video Container */}
@@ -32,14 +32,14 @@ const Walkthrough = () => {
 
 
         <Link to="/bookdemo">
-          <button className="mt-8 px-6 py-3 bg-secondary text-white font-[500] rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+          <button className="mt-8 px-6 py-3 bg-secondary1 text-white font-[500] rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
             Book a Free Demo
           </button>
         </Link>
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-primary text-textdark py-12 px-6">
+      <section className="bg-primary1 text-textdark py-12 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
           <div className="bg-neutral p-6 rounded-xl">
             <h3 className="font-bold text-lg">Save Time</h3>
@@ -72,7 +72,7 @@ const Walkthrough = () => {
           your clinic smarter, faster, and more connected.
         </p>
         <Link to="/bookdemo">
-          <button className="px-8 py-4 bg-secondary text-white font-[500] rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+          <button className="px-8 py-4 bg-secondary1 text-white font-[500] rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
             Book Your Demo
           </button>
         </Link>

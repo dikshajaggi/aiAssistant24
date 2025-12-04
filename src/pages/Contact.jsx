@@ -26,11 +26,11 @@ const Contact = () => {
           <div className="flex flex-col gap-6 md:w-1/2">
             <h1 className="font-bold md:text-3xl text-center md:text-left">Contact Us</h1>
             <div className="flex items-center gap-4 bg-white shadow p-4 rounded-lg">
-              <Mail className="text-primary w-6 h-6" />
+              <Mail className="text-primary1 w-6 h-6" />
               <span className="text-lg font-medium">support@example.com</span>
             </div>
             <div className="flex items-center gap-4 bg-white shadow p-4 rounded-lg">
-              <Phone className="text-primary w-6 h-6" />
+              <Phone className="text-primary1 w-6 h-6" />
               <span className="text-lg font-medium">+1 (234) 567-890</span>
             </div>
           </div>

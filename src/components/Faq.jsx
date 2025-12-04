@@ -69,7 +69,7 @@ const Faq = () => {
   return (
     <div className="bg-neutral py-16 px-6">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-2xl md:text-4xl font-extrabold text-center text-secondary mb-10">
+        <h2 className="text-2xl md:text-4xl font-extrabold text-center text-secondary1 mb-10">
           Frequently Asked Questions
         </h2>
 
@@ -87,7 +87,7 @@ const Faq = () => {
                   >
                     <button
                       onClick={() => toggleFAQ(currentIndex)}
-                      className="flex w-full items-center justify-between p-4 text-left text-base md:text-lg font-medium text-gray-800 hover:bg-primary/10 cursor-pointer"
+                      className="flex w-full items-center justify-between p-4 text-left text-base md:text-lg font-medium text-gray-800 hover:bg-primary1/10 cursor-pointer"
                     >
                       {item.q}
                       <ChevronDown
@@ -97,7 +97,7 @@ const Faq = () => {
                       />
                     </button>
                     {isOpen && (
-                      <div className="p-4 bg-primary/10 text-gray-600 text-sm md:text-base">
+                      <div className="p-4 bg-primary1/10 text-gray-600 text-sm md:text-base">
                         {item.a}
                       </div>
                     )}

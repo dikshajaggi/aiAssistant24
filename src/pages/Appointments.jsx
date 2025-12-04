@@ -1,24 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import PageWrapper from "./PageWrapper";
-import { MessageCircle, Mail, Clock } from "lucide-react";
+import { MessageCircle, Mail, Clock, Plus } from "lucide-react";
 import RecentAppointments from "../components/RecentAppointments";
 import ScheduleAppointment from "../components/ScheduleAppointment";
+import AppointmentModal from "@/components/common/AppointmenModal";
 
 
 const Appointments = () => {
   
-const reminders = {
-  whatsapp: 8,
-  email: 5,
-  pending: 3,
-};
+  const [openForm, setOpenForm] = useState(false);
+  
+  const reminders = {
+    whatsapp: 8,
+    email: 5,
+    pending: 3,
+  };
 
   return (
     <PageWrapper>
       <div className="w-full max-w-7xl mx-auto pt-4 pb-10">
         {/* Heading */}
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Appointments & Reminders</h2>
-
+        <div className="w-full flex flex-col lg:flex-row items-center justify-between">
+          <h1 className="text-xl font-semibold mb-6">Appointments & Reminders</h1>
+          <button
+            onClick={() => setOpenForm(true)}
+            className="flex items-center gap-2 bg-blue-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-blue-700 transition cursor-pointer"
+          >
+            <Plus size={16} /> Schedule Appointment
+          </button>
+        </div>
         {/* Reminders Overview */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 mb-10">
           <div className="bg-white shadow-md rounded-2xl p-6 text-center">
@@ -30,10 +40,10 @@ const reminders = {
           </div>
           <div className="bg-white shadow-md rounded-2xl p-6 text-center">
             <h3 className="text-lg font-semibold text-gray-700 flex items-center justify-center gap-2">
-              <Mail className="w-5 h-5 text-secondary" />
+              <Mail className="w-5 h-5 text-secondary1" />
               Email Reminders
             </h3>
-            <p className="text-3xl font-bold text-secondary mt-3">{reminders.email}</p>
+            <p className="text-3xl font-bold text-secondary1 mt-3">{reminders.email}</p>
           </div>
           <div className="bg-white shadow-md rounded-2xl p-6 text-center">
             <h3 className="text-lg font-semibold text-gray-700 flex items-center justify-center gap-2">
@@ -44,7 +54,7 @@ const reminders = {
           </div>
         </div>
         <RecentAppointments />
-        <ScheduleAppointment />
+        {openForm && <AppointmentModal isOpen = {openForm} onClose = {() => setOpenForm(false)} saveLabel = "Schedule Appointment" headingLabel = "Schedule Appointment" caption = "Schedule Appointment" />}
       </div>
     </PageWrapper>
   );

@@ -78,7 +78,7 @@ const Login = () => {
           <div className="relative z-10 md:bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-100px] max-w-md md:max-w-[439px] md:h-[500px] flex flex-col items-center justify-evenly shadow-lg">
             <div className="flex flex-col items-center justify-center text-center">
               <h4 className="text-lg md:text-xl font-bold mb-4">
-                Welcome to <span className="text-secondary">SmileLytics.AI</span>!
+                Welcome to <span className="text-secondary1">SmileLytics.AI</span>!
               </h4>
               <span className="text-placeholder text-sm sm:text-base md:text-base">
                 Smart Clinic Management – From Patients to Payments, AI-Powered and Effortlessly Organized.
@@ -92,7 +92,7 @@ const Login = () => {
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary"
+                className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1"
               />
 
               {/* Password + Show/Hide + Forgot Password */}
@@ -102,7 +102,7 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary pr-10"
+                  className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1 pr-10"
                 />
                 {/* Eye Icon */}
                 <span
@@ -111,7 +111,7 @@ const Login = () => {
                 >
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </span>
-                <span className="self-end mt-1 text-xs sm:text-sm text-secondary hover:underline cursor-pointer">
+                <span className="self-end mt-1 text-xs sm:text-sm text-secondary1 hover:underline cursor-pointer">
                   Forgot Password?
                 </span>
               </div>
@@ -119,7 +119,7 @@ const Login = () => {
               {/* Submit Button */}
               <button
                 onClick={handleLogin}
-                className="cursor-pointer bg-secondary text-white p-2 rounded-xl shadow-md shadow-primary/40 hover:shadow-lg hover:shadow-primary/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150"
+                className="cursor-pointer bg-secondary1 text-white p-2 rounded-xl shadow-md shadow-primary1/40 hover:shadow-lg hover:shadow-primary1/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150"
               >
                 Login
               </button>
@@ -128,7 +128,7 @@ const Login = () => {
               <div className="text-xs sm:text-sm text-placeholder text-center">
                 Don’t have an account?{" "}
                 <Link to="/signup">
-                  <span className="text-secondary hover:underline cursor-pointer font-bold">
+                  <span className="text-secondary1 hover:underline cursor-pointer font-bold">
                     Sign Up
                   </span>
                 </Link>

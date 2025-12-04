@@ -33,7 +33,7 @@ const Header = () => {
         
         {/* Logo */}
         <Link to="/">
-          <div className="flex items-center gap-2 font-bold text-secondary text-lg md:text-xl cursor-pointer capitalize font-poppins">
+          <div className="flex items-center gap-2 font-bold text-secondary1 text-lg md:text-xl cursor-pointer capitalize font-poppins">
             <img src={logo} alt="SmileLytics.AI-logo" loading="lazy" className="h-12 md:h-14 object-contain" />
             <span>SmileLytics.AI</span>
           </div>
@@ -41,15 +41,15 @@ const Header = () => {
 
         {/* Desktop Menu (only from lg) */}
         <nav className="hidden lg:flex items-center gap-8">
-          <Link to="/walkthrough" className="hover:text-secondary transition">Walkthrough</Link>
-          <Link to="/pricing" className="hover:text-secondary transition">Pricing</Link>
+          <Link to="/walkthrough" className="hover:text-secondary1 transition">Walkthrough</Link>
+          <Link to="/pricing" className="hover:text-secondary1 transition">Pricing</Link>
           <Link
             to="/bookdemo"
-            className="!text-secondary font-semibold animate-bounce"
+            className="!text-secondary1 font-semibold animate-bounce"
           >
             Book a Demo
           </Link>
-          {signedUp?.email ? <span className="hover:text-secondary transition">{signedUp?.email}</span> : <Link to="/login" className="hover:text-secondary transition">Login</Link>}
+          {signedUp?.email ? <span className="hover:text-secondary1 transition">{signedUp?.email}</span> : <Link to="/login" className="hover:text-secondary1 transition">Login</Link>}
           {!signedUp?.email && <Link
             to="/signup"
             className="px-4 py-1 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold"
@@ -74,10 +74,10 @@ const Header = () => {
         }`}
       >
         <div className="flex flex-col p-4 space-y-4">
-          <Link to="/walkthrough" className="hover:text-secondary transition" onClick={() => setMenuOpen(false)}>Walkthrough</Link>
-          <Link to="/pricing" className="hover:text-secondary transition" onClick={() => setMenuOpen(false)}>Pricing</Link>
-          <Link to="/bookdemo" className="!text-secondary font-semibold animate-bounce" onClick={() => setMenuOpen(false)}>Book a Demo</Link>
-          {signedUp?.email ? <span className="hover:text-secondary transition">{signedUp?.email}</span> : <Link to="/login" className="hover:text-secondary transition">Login</Link>}
+          <Link to="/walkthrough" className="hover:text-secondary1 transition" onClick={() => setMenuOpen(false)}>Walkthrough</Link>
+          <Link to="/pricing" className="hover:text-secondary1 transition" onClick={() => setMenuOpen(false)}>Pricing</Link>
+          <Link to="/bookdemo" className="!text-secondary1 font-semibold animate-bounce" onClick={() => setMenuOpen(false)}>Book a Demo</Link>
+          {signedUp?.email ? <span className="hover:text-secondary1 transition">{signedUp?.email}</span> : <Link to="/login" className="hover:text-secondary1 transition">Login</Link>}
           {!signedUp?.email && <Link to="/signup" className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#0F2650] to-[#0ea5e9] !text-white font-semibold" onClick={() => setMenuOpen(false)}>Sign Up</Link>}
         </div>
       </div>

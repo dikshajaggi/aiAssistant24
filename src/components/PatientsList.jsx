@@ -56,7 +56,7 @@ const PatientsList = () => {
         <div className="overflow-x-auto">
           {/* Desktop Table */}
           <table className="hidden md:table w-full border-collapse bg-white shadow-lg rounded-2xl overflow-hidden">
-            <thead className="bg-primary text-white">
+            <thead className="bg-primary1 text-white">
               <tr>
                 <th className="p-4 text-left">Name</th>
                 {/* <th className="p-4 text-left">Age</th> */}
@@ -75,7 +75,7 @@ const PatientsList = () => {
                     <td className="p-4">{formatDateWithDay(p.appointment_date)}</td>
                     <td className="p-4">{p.treatment}</td>
                     <td className="p-4 flex gap-3 justify-center">
-                    <button onClick={() => setEditingPatient(p)} className="px-3 py-1 bg-secondary/90 text-white rounded-lg hover:bg-secondary cursor-pointer">
+                    <button onClick={() => setEditingPatient(p)} className="px-3 py-1 bg-secondary1/90 text-white rounded-lg hover:bg-secondary1 cursor-pointer">
                       Edit
                     </button>
                     <button
@@ -116,7 +116,7 @@ const PatientsList = () => {
                   {p.treatment}
                 </p>
                 <div className="flex gap-3 mt-2">
-                  <button onClick={() => setEditingPatient(p)} className="cursor-pointer flex-1 px-3 py-1 bg-secondary/90 text-white rounded-lg hover:bg-secondary">
+                  <button onClick={() => setEditingPatient(p)} className="cursor-pointer flex-1 px-3 py-1 bg-secondary1/90 text-white rounded-lg hover:bg-secondary1">
                     Edit
                   </button>
                   <button

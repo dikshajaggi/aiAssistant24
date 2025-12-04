@@ -23,7 +23,7 @@ const MobileSidebar = () => {
             key={item.path}
             to={item.path}
             className={`flex flex-col rounded-2xl p-2 items-center justify-center gap-1 text-xs transition-colors ${
-              isActive ? "bg-primary !text-white" : "text-gray-700 hover:bg-primary/20"
+              isActive ? "bg-primary1 !text-white" : "text-gray-700 hover:bg-primary1/20"
             }`}
           >
             <div className={`transition-transform ${isActive ? "scale-110" : ""}`}>
@@ -49,7 +49,7 @@ const MobileSidebar = () => {
             key={item.path}
             to={item.path}
             className={`flex flex-col rounded-2xl p-2 items-center justify-center gap-1 text-xs transition-colors ${
-              isActive ? "bg-primary !text-white" : "text-gray-700 hover:bg-primary/20"
+              isActive ? "bg-primary1 !text-white" : "text-gray-700 hover:bg-primary1/20"
             }`}
           >
             <div className={`transition-transform ${isActive ? "scale-110" : ""}`}>

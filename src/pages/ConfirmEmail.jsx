@@ -46,7 +46,7 @@ export default function ConfirmEmail() {
   const renderIcon = () => {
     switch (status) {
       case "success":
-        return <CheckCircle className="w-16 h-16 text-success mx-auto animate-bounce" />
+        return <CheckCircle className="w-16 h-16 text-success1 mx-auto animate-bounce" />
       case "error":
         return <XCircle className="w-16 h-16 text-alert mx-auto animate-pulse" />
       case "invalid":
@@ -95,7 +95,7 @@ export default function ConfirmEmail() {
   }
 
   return (
-    <div className="min-h-scrren min-w-screen flex items-center justify-center min-h-screen bg-gradient-to-br from-secondary via-primary to-neutral px-4">
+    <div className="min-h-scrren min-w-screen flex items-center justify-center min-h-screen bg-gradient-to-br from-secondary1 via-primary1 to-neutral px-4">
       <div className="bg-textdark/80 backdrop-blur-md shadow-2xl rounded-3xl p-10 max-w-md w-full text-center">
         {renderIcon()}
         {renderMessage()}
@@ -103,7 +103,7 @@ export default function ConfirmEmail() {
         {(status === "notConfirmed" || status === "invalid" || status === "error") && (
           <button
             onClick={() => navigate("/resend-confirmation")}
-            className="mt-6 px-6 py-3 bg-white text-secondary font-semibold rounded-full shadow-lg hover:bg-purple-50 transition-all cursor-pointer"
+            className="mt-6 px-6 py-3 bg-white text-secondary1 font-semibold rounded-full shadow-lg hover:bg-purple-50 transition-all cursor-pointer"
           >
             Resend Confirmation
           </button>

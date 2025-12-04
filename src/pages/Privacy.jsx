@@ -18,7 +18,7 @@ const Privacy = ({
             Effective Date: <span className="font-medium">{effectiveDate}</span>
           </p>
           <p className="mt-6 text-gray-700">
-            <span className="text-primary font-semibold">{companyName}</span> respects your privacy. This Privacy Policy
+            <span className="text-primary1 font-semibold">{companyName}</span> respects your privacy. This Privacy Policy
             explains how we collect, use, disclose, and protect information in connection with our
             website, platform, and related services (“Services”). By using the Services, you consent
             to the practices described here.
@@ -124,7 +124,7 @@ const Privacy = ({
               Depending on your location, you may have rights to access, correct, delete, or
               restrict processing of your personal data, and to object or withdraw consent. To
               exercise these rights, contact{" "}
-              <a className="text-primary underline" href={`mailto:${contactEmail}`}>
+              <a className="text-primary1 underline" href={`mailto:${contactEmail}`}>
                 {contactEmail}
               </a>.
             </p>
@@ -160,8 +160,8 @@ const Privacy = ({
             <h2 className="text-xl md:text-2xl font-bold">12) Contact</h2>
             <p className="mt-3 text-gray-700">
               Questions about privacy? Contact us at{" "}
-              <a className="text-primary underline" href={`mailto:${contactEmail}`}>
-                <span className="text-primary font-semibold">{contactEmail}</span>
+              <a className="text-primary1 underline" href={`mailto:${contactEmail}`}>
+                <span className="text-primary1 font-semibold">{contactEmail}</span>
               </a>. Postal address and data protection contact (if any) can be provided upon request.
             </p>
           </div>

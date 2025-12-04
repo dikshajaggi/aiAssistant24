@@ -107,7 +107,7 @@ const Home = () => {
                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
                 viewport={{ once: true, amount: 0.2 }}
               >
-                <h2 className="text-2xl md:text-4xl font-extrabold mb-4 text-secondary text-center md:text-left">
+                <h2 className="text-2xl md:text-4xl font-extrabold mb-4 text-secondary1 text-center md:text-left">
                   {feature.caption}
                 </h2>
                 <p className="text-gray-600 leading-relaxed text-center md:text-left">

@@ -17,7 +17,7 @@ import Dashboard from "../pages/Dashboard"
 import Patients from "../pages/Patients"
 import Appointments from "../pages/Appointments"
 import Analytics from "../pages/Analytics"
-import SidebarLayout from "../layouts/SidebarLayout"
+import DashboardLayout from "../layouts/DashboardLayout"
 import ConfirmEmail from "../pages/ConfirmEmail"
 import ProtectedRoute from "./ProtectedRoute"
 
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: (
             <ProtectedRoute>
-                <SidebarLayout />
+                <DashboardLayout />
             </ProtectedRoute>
         ),
         children: [

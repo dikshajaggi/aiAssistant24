@@ -23,7 +23,7 @@ const About = () => {
           
           {/* Text */}
           <p className="text-justify lg:w-2/3">
-            At <span className='text-secondary ml-1 font-semibold'> SmileLytics.AI</span>, we believe dentistry should focus more on smiles and less on spreadsheets. That’s why we built an AI-powered dental companion designed to take the heavy lifting out of clinic management — so dentists can focus on what they do best: <span className='text-secondary ml-1 font-semibold'>caring for patients</span>.
+            At <span className='text-secondary1 ml-1 font-semibold'> SmileLytics.AI</span>, we believe dentistry should focus more on smiles and less on spreadsheets. That’s why we built an AI-powered dental companion designed to take the heavy lifting out of clinic management — so dentists can focus on what they do best: <span className='text-secondary1 ml-1 font-semibold'>caring for patients</span>.
             <br /><br />
             Our assistant is like your digital chairside partner — always attentive, always reliable, and always learning. From managing patients to keeping track of visits, payments, and reminders, it makes running a dental practice smoother, smarter, and stress-free.
           </p>
@@ -50,9 +50,9 @@ const About = () => {
             
             {/* Mission Text */}
             <p className='text-gray-400 text-sm md:text-base lg:text-lg leading-relaxed text-justify max-w-3xl'>
-              We’re on a mission to empower every dentist with an <span className='text-primary md:font-semibold'>AI-powered assistant</span> that works as hard as they do. <br /><br />
+              We’re on a mission to empower every dentist with an <span className='text-primary1 md:font-semibold'>AI-powered assistant</span> that works as hard as they do. <br /><br />
               Our vision is to transform dental practices into smarter, more connected, and stress-free clinics — where patient care comes first, and paperwork takes a back seat. <br /><br />
-              By blending intelligent automation with human creativity, we help dentists manage patients, track treatments, grow revenue, and engage patients effortlessly — so they can focus on what truly matters: <span className='md:font-semibold text-primary'>brighter smiles</span>.
+              By blending intelligent automation with human creativity, we help dentists manage patients, track treatments, grow revenue, and engage patients effortlessly — so they can focus on what truly matters: <span className='md:font-semibold text-primary1'>brighter smiles</span>.
             </p>
 
             {/* Mission Image */}
@@ -81,7 +81,7 @@ const About = () => {
             </p>
 
             <p className="text-sm md:text-base lg:text-lg leading-relaxed md:text-justify">
-              With the power of <span className="font-semibold text-secondary">AI & automation</span>, 
+              With the power of <span className="font-semibold text-secondary1">AI & automation</span>, 
               we’re not just helping dentists manage their clinics — 
               we’re helping them grow them.
             </p>

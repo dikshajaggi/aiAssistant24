@@ -1,34 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { Calendar, Clock, User, FileText, Stethoscope } from "lucide-react";
 
-const ScheduleAppointment = () => {
-  const [form, setForm] = useState({
-    name: "",
-    doctor: "",
-    date: "",
-    time: "",
-    notes: "",
-  });
+const ScheduleAppointment = ({formdata, handleChange}) => {
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Scheduled Appointment:", form);
-    alert("Appointment scheduled successfully ✅");
-    // Here you can call API to save appointment
-  };
-
+  //bg-white shadow-md rounded-2xl p-6 w-full max-w-7xl mx-auto mt-10
   return (
-    <div className="bg-white shadow-md rounded-2xl p-6 w-full max-w-7xl mx-auto mt-10">
-      <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">
+    <div className="">
+      {/* <h3 className="text-xl font-bold text-gray-800 mb-6 text-center">
         Schedule New Appointment
-      </h3>
+      </h3> */}
 
       <form
-        onSubmit={handleSubmit}
         className="grid grid-cols-1 md:grid-cols-2 gap-6"
       >
         {/* Patient Name */}
@@ -39,11 +21,11 @@ const ScheduleAppointment = () => {
           <input
             type="text"
             name="name"
-            value={form.name}
+            value={formdata.name}
             onChange={handleChange}
             required
             placeholder="Enter patient name"
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
           />
         </div>
 
@@ -54,10 +36,10 @@ const ScheduleAppointment = () => {
           </label>
           <select
             name="doctor"
-            value={form.doctor}
+            value={formdata.doctor}
             onChange={handleChange}
             required
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
           >
             <option value="">Select Doctor</option>
             <option value="Dr. Sharma">Dr. Sharma</option>
@@ -74,10 +56,10 @@ const ScheduleAppointment = () => {
           <input
             type="date"
             name="date"
-            value={form.date}
+            value={formdata.date}
             onChange={handleChange}
             required
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
           />
         </div>
 
@@ -89,10 +71,10 @@ const ScheduleAppointment = () => {
           <input
             type="time"
             name="time"
-            value={form.time}
+            value={formdata.time}
             onChange={handleChange}
             required
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
           />
         </div>
 
@@ -103,22 +85,22 @@ const ScheduleAppointment = () => {
           </label>
           <textarea
             name="notes"
-            value={form.notes}
+            value={formdata.notes}
             onChange={handleChange}
             placeholder="Add notes (optional)"
             rows={3}
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+            className="p-3 border rounded-lg focus:ring-2 focus:ring-primary1 focus:outline-none"
           ></textarea>
         </div>
 
         {/* Submit Button */}
-        <div className="md:col-span-2 flex justify-center">
+        {/* <div className="md:col-span-2 flex justify-center">
           <button
-            className="px-6 py-3 bg-primary text-white font-semibold cursor-pointer rounded-xl transition-all"
+            className="px-6 py-3 bg-primary1 text-white font-semibold cursor-pointer rounded-xl transition-all"
           >
             Schedule Appointment
           </button>
-        </div>
+        </div> */}
       </form>
     </div>
   );

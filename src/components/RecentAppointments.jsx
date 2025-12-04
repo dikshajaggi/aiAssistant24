@@ -17,7 +17,7 @@ const RecentAppointments = () => {
   return (
     <div>
       <div className="bg-white shadow-lg rounded-2xl overflow-hidden">
-        <h3 className="bg-primary text-white px-6 py-3 text-lg font-semibold">Today’s Appointments</h3>
+        <h3 className="bg-primary1 text-white px-6 py-3 text-lg font-semibold">Today’s Appointments</h3>
 
         {/* Desktop Table */}
         <table className="hidden md:table w-full text-left">

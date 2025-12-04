@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Home, Users, Calendar, BarChart3, ChevronLeft, ChevronRight } from "lucide-react";
+import { Home, Users, Calendar, BarChart3, ChevronLeft, PanelRightOpen, ChevronRight } from "lucide-react";
 import logo from "/assets/smilelytics.png";
 
 const mainNavItems = [
@@ -15,32 +15,16 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
 
   return (
     <div
-      className={`relative h-full flex flex-col rounded-2xl bg-neutral shadow-sm
+      className={`relative h-full flex flex-col shadow-sm
         transition-all duration-300
         ${collapsed ? "w-20 items-center" : "w-64"}
       `}
     >
-      {/* Expand / Collapse Button */}
-      <button
-        onClick={() => setCollapsed(!collapsed)}
-        className="
-          absolute top-4 
-          bg-white border shadow rounded-md p-1
-          transition-all duration-300
-          hover:bg-gray-100
-        "
-        style={{
-          right: collapsed ? "50%" : "1rem",
-          transform: collapsed ? "translateX(50%)" : "none"
-        }}
-      >
-        {collapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-      </button>
 
       {/* Logo */}
       <div
         className={`flex items-center px-4 py-6 transition-all
-          ${collapsed ? "justify-center" : "justify-start"}
+          ${collapsed ? "justify-center flex-col" : "justify-between flex-row"}
         `}
       >
         <Link to="/" className="flex items-center gap-2">
@@ -52,11 +36,18 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             `}
           />
           {!collapsed && (
-            <span className="text-xl font-bold text-secondary">
+            <span className="text-xl font-bold text-secondary1">
               SmileLytics.AI
             </span>
           )}
         </Link>
+         {/* Expand / Collapse Button */}
+      <button
+        onClick={() => setCollapsed(!collapsed)}
+        className={`transition-all duration-300 cursor-pointer ${collapsed ? "mt-4" : "mt-0" }`}
+      >
+        {collapsed ? <ChevronRight /> : <ChevronLeft />}
+      </button>
       </div>
 
       {/* Nav Menu */}
@@ -75,8 +66,8 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                     ${collapsed ? "justify-center" : "gap-3"}
                     ${
                       isActive
-                        ? "bg-secondary text-white"
-                        : "text-gray-700 hover:bg-secondary/20"
+                        ? "bg-secondary1 !text-white"
+                        : "text-gray-700 hover:bg-secondary1/20"
                     }
                   `}
                 >

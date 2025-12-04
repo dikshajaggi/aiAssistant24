@@ -41,7 +41,7 @@ const FreeTrialModal = ({ isFreeOpen, toggleFree }) => {
         </button>
 
         {/* Title */}
-        <h2 className="text-xl font-bold text-center text-secondary mb-1">
+        <h2 className="text-xl font-bold text-center text-secondary1 mb-1">
           Start Your Free Trial
         </h2>
         <p className="text-center text-gray-500 text-sm mb-6">
@@ -59,11 +59,11 @@ const FreeTrialModal = ({ isFreeOpen, toggleFree }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1"
             />
             <button
               onClick={handleSendOtp}
-              className="w-full bg-secondary hover:bg-secondary/80 text-white font-semibold py-2 px-4 rounded-lg transition cursor-pointer"
+              className="w-full bg-secondary1 hover:bg-secondary1/80 text-white font-semibold py-2 px-4 rounded-lg transition cursor-pointer"
             >
               Send OTP
             </button>
@@ -81,13 +81,13 @@ const FreeTrialModal = ({ isFreeOpen, toggleFree }) => {
               value={otp}
               onChange={(e) => setOtp(e.target.value)}
               placeholder="Enter 6-digit OTP"
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary tracking-widest text-center"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary1 tracking-widest text-center"
               maxLength="6"
             />
 
             <button
               onClick={handleVerifyOtp}
-              className="w-full bg-secondary hover:bg-secondary/80 text-white font-semibold py-2 px-4 rounded-lg transition cursor-pointer"
+              className="w-full bg-secondary1 hover:bg-secondary1/80 text-white font-semibold py-2 px-4 rounded-lg transition cursor-pointer"
             >
               Verify & Start Free Trial
             </button>
@@ -96,7 +96,7 @@ const FreeTrialModal = ({ isFreeOpen, toggleFree }) => {
               Didn’t receive OTP?{" "}
               <button
                 onClick={handleSendOtp}
-                className="text-secondary hover:underline font-medium cursor-pointer"
+                className="text-secondary1 hover:underline font-medium cursor-pointer"
               >
                 Resend
               </button>
