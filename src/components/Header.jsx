@@ -5,7 +5,7 @@ import logo from "/assets/smilelytics.png";
 import { MainContext } from "../context/MainContext";
 import { supabase } from "../utils/supabaseClient";
 
-const Header = () => {
+const Header = ({ isHome = false }) => {
   const { signedUp, setSignedUp, isLoggedIn } = useContext(MainContext);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -28,13 +28,20 @@ const Header = () => {
   }, [isLoggedIn])
 
   return (
-    <header className="bg-neutral fixed w-full top-0 z-50 uppercase font-semibold">
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-center py-3">
+   <header
+      className={
+      ` flex items-center justify-between w-11/12 
+        ${isHome
+          ? "bg-transparent rounded-xl mt-4 mx-auto z-50 uppercase font-semibold py-2"
+          : "bg-white fixed w-full top-0 z-50 uppercase font-semibold py-3"}
+      `}
+    >
+      <div className="w-full mx-auto px-6 flex justify-between items-center">
         
         {/* Logo */}
         <Link to="/">
           <div className="flex items-center gap-2 font-bold text-secondary1 text-lg md:text-xl cursor-pointer capitalize font-poppins">
-            <img src={logo} alt="SmileLytics.AI-logo" loading="lazy" className="h-12 md:h-14 object-contain" />
+            <img src={logo} alt="SmileLytics.AI-logo" loading="lazy" className="h-12 md:h-12 object-contain" />
             <span>SmileLytics.AI</span>
           </div>
         </Link>
@@ -69,7 +76,7 @@ const Header = () => {
 
       {/* Mobile / Tablet Menu with Slide Animation */}
       <div
-        className={`lg:hidden bg-neutral overflow-hidden transition-all duration-300 ease-in-out ${
+        className={`lg:hidden bg-white overflow-hidden transition-all duration-300 ease-in-out ${
           menuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >

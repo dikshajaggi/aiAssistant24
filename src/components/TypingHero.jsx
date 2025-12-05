@@ -73,13 +73,13 @@ export default function TypingHero({
 
       <h1 className="text-[clamp(1.6rem,4vw,2.4rem)] font-bold leading-tight">
         Let AI manage all your{" "}
-        <span className="inline-block ml-1 font-bold bg-gradient-to-r from-[#0ea5e9] to-[#46D3FF] bg-clip-text text-transparent">
+        <span className="inline-block ml-1 font-bold text-[#0ea5e9]">
           {displayText}
           <span style={blinkStyle} />
         </span>
       </h1>
       <p className="mt-3 text-placeholder text-base font-medium md:text-lg">
-        Save time, reduce no-shows, and boost revenue — while you focus on care.
+       Automate Your Dental Practice — Appointments, Billing & EMR in One Place
       </p>
     </section>
   );

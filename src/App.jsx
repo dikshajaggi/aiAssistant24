@@ -6,7 +6,7 @@ import { LayoutProvider } from "./context/LayoutContext"
 
 function App() {
   return (
-    <div className='bg-neutral overflow-hidden'>
+    <div className='bg-white overflow-hidden'>
       <MainContextProvider>
         <LayoutProvider>
           <RouterProvider router={router} />
