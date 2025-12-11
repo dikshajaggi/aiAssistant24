@@ -21,9 +21,9 @@ const Hero2 = () => {
 
 const Features = () => {
   return (
-    <div className='flex flex-col gap-4 justify-evenly items-start w-[70%] mt-16 mb-30 h-[50%]'>
+    <div className='flex flex-col gap-4 justify-evenly items-start w-[70%] mt-16 mb-26 h-[50%]'>
       <div className='flex justify-between items-stretch '>
-       <div className='flex flex-col items-start gap-2 bg-[#faf7ff] bg-[linear-gradient(0deg,_rgba(250,247,255,1)_40%,_rgba(243,224,255,0.3)_60%)] rounded-2xl p-6 w-[46%]'>
+       <div className='drop-shadow-[0_10px_10px_rgba(0,0,0,0.2)] flex flex-col items-start gap-2 bg-[#faf7ff] bg-[linear-gradient(0deg,_rgba(250,247,255,1)_40%,_rgba(243,224,255,0.3)_60%)] rounded-2xl p-6 w-[46%]'>
           <span className='text-2xl mb-4'>{features[0].caption}</span>
           {/* <div className='flex items-center gap-2'> */}
             <img src={features[0].img} alt="appointment" className='h-50 rounded-2xl mt-6 mb-10'/>
@@ -31,14 +31,14 @@ const Features = () => {
           {/* </div> */}
         </div>
         <div className='flex flex-col gap-6 w-[50%]'>
-          <div className='flex flex-col items-start gap-2 bg-[#f5ffff] bg-[linear-gradient(0deg,_rgba(245,255,255,1)_0%,_rgba(199,216,255,0.3)_100%)] rounded-2xl p-6 '>
+          <div className='drop-shadow-[0_10px_10px_rgba(0,0,0,0.2)] flex flex-col items-start gap-2 bg-[#f5ffff] bg-[linear-gradient(0deg,_rgba(245,255,255,1)_0%,_rgba(199,216,255,0.3)_100%)] rounded-2xl p-6 '>
             <span className='text-2xl mb-3'>{features[1].caption}</span>
             <div className='flex items-center gap-8 mb-4'>
               <img src={features[1].img} alt="revenue" className='h-36 rounded-2xl'/>
               <span className='text-base'>{features[1].desc}</span>
             </div>
           </div>
-          <div className='flex flex-col items-start gap-2 bg-[#f7fff7] bg-[linear-gradient(0deg,_rgba(247,255,247,1)_0%,_rgba(201,255,189,0.4)_100%)] rounded-2xl p-6'>
+          <div className='drop-shadow-[0_10px_10px_rgba(0,0,0,0.2)] flex flex-col items-start gap-2 bg-[#f7fff7] bg-[linear-gradient(0deg,_rgba(247,255,247,1)_0%,_rgba(201,255,189,0.4)_100%)] rounded-2xl p-6'>
             <span className='text-2xl mb-3'>{features[2].caption}</span>
             <div className='flex items-center gap-8 mb-4'>
               <img src={features[2].img} alt="appointment" className='h-36 rounded-2xl'/>
@@ -47,7 +47,7 @@ const Features = () => {
           </div>
         </div>
       </div>
-      <span className='text-3xl font-semibold'>...and so much more!</span>
+      <span className='text-3xl font-semibold mt-8'>...and so much more!</span>
     </div>
   )
 }
