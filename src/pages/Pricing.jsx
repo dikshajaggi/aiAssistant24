@@ -27,14 +27,14 @@ const Pricing = () => {
   return (
     <PageWrapper>
       <div className="flex flex-col items-center px-4 py-10 min-w-screen">
-      <h1 className="font-bold text-xl md:text-3xl text-center">
+      <h1 className="font-bold text-3xl md:text-5xl text-textdark text-center">
         Pick a Plan & Let AI Do the Rest
       </h1>
-
-      <p className="text-gray-700 text-sm md:text-base  text-center mt-6 max-w-2xl">
+{/* 
+      <p className="text-gray-700 text-base md:text-lg text-center mt-6 max-w-3xl">
         Choose the plan that fits your clinic best, and watch our AI handle patients, appointments, 
-        payments, and marketing—so you can focus on delivering exceptional dental care.
-      </p>
+        payments, and marketing—so you can focus on delivering exceptional dental care
+      </p> */}
 
       {/* Buttons */}
       <div className="flex justify-center items-center gap-4 mt-14 flex-wrap">
@@ -61,8 +61,8 @@ const Pricing = () => {
 
         {/* 14-Day Trial Banner */}
         <div className="relative overflow-hidden rounded-2xl p-[1px] mb-10 mt-10 md:mt-15">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#46D3FF] to-[#0ea5e9] opacity-90" />
-          <div className="relative bg-white/70 backdrop-blur-md rounded-2xl p-5 md:p-6">
+          {/* <div className="absolute inset-0 bg-gradient-to-r from-[#46D3FF] to-[#0ea5e9] opacity-90" /> */}
+          <div className="relative bg-white/70 backdrop-blur-md rounded-2xl border border-textdark p-5 md:p-6">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <div className="flex items-start gap-3">
                 <Sparkles className="h-6 w-6 text-primary1 mt-0.5" />
@@ -104,7 +104,7 @@ const Pricing = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2, ease: "easeInOut" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-11/12"
         >
           {/* Starter */}
           <div className="group relative rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm hover:shadow-lg transition-all">
@@ -221,7 +221,7 @@ const Pricing = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.2, ease: "easeInOut" }} 
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 w-11/12">
           {/* Starter */}
           <div className="group relative rounded-2xl border border-gray-200 bg-white p-6 md:p-7 shadow-sm hover:shadow-lg transition-all">
             <div className="mb-4 flex items-center justify-between">

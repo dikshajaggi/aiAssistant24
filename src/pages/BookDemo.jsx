@@ -14,24 +14,23 @@ const BookDemo = () => {
   }
   return (
     <PageWrapper>
-    <div className="flex flex-col items-center min-h-screen bg-gray-50 px-6 py-12">
+    <div className="flex flex-col items-center min-h-screen px-6 py-12">
       {/* Hero Section */}
       <div className="max-w-3xl text-center mb-12">
-        <h1 className="text-3xl md:text-5xl font-extrabold text-gray-800">
-          Book a <span className="text-secondary1">Live Demo</span>
+        <h1 className="text-3xl md:text-5xl font-extrabold text-textdark">
+          Book a <span className="">Live Demo</span>
         </h1>
-        <p className="mt-4 text-gray-600 text-base md:text-lg">
+        {/* <p className="mt-4 text-gray-600 text-base md:text-lg">
           Experience how our AI Dental Assistant can simplify patient care,
-          boost clinic efficiency, and help you focus on what matters most —{" "}
-          <span className="font-semibold text-secondary1">brighter smiles!</span>
-        </p>
+          boost clinic efficiency
+        </p> */}
       </div>
 
       {/* Form Section */}
       <div className="w-full max-w-4xl bg-white shadow-xl rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
         {/* Left Side (Intro) */}
-        <div className="bg-primary1 text-textdark font-semibold flex flex-col justify-center items-center p-8">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 !text-white">
+        <div className="bg-[#ffe0e9] bg-[radial-gradient(circle,_rgba(255,237,243,1)_10%,_rgba(220,238,252,1)_100%)]  text-textdark font-semibold flex flex-col justify-center items-center p-8">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Let’s Get Started
           </h2>
           <p className="text-sm md:text-base text-center opacity-90">
@@ -93,7 +92,7 @@ const BookDemo = () => {
           ></textarea>
 
           <button
-            className="mt-4 bg-primary1 text-white py-3 rounded-lg font-medium hover:bg-primary1/90 shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
+            className="mt-4 bg-secondary1 text-textlight py-3 rounded-lg font-medium hover:bg-primary1/90 shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300"
             onClick={handleBookDemo}
           >
             Schedule Demo

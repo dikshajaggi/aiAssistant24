@@ -1,27 +1,28 @@
-import third from "/assets/third.png"
-import fourth from "/assets/fourth.png"
+
+import appointment from "/assets/appointment.png"
+import revenue from "/assets/revenue.jpg"
+import marketingai from "/assets/marketingai.png"
 
 
 export const features = [
 
-    {caption: "All-in-One Patient & Visit Management",
-    desc: "From adding a new patient to tracking every visit and treatment, keep your clinic organized and stress-free. Appointments, records, and schedules—handled in one smart dashboard.",
-    image: fourth},
+   {
+    caption: "Complete Patient & Appointment Control",
+    desc: "Manage patients, visits, treatments, and schedules from one simple system designed for dental clinics. Reduce missed appointments with automatic WhatsApp and email reminders—sent at the right time, every time.",
+    img: appointment
+  },
 
-    {caption: "Smart Revenue & Growth Tracking",
-    desc: "Know your clinic’s performance at a glance. View total revenue, pending payments, monthly trends, and top treatments—all beautifully visualized in charts and cards.",
-    image: third},
+  {
+    caption: "Clear Revenue & Payment Visibility",
+    desc: "Know exactly how your clinic is performing—daily collections, pending payments, and monthly trends.",
+    img: revenue
+  },
 
-    {caption: "Effortless Communication & Reminders",
-    desc: "Never let a patient forget their appointment. Send friendly WhatsApp messages and email reminders automatically—no extra effort from you.",
-    image: fourth},
-    
-    {caption: "AI-Powered Marketing for Your Clinic",
-    desc: "Stand out on social media and in your patients’ inboxes. Get ready-to-use AI-generated posts and promotional emails that attract and retain patients.",
-    image: third},
+  {
+    caption: "AI Marketing for Your Clinic",
+    desc: "Get ready-made social media posts and email campaigns designed to attract new patients and keep existing ones engaged.",
+    img: marketingai
+  }
 
-    {caption: "Your Digital Dental Assistant",
-    desc: "One platform to handle patients, visits, payments, communication, and growth—so you can focus on creating healthy, happy smiles.",
-    image: fourth}
 
 ]

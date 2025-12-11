@@ -7,14 +7,14 @@ const Walkthrough = () => {
     <div className="min-h-screen min-w-screen bg-neutral text-textdark px-10">
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center px-6 py-16">
-        <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-secondary1">
+        <h1 className="text-3xl md:text-5xl font-extrabold mb-4">
           Meet Your AI Dental Assistant
         </h1>
 
-         <p className="mt-4 text-center text-gray-600 text-base md:text-lg max-w-2xl">
+         {/* <p className="mt-4 text-center text-gray-600 text-base md:text-lg max-w-2xl">
           See how our AI-powered assistant helps you manage patients, track revenue, 
-          and send reminders — so you can focus on what truly matters: <span className="text-secondary1 font-semibold">brighter smiles</span>
-        </p>
+          and send reminders
+        </p> */}
 
         {/* Video Container */}
         <div className="mt-10 w-full max-w-4xl rounded-2xl overflow-hidden shadow-lg">
@@ -39,21 +39,21 @@ const Walkthrough = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="bg-primary1 text-textdark py-12 px-6">
+      <section className="bg-textdark/5 rounded-2xl text-textdark py-12 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 text-center">
-          <div className="bg-neutral p-6 rounded-xl">
+          <div className="bg-neutral p-6 rounded-xl drop-shadow-[0_10px_10px_rgba(0,0,0,0.2)]">
             <h3 className="font-bold text-lg">Save Time</h3>
             <p className="text-base mt-2">Spend more time with patients, less on admin work.</p>
           </div>
-          <div className="bg-neutral p-6 rounded-xl">
+          <div className="bg-neutral p-6 rounded-xl drop-shadow-[0_10px_10px_rgba(0,0,0,0.2)]">
             <h3 className="font-bold text-lg">Grow Revenue</h3>
             <p className="text-base mt-2">Stay on top of payments and maximize earnings.</p>
           </div>
-          <div className="bg-neutral p-6 rounded-xl">
+          <div className="bg-neutral p-6 rounded-xl drop-shadow-[0_10px_10px_rgba(0,0,0,0.2)]">
             <h3 className="font-bold text-lg">Engage Patients</h3>
             <p className="text-base mt-2">Smart reminders keep patients loyal & consistent.</p>
           </div>
-          <div className="bg-neutral p-6 rounded-xl">
+          <div className="bg-neutral p-6 rounded-xl drop-shadow-[0_10px_10px_rgba(0,0,0,0.2)]">
             <h3 className="font-bold text-lg">Stress-Free Clinic</h3>
             <p className="text-base mt-2">AI handles the busywork so you can focus on smiles.</p>
           </div>
