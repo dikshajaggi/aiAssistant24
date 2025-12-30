@@ -1,5 +1,6 @@
 import React from "react";
 import { formatDateWithDay } from "../utils/formatDateWithDay";
+import { DateTimePicker } from "@mui/x-date-pickers";
 
 const AddPatientForm = ({message, handleSubmit, formdata, setForm}) => {
 
@@ -82,23 +83,24 @@ const AddPatientForm = ({message, handleSubmit, formdata, setForm}) => {
                   className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
               />
             </div>
+        </div>
 
-            <div>
-                <label className="block text-gray-700 font-medium">
-                    Appointment Date
-                </label>
-                <input
-                    type="date"
-                    name="appointment_date"
-                    value={formdata.appointment_date}
-                    onChange={handleChange}
-                    required
-                    className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
-                />
-                <p className="mt-1 text-gray-600">
-                    {formdata.appointment_date && `Selected: ${formatDateWithDay(formdata.appointment_date)}`}
-                </p>
-            </div>
+        <div>
+          <div className="flex justify-between items-center">
+            <label className="block text-gray-700 font-medium">
+                Appointment Date
+            </label>
+            <DateTimePicker
+                label="Controlled picker"
+                value={formdata.appointment_date}
+                onChange={(newValue) => {
+                    setForm(prev => ({ ...prev, appointment_date: newValue }))
+                }}
+            />
+          </div>
+          <p className="mt-4 text-gray-600">
+              {formdata.appointment_date && `Selected: ${formatDateWithDay(formdata.appointment_date)}`}
+          </p>
         </div>
 
       {/* Appointment Date & Treatment */}

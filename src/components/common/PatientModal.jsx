@@ -2,6 +2,7 @@ import { X } from "lucide-react";
 import React, { useState } from "react";
 import AddPatientForm from "../AddPatientForm";
 import { addPatients } from "../../apis"
+import moment from "moment";
 
 const PatientModal = ({ isOpen, onClose, saveLabel, headingLabel, caption}) => {
   const [loading, setLoading] = useState(false);
@@ -13,7 +14,7 @@ const PatientModal = ({ isOpen, onClose, saveLabel, headingLabel, caption}) => {
     // gender: "",
     phone: "",
     email: "",
-    appointment_date: "",
+    appointment_date: moment(),
     treatment: "",
   });
   
@@ -34,7 +35,7 @@ const PatientModal = ({ isOpen, onClose, saveLabel, headingLabel, caption}) => {
           phone: "",
           // age: "",
           // gender: "",
-          appointment_date: "",
+          appointment_date: moment(),
           treatment: "",
         });
       } else {

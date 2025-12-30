@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import AddPatientForm from "../AddPatientForm";
 import { sendReminder } from "../../apis"
 import { formatDateWithDay } from "@/utils/formatDateWithDay";
+import { DateTimePicker } from "@mui/x-date-pickers";
+import moment from "moment";
 
 const SendReminderForm = ({message, handleSubmit, formdata, setForm}) => {
 
@@ -55,18 +57,27 @@ const SendReminderForm = ({message, handleSubmit, formdata, setForm}) => {
             />
             </div>
              <div className="mt-4">
-                <label className="block text-gray-700 font-medium">
-                    Appointment Date
-                </label>
-                <input
+                <div className="flex justify-between items-center">
+                    <label className="block text-gray-700 font-medium">
+                        Appointment Date
+                    </label>
+                    <DateTimePicker
+                        label="Controlled picker"
+                        value={formdata.appointment_date}
+                        onChange={(newValue) => {
+                            setForm(prev => ({ ...prev, appointment_date: newValue }))
+                        }}
+                    />
+                </div>
+                {/* <input
                     type="date"
                     name="appointment_date"
                     value={formdata.appointment_date}
                     onChange={handleChange}
                     required
                     className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
-                />
-                <p className="mt-1 text-gray-600">
+                /> */}
+                <p className="mt-4 text-gray-600">
                     {formdata.appointment_date && `Selected: ${formatDateWithDay(formdata.appointment_date)}`}
                 </p>
             </div>
@@ -89,7 +100,7 @@ const ReminderModal = ({ selectedPatient, isOpen, onClose, saveLabel, headingLab
   const [form, setForm] = useState({
     patient_name: selectedPatient ? selectedPatient.patient_name : null,
     treatment: "",
-    appointment_date: "",
+    appointment_date: moment(),
     doctor_name: ""
   });
   

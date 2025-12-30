@@ -212,7 +212,7 @@ const PatientsTableView = ({ patients, loading, module, onSendReminder}) => {
                     <div
                       onMouseDown={header.getResizeHandler()}
                       onTouchStart={header.getResizeHandler()}
-                      className={`absolute right-0 top-0 h-full w-[2px] cursor-col-resize transition-colors ${
+                      className={`absolute right-0 top-0 h-full w-0.5 cursor-col-resize transition-colors ${
                         header.column.getIsResizing()
                           ? "bg-blue-500 opacity-80"
                           : "bg-gray-200"

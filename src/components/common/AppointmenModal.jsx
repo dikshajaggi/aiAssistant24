@@ -1,14 +1,14 @@
 import { X } from "lucide-react";
 import React, { useState } from "react";
 import ScheduleAppointment from "../ScheduleAppointment";
+import moment from "moment";
 
 const AppointmentModal = ({ isOpen, onClose, saveLabel, headingLabel, caption}) => {
 
     const [form, setForm] = useState({
         name: "",
         concern: "",
-        date: "",
-        time: "",
+        date: moment(),
         notes: "",
     });
 
@@ -46,7 +46,7 @@ const AppointmentModal = ({ isOpen, onClose, saveLabel, headingLabel, caption}) 
           </p>
         </div>
 
-        <ScheduleAppointment handleChange={handleChange} formdata={form} />
+        <ScheduleAppointment handleChange={handleChange} formdata={form} setForm={setForm} />
 
         {/* footer */}
         <div className="mt-8 flex justify-end gap-3">

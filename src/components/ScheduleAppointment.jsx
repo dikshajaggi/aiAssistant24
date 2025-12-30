@@ -1,7 +1,9 @@
 import React from "react";
 import { Calendar, Clock, User, FileText, BriefcaseMedical } from "lucide-react";
+import { DateTimePicker } from "@mui/x-date-pickers";
+import { formatDateWithDay } from "@/utils/formatDateWithDay";
 
-const ScheduleAppointment = ({formdata, handleChange}) => {
+const ScheduleAppointment = ({formdata, handleChange, setForm}) => {
 
   //bg-white shadow-md rounded-2xl p-6 w-full max-w-7xl mx-auto mt-10
   return (
@@ -46,33 +48,22 @@ const ScheduleAppointment = ({formdata, handleChange}) => {
         </div>
 
         {/* Date */}
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-600 mb-2 flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-gray-500" /> Date
-          </label>
-          <input
-            type="date"
-            name="date"
-            value={formdata.date}
-            onChange={handleChange}
-            required
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-secondary1 focus:outline-none"
-          />
-        </div>
-
-        {/* Time */}
-        <div className="flex flex-col">
-          <label className="text-sm font-medium text-gray-600 mb-2 flex items-center gap-2">
-            <Clock className="w-4 h-4 text-gray-500" /> Time
-          </label>
-          <input
-            type="time"
-            name="time"
-            value={formdata.time}
-            onChange={handleChange}
-            required
-            className="p-3 border rounded-lg focus:ring-2 focus:ring-secondary1 focus:outline-none"
-          />
+        <div className="">
+         <div className="flex justify-between items-center">
+            <label className="text-sm font-medium text-gray-600 mb-2 flex items-center gap-2">
+              <Calendar className="w-4 h-4 text-gray-500" /> Appointment Date
+            </label>
+            <DateTimePicker
+                label="Controlled picker"
+                value={formdata.appointment_date}
+                onChange={(newValue) => {
+                    setForm(prev => ({ ...prev, appointment_date: newValue }))
+                }}
+              />
+         </div>
+         <p className="mt-4 text-gray-600">
+              {formdata.appointment_date && `Selected: ${formatDateWithDay(formdata.appointment_date)}`}
+          </p>
         </div>
 
         {/* Notes */}
@@ -89,15 +80,6 @@ const ScheduleAppointment = ({formdata, handleChange}) => {
             className="p-3 border rounded-lg focus:ring-2 focus:ring-secondary1 focus:outline-none"
           ></textarea>
         </div>
-
-        {/* Submit Button */}
-        {/* <div className="md:col-span-2 flex justify-center">
-          <button
-            className="px-6 py-3 bg-secondary1 text-white font-semibold cursor-pointer rounded-xl transition-all"
-          >
-            Schedule Appointment
-          </button>
-        </div> */}
       </form>
     </div>
   );
