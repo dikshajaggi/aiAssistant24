@@ -65,3 +65,8 @@ export const scheduleFollowUp = async (data) => {
   const res = await api.post("/schedule_followup", data)
   return res
 }
+
+export const sendReminder = async(data) => {
+  const res = await api.post("/", data)
+  return res
+}

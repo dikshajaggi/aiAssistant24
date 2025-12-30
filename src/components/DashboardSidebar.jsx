@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronLeft, Home, Users, Calendar, BarChart3 } from "lucide-react";
+import { ChevronRight, ChevronLeft, Home, Users, Calendar, BarChart3, ClipboardClock } from "lucide-react";
 import { LayoutContext } from "@/context/LayoutContext";
 import logo from "/assets/smilelytics.png";
 
@@ -37,6 +37,7 @@ const dashboardSidebar = [
   { path: "/dashboard", main: "Dashboard", icon:Home},
   { path: "/dashboard/patients", main: "Patients", icon:Users},
   { path: "/dashboard/appointments", main: "Appointments", icon:Calendar},
+  { path: "/dashboard/reminders", main: "Reminders & Follow Ups", icon: ClipboardClock},
   { path: "/dashboard/analytics", main: "Analytics", icon:BarChart3},
 ];
 

@@ -32,7 +32,7 @@ const data = [
   //   color: "bg-white text-purple-600 border border-purple-300",
   // },
   {
-    title: "Pending Patient Payments",
+    title: "Pending Payments",
     value: 10,
     icon: CreditCard,
     // bgColor: "bg-gradient-to-r from-red-300 to-red-400",

@@ -29,8 +29,8 @@ const SearchData = ({globalFilter, setGlobalFilter}) => {
   )
 }
 
-const PatientsTableView = ({ patients, loading}) => {
-  console.log(patients, "patients")
+const PatientsTableView = ({ patients, loading, module, onSendReminder}) => {
+  console.log(patients, "patients", module, onSendReminder)
   const [globalFilter, setGlobalFilter] = useState("");
 
   const data = useMemo(() => patients, [patients]);
@@ -104,16 +104,16 @@ const PatientsTableView = ({ patients, loading}) => {
       //   header: "Age",
       //   size: 100,
       // },
-      {
+      module==="patient_module" ? {
         accessorKey: "treatment",
         header: "Treatment",
         size: 100,
-      },
-       {
+      } : null,
+      module==="patient_module" ? {
         accessorKey: "appointment_date",
         header: "Appointment Date",
         size: 100,
-      },
+      } : null,
       // {
       //   accessorKey: "gender",
       //   header: "Gender",
@@ -124,7 +124,20 @@ const PatientsTableView = ({ patients, loading}) => {
         header: "Phone",
         size: 100,
       },
-      {
+      module === "reminder_module" ? {
+        id: "reminder",
+        header: "Reminder",
+        cell: ({ row }) => (
+          <button
+            onClick={() => onSendReminder(row.original)}
+            className="bg-primary1 text-white px-2 py-1 rounded-lg text-base hover:opacity-90 cursor-pointer"
+          >
+            Send Appointment Reminder
+          </button>
+        ),
+        size: 150,
+      } : null,
+      module==="patient_module" ? {
         id: "actions",
         header: "Actions",
         cell: ({ row }) => {
@@ -159,9 +172,8 @@ const PatientsTableView = ({ patients, loading}) => {
           );
         },
         size: 80,
-      },
-    ],
-    []
+      } : null,
+    ].filter(Boolean), [module]
   );
 
   const table = useReactTable({

@@ -20,7 +20,7 @@ const Patients = () => {
           </button>
         </div>
         {openForm && <PatientModal isOpen={openForm} onClose={() => setOpenForm(false)} saveLabel="Add Patient" headingLabel="Add Patient" caption = "Add Patient" />}
-        <PatientsList />
+        <PatientsList module={"patient_module"}/>
       </div>
     </PageWrapper>
   );

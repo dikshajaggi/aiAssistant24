@@ -20,6 +20,7 @@ import Analytics from "../pages/Analytics"
 import DashboardLayout from "../layouts/DashboardLayout"
 import ConfirmEmail from "../pages/ConfirmEmail"
 import ProtectedRoute from "./ProtectedRoute"
+import Reminders from "@/pages/Reminders"
 
 
 const router = createBrowserRouter([
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
             { index: true, element: <Dashboard /> },
             { path: "patients", element: <Patients /> },
             { path: "appointments", element: <Appointments /> },
+            { path: "reminders", element: <Reminders /> },
             { path: "analytics", element: <Analytics /> },
         ],
     },

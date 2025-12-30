@@ -48,7 +48,7 @@ const Login = () => {
         return;
       }
 
-      localStorage.setItem("token", dataUser.session?.access_token);
+      localStorage.setItem("smileLytics.aiLoginToken", dataUser.session?.access_token);
 
       // if (email === "jaggisarthak4@gmail.com") navigate("/dashboard");
       // else navigate("/pricing");
