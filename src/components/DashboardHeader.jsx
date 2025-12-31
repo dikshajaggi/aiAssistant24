@@ -8,7 +8,7 @@
 //   const [open, setOpen] = useState(false);
 
 //   const user = {
-//     name: "Sarthak Jaggi",
+//     name: "Admin user ",
 //     email: "jaggisarthak4@gmail.com",
 //     avatarUrl: "", // add image URL if available
 //   };
@@ -95,7 +95,7 @@ import ExpandableSearch from './common/ExpandableSearch'
 const DashboardHeader = () => {
   const [dateTime, setDateTime] = useState(new Date());
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const username = "Dr. Sarthak Jaggi"; // Replace with dynamic username if needed
+  const username = "Dr. Admin user "; // Replace with dynamic username if needed
   const [greeting, setGreeting] = useState("");
 
   // Update date & time every second
@@ -172,10 +172,10 @@ const DashboardHeader = () => {
             <DropdownMenuTrigger className="flex items-center gap-2 cursor-pointer">
               <Avatar>
                 <AvatarImage src="/user.jpg" />
-                <AvatarFallback>SJ</AvatarFallback>
+                <AvatarFallback>AU</AvatarFallback>
               </Avatar>
               <div className="hidden sm:flex flex-col text-left">
-                <span className="text-sm font-medium">Sarthak Jaggi</span>
+                <span className="text-sm font-medium">Admin user </span>
                 <span className="text-xs text-gray-400">Admin</span>
               </div>
             </DropdownMenuTrigger>
