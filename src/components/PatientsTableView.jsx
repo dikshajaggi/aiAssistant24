@@ -179,7 +179,7 @@ const PatientsTableView = ({ patients, loading, module, onSendReminder, onSendBi
         cell: ({ row }) => (
           <button
             onClick={() => onSendBill(row.original)}
-            className="cursor-pointer bg-primary1 text-white px-2 py-1 rounded-lg text-xs hover:opacity-90"
+            className="cursor-pointer bg-secondary1 text-white px-2 py-1 rounded-lg text-xs hover:opacity-90"
           >
             Generate Bill
           </button>

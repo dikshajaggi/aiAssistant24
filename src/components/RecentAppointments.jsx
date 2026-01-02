@@ -76,7 +76,7 @@
 import React from 'react'
 import AppointmentTableView from './AppointmentTableView'
 
-const RecentAppointments = () => {
+const RecentAppointments = ({onGeneratePrescription}) => {
     const appointments = [
       { id: 1, name: "Aarav Mehta", time: "10:00 AM", treatment: "Dental Cleaning", status: "scheduled" },
       { id: 2, name: "Priya Sharma", time: "11:30 AM", treatment: "Root Canal", status: "completed" },
@@ -85,7 +85,7 @@ const RecentAppointments = () => {
 
   return (
     <div>
-      <AppointmentTableView appointments={appointments} />
+      <AppointmentTableView appointments={appointments} onGeneratePrescription = {onGeneratePrescription} />
     </div>
   )
 }

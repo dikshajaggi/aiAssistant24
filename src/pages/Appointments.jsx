@@ -4,17 +4,25 @@ import { MessageCircle, Mail, Clock, Plus } from "lucide-react";
 import RecentAppointments from "../components/RecentAppointments";
 import ScheduleAppointment from "../components/ScheduleAppointment";
 import AppointmentModal from "@/components/common/AppointmenModal";
+import PrescriptionModal from "@/components/PrescriptionModal";
 
 
 const Appointments = () => {
   
   const [openForm, setOpenForm] = useState(false);
+  const [isPrescriptionOpen, setIsPrescriptionOpen] = useState(false)
+  const [selectedPatient, setSelectedPatient] = useState(null)
   
   const reminders = {
     whatsapp: 8,
     email: 5,
     pending: 3,
   };
+
+  const onGeneratePrescription = (patient) => {
+    setSelectedPatient(patient)
+    setIsPrescriptionOpen(true)
+  }
 
   return (
     <PageWrapper>
@@ -53,7 +61,8 @@ const Appointments = () => {
             <p className="text-3xl font-bold text-alert mt-3">{reminders.pending}</p>
           </div>
         </div>
-        <RecentAppointments />
+        <RecentAppointments onGeneratePrescription={onGeneratePrescription} />
+        {isPrescriptionOpen && <PrescriptionModal isOpen={isPrescriptionOpen} onClose={() => setIsPrescriptionOpen(false)} patient = {selectedPatient} />}
         {openForm && <AppointmentModal isOpen = {openForm} onClose = {() => setOpenForm(false)} saveLabel = "Schedule Appointment" headingLabel = "Schedule Appointment" caption = "Schedule Appointment" />}
       </div>
     </PageWrapper>
