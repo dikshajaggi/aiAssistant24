@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Faq from "../components/Faq";
+import SmileLyticsVideo from "/assets/SmileLyticsVideo.mp4"
 
 const Walkthrough = () => {
   return (
@@ -21,7 +22,7 @@ const Walkthrough = () => {
           <div className="relative pb-[56.25%] h-0">
             <iframe
               className="absolute top-0 left-0 w-full h-full rounded-2xl"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+              src={SmileLyticsVideo}
               title="Promo Video"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -32,7 +33,7 @@ const Walkthrough = () => {
 
 
         <Link to="/bookdemo">
-          <button className="mt-8 px-6 py-3 bg-secondary1 text-white font-[500] rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
+          <button className="mt-8 px-6 py-3 bg-secondary1 text-white font-medium rounded-xl shadow-md cursor-pointer transform hover:-translate-y-1 transition-all duration-300">
             Book a Free Demo
           </button>
         </Link>

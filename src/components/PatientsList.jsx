@@ -152,7 +152,7 @@ import { getAllPatients } from "../apis";
 import React, { useContext, useEffect, useState } from 'react'
 import PatientsTableView from './PatientsTableView'
 
-const PatientsList = ({module, onSendReminder}) => {
+const PatientsList = ({module, onSendReminder, onSendBill}) => {
 
   const {patients, setPatients} = useContext(MainContext)
   const [loading, setLoading] = useState(false);
@@ -176,7 +176,7 @@ const PatientsList = ({module, onSendReminder}) => {
 
   return (
     <div className="mt-6 w-full">
-      <PatientsTableView patients={patients} loading={loading} module={module} onSendReminder={onSendReminder} />
+      <PatientsTableView patients={patients} loading={loading} module={module} onSendReminder={onSendReminder} onSendBill={onSendBill} />
     </div>
   )
 }

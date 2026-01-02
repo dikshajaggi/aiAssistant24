@@ -29,8 +29,8 @@ const SearchData = ({globalFilter, setGlobalFilter}) => {
   )
 }
 
-const PatientsTableView = ({ patients, loading, module, onSendReminder}) => {
-  console.log(patients, "patients", module, onSendReminder)
+const PatientsTableView = ({ patients, loading, module, onSendReminder, onSendBill}) => {
+  console.log(patients, "patients", module, onSendBill)
   const [globalFilter, setGlobalFilter] = useState("");
 
   const data = useMemo(() => patients, [patients]);
@@ -173,6 +173,19 @@ const PatientsTableView = ({ patients, loading, module, onSendReminder}) => {
         },
         size: 80,
       } : null,
+      module!=="patient_module" ? {
+        id: "billing",
+        header: "Billing",
+        cell: ({ row }) => (
+          <button
+            onClick={() => onSendBill(row.original)}
+            className="cursor-pointer bg-primary1 text-white px-2 py-1 rounded-lg text-xs hover:opacity-90"
+          >
+            Generate Bill
+          </button>
+        ),
+        size: 120,
+      } : null
     ].filter(Boolean), [module]
   );
 
