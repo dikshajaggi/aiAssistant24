@@ -12,6 +12,8 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { WarningModal } from "./common/WarningModal";
+import EditPatient from "./common/EditPatient";
 
 
 const SearchData = ({globalFilter, setGlobalFilter}) => {
@@ -32,8 +34,19 @@ const SearchData = ({globalFilter, setGlobalFilter}) => {
 const PatientsTableView = ({ patients, loading, module, onSendReminder, onSendBill}) => {
   console.log(patients, "patients", module, onSendBill)
   const [globalFilter, setGlobalFilter] = useState("");
+  const [showEditModal, setShowEditModal] =  useState(false)
+  const [showDelModal, setShowDelModal] =  useState(false)
+  const [selectedPatient, setSelectedPatient] = useState("")
 
   const data = useMemo(() => patients, [patients]);
+
+  const handleDelPatient = () => {
+
+  }
+
+  const saveDetails = () => {
+
+  }
 
   // 🔹 Define columns with icons where appropriate
   const columns = useMemo(
@@ -141,8 +154,6 @@ const PatientsTableView = ({ patients, loading, module, onSendReminder, onSendBi
         id: "actions",
         header: "Actions",
         cell: ({ row }) => {
-          const employee = row.original;
-
           return (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -153,7 +164,10 @@ const PatientsTableView = ({ patients, loading, module, onSendReminder, onSendBi
 
               <DropdownMenuContent align="end" className="w-32">
                 <DropdownMenuItem
-                  onClick={() => console.log("Edit", employee)}
+                  onClick={() => {
+                    setShowEditModal(true)
+                    setSelectedPatient(row.original)
+                  }}
                   className="cursor-pointer"
                 >
                   <Pencil size={14} className="mr-2" />
@@ -161,7 +175,10 @@ const PatientsTableView = ({ patients, loading, module, onSendReminder, onSendBi
                 </DropdownMenuItem>
 
                 <DropdownMenuItem
-                  onClick={() => console.log("Delete", employee)}
+                  onClick={() => {
+                    setShowDelModal(true)
+                    setSelectedPatient(row.original.name)
+                  }}
                   className="cursor-pointer text-red-600 focus:text-red-600"
                 >
                   <Trash size={14} className="mr-2" />
@@ -277,6 +294,8 @@ const PatientsTableView = ({ patients, loading, module, onSendReminder, onSendBi
           Next
         </button>
       </div>
+      {showEditModal && <EditPatient isOpen = {showEditModal} onClose = {() => setShowEditModal(false)}  patient = {selectedPatient} onSave = {saveDetails} />}
+      {showDelModal && <WarningModal isOpen = {showDelModal} onClose = {() => setShowDelModal(false)} onConfirm = {handleDelPatient} patientName = {selectedPatient} type="patient" />}
     </div>
   );
 };

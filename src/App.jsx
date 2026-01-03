@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify"
 import { LayoutProvider } from "./context/LayoutContext"
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import OnboardingTour from "./pages/OnboardingTour"
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <LocalizationProvider dateAdapter={AdapterMoment}>
           <RouterProvider router={router} />
           <ToastContainer newestOnTop />
+          {/* <OnboardingTour /> */}
           </LocalizationProvider>
         </LayoutProvider>
       </MainContextProvider>

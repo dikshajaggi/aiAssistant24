@@ -12,6 +12,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+import { WarningModal } from "./common/WarningModal";
 
 
 const SearchData = ({globalFilter, setGlobalFilter}) => {
@@ -32,8 +33,14 @@ const SearchData = ({globalFilter, setGlobalFilter}) => {
 const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) => {
   console.log(appointments, "appointments")
   const [globalFilter, setGlobalFilter] = useState("");
-
+  const [showEditModal, setShowEditModal] =  useState(false)
+  const [showDelModal, setShowDelModal] =  useState(false)
+  const [selectedPatient, setSelectedPatient] = useState("")
   const data = useMemo(() => appointments, [appointments]);
+
+  const handleDelAppointment = () => {
+
+  }
 
   // 🔹 Define columns with icons where appropriate
   const columns = useMemo(
@@ -140,7 +147,10 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
 
               <DropdownMenuContent align="end" className="w-32">
                 <DropdownMenuItem
-                  onClick={() => console.log("Edit", employee)}
+                  onClick={() => {
+                    setShowEditModal(true)
+                    setSelectedPatient(row.original.name)
+                  }}
                   className="cursor-pointer"
                 >
                   <Pencil size={14} className="mr-2" />
@@ -148,7 +158,10 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
                 </DropdownMenuItem>
 
                 <DropdownMenuItem
-                  onClick={() => console.log("Delete", employee)}
+                  onClick={() => {
+                    setShowDelModal(true)
+                    setSelectedPatient(row.original.name)
+                  }}
                   className="cursor-pointer text-red-600 focus:text-red-600"
                 >
                   <Trash size={14} className="mr-2" />
@@ -265,6 +278,7 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
           Next
         </button>
       </div>
+            {showDelModal && <WarningModal isOpen = {showDelModal} onClose = {() => setShowDelModal(false)} onConfirm = {handleDelAppointment} patientName = {selectedPatient} type="appointment" />}
     </div>
   );
 };

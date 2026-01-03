@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronLeft, Home, Users, Calendar, BarChart3, ClipboardClock } from "lucide-react";
+import { ChevronRight, ChevronLeft, Home, Users, Calendar, BarChart3, ClipboardClock, ClipboardPlus } from "lucide-react";
 import { LayoutContext } from "@/context/LayoutContext";
 import logo from "/assets/smilelytics.png";
 
@@ -39,6 +39,7 @@ const dashboardSidebar = [
   { path: "/dashboard/appointments", main: "Appointments", icon:Calendar},
   { path: "/dashboard/reminders", main: "Reminders & Follow Ups", icon: ClipboardClock},
   { path: "/dashboard/analytics", main: "Analytics", icon:BarChart3},
+  { path: "/dashboard/ai-analysis", main: "AI Analysis", icon: ClipboardPlus },
 ];
 
 const DashboardSidebar = () => {
@@ -97,7 +98,7 @@ const DashboardSidebar = () => {
       {/* IMPORTANT: keep aside overflow hidden to avoid horizontal scroll caused by inner paddings */}
       <aside
         style={{ paddingLeft: "2px" }}
-        className={`h-screen flex-shrink-0 bg-white flex flex-col shadow-sm transition-all duration-300 
+        className={`h-screen shrink-0 bg-white flex flex-col shadow-sm transition-all duration-300 
           ${collapsed ? "w-22" : "w-60"} overflow-x-hidden`}
         ref={wrapperRef}
       >
@@ -152,8 +153,9 @@ const DashboardSidebar = () => {
                <li key={item.main} className="relative group">
                   {/* IF HAS NO CHILDREN → NORMAL NAV */}
                   {!hasChildren && (
-                    <Link
+                   <Link
                       to={item.path}
+                      id={`nav-${item.main.toLowerCase().replace(/ /g, "-")}`} // 🔥 dynamic id added
                       onMouseEnter={(e) => handleShowTooltip(e, item.main)}
                       onMouseLeave={handleHideTooltip}
                       className={`flex items-center rounded-sm text-sm font-medium transition-all
@@ -161,9 +163,10 @@ const DashboardSidebar = () => {
                         ${collapsed ? "justify-center py-3" : "gap-4 px-3 py-2"}
                       `}
                     >
-                      <Icon size={22} />
+                      <item.icon size={22} />
                       {!collapsed && <span className="text-base">{item.main}</span>}
                     </Link>
+
                   )}
 
                   {/* IF HAS CHILDREN → EXPANDABLE MENU */}

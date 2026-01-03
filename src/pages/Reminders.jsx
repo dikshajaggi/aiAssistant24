@@ -19,6 +19,7 @@ const Reminders = () => {
 
   return (
     <div>
+      <h1 className="text-xl font-semibold mb-6">Reminders & Follow Ups</h1>
         <PatientsList module={"reminder_module"} onSendBill={onSendBill}  onSendReminder={(patient) => {
             setSelectedPatient(patient)
             setIsOpen(true)

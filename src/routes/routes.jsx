@@ -21,6 +21,7 @@ import DashboardLayout from "../layouts/DashboardLayout"
 import ConfirmEmail from "../pages/ConfirmEmail"
 import ProtectedRoute from "./ProtectedRoute"
 import Reminders from "@/pages/Reminders"
+import AiAnalysis from "@/pages/AIAnalysis"
 
 
 const router = createBrowserRouter([
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
             { path: "appointments", element: <Appointments /> },
             { path: "reminders", element: <Reminders /> },
             { path: "analytics", element: <Analytics /> },
+            { path: "ai-analysis", element: <AiAnalysis /> },
         ],
     },
     {
