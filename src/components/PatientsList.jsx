@@ -1,182 +1,41 @@
-// import React, { useContext, useEffect, useState } from "react";
-// import { formatDateWithDay } from "../utils/formatDateWithDay";
-// import DeleteModal from "../components/DeleteConfirmationModal";
-import { MainContext } from "../context/MainContext";
-// import EditPatientModal from "../components/EditPatientModal";
-import { getAllPatients } from "../apis";
-
-// const PatientsList = () => {
-//     const {patients, setPatients} = useContext(MainContext)
-//     const [currentPatient, setCurrentPatient] = useState(null)
-//     const [loading, setLoading] = useState(false);
-//     const [modalOpen, setModalOpen] = useState(false);
-//     const [editingPatient, setEditingPatient] = useState(null);
-
-//     const modalDesc = "Are you sure you want to delete this patient's data?"
-//     const modalTitle = "Confirm Deletion"
-    
-//     const toggleModal = (id) => {
-//         setModalOpen(!modalOpen)
-//         setCurrentPatient(id)
-//     }
-
-//     const handleUpdate = () => {
-//        fetchPatients()
-//     };
-
-//     // Fetch patients on mount
-//     useEffect(() => {
-//         fetchPatients();
-//     }, []);
-
-//     const fetchPatients = async () => {
-//         try {
-//         setLoading(true)
-//         const data = await getAllPatients()
-//         console.log(data, "ddatataaaa")
-//         setPatients(data.data);
-//         } catch (err) {
-//         console.error("Error fetching patients:", err);
-//         } finally {
-//         setLoading(false);
-//         }
-//     };
-
-//   return (
-//     <div className="mt-12  w-full max-w-6xl">
-//       <h2 className="text-2xl font-bold text-textdark mb-6 text-center">
-//         Patients List
-//       </h2>
-
-//       {loading ? (
-//         <p className="text-center text-gray-500">Loading patients...</p>
-//       ) : patients.length === 0 ? (
-//         <p className="text-center text-gray-500">No patients found.</p>
-//       ) : (
-//         <div className="overflow-x-auto">
-//           {/* Desktop Table */}
-//           <table className="hidden md:table w-full border-collapse bg-white shadow-lg rounded-2xl overflow-hidden">
-//             <thead className="bg-primary1 text-white">
-//               <tr>
-//                 <th className="p-4 text-left">Name</th>
-//                 {/* <th className="p-4 text-left">Age</th> */}
-//                 {/* <th className="p-4 text-left">Gender</th> */}
-//                 <th className="p-4 text-left">Appointment Date</th>
-//                 <th className="p-4 text-left">Treatment</th>
-//                 <th className="p-4 text-center">Actions</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {patients?.map((p) => (
-//                 <tr key={p.id} className="border-b hover:bg-gray-50">
-//                     <td className="p-4">{p.name}</td>
-//                     {/* <td className="p-4">{p.age}</td> */}
-//                     {/* <td className="p-4 capitalize">{p.gender}</td> */}
-//                     <td className="p-4">{formatDateWithDay(p.appointment_date)}</td>
-//                     <td className="p-4">{p.treatment}</td>
-//                     <td className="p-4 flex gap-3 justify-center">
-//                     <button onClick={() => setEditingPatient(p)} className="px-3 py-1 bg-secondary1/90 text-white rounded-lg hover:bg-secondary1 cursor-pointer">
-//                       Edit
-//                     </button>
-//                     <button
-//                       onClick={() => toggleModal(p.id)}
-//                       className="px-3 py-1 bg-alert/90 text-white rounded-lg hover:bg-alert cursor-pointer"
-//                     >
-//                       Delete
-//                     </button>
-//                   </td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-
-//           {/* Mobile Cards */}
-//           <div className="grid gap-4 md:hidden">
-//             {patients.map((p) => (
-//               <div
-//                 key={p.id}
-//                 className="bg-white shadow-md rounded-xl p-4 space-y-2"
-//               >
-//                 <p>
-//                   <span className="font-semibold">Name:</span> {p.name}
-//                 </p>
-//                 <p>
-//                   <span className="font-semibold">Age:</span> {p.age}
-//                 </p>
-//                 <p>
-//                   <span className="font-semibold">Gender:</span>{" "}
-//                   {p.gender}
-//                 </p>
-//                 <p>
-//                     <span className="font-semibold">Appointment:</span>{" "}
-//                     {formatDateWithDay(p.appointment_date)}
-//                 </p>
-//                 <p>
-//                   <span className="font-semibold">Treatment:</span>{" "}
-//                   {p.treatment}
-//                 </p>
-//                 <div className="flex gap-3 mt-2">
-//                   <button onClick={() => setEditingPatient(p)} className="cursor-pointer flex-1 px-3 py-1 bg-secondary1/90 text-white rounded-lg hover:bg-secondary1">
-//                     Edit
-//                   </button>
-//                   <button
-//                     onClick={() => toggleModal(p.id)}
-//                     className="cursor-pointer flex-1 px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600"
-//                   >
-//                     Delete
-//                   </button>
-//                 </div>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       )}
-//         <DeleteModal isOpen={modalOpen} toggle={toggleModal} title={modalTitle} currentPatient={currentPatient}>
-//             <p>{modalDesc}</p>
-//         </DeleteModal>
-
-//         {editingPatient && (
-//             <EditPatientModal
-//             patient={editingPatient}
-//             onClose={() => setEditingPatient(null)}
-//             onUpdate={handleUpdate}
-//             />
-//         )}
-//     </div>
-//   );
-// };
-
-// export default PatientsList;
-
-
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { usePatients } from '../hooks/useQueries'
 import PatientsTableView from './PatientsTableView'
 
-const PatientsList = ({module, onSendReminder, onSendBill}) => {
+const PatientsList = ({ module, onSendReminder, onSendBill, onAdd }) => {
+  const queryClient = useQueryClient()
+  const { data: patients = [], isLoading: loading, isError, refetch } = usePatients()
 
-  const {patients, setPatients} = useContext(MainContext)
-  const [loading, setLoading] = useState(false);
+  const handleRefresh = () => {
+    queryClient.invalidateQueries({ queryKey: ['patients'] })
+  }
 
-  // Fetch patients on mount
-    useEffect(() => {
-        fetchPatients();
-    }, []);
-
-    const fetchPatients = async () => {
-        try {
-        setLoading(true)
-        const data = await getAllPatients()
-        setPatients(data.data);
-        } catch (err) {
-        console.error("Error fetching patients:", err);
-        } finally {
-        setLoading(false);
-        }
-    };
+  if (isError) {
+    return (
+      <div className="mt-6 w-full text-center py-12">
+        <p className="text-red-500 mb-4">Failed to load patients. Please check your connection and try again.</p>
+        <button
+          onClick={refetch}
+          className="px-4 py-2 bg-secondary1 text-white rounded-lg hover:bg-secondary1/90 cursor-pointer"
+        >
+          Retry
+        </button>
+      </div>
+    )
+  }
 
   return (
     <div className="mt-6 w-full">
-      <PatientsTableView patients={patients} loading={loading} module={module} onSendReminder={onSendReminder} onSendBill={onSendBill} />
+      <PatientsTableView
+        patients={patients}
+        loading={loading}
+        module={module}
+        onSendReminder={onSendReminder}
+        onSendBill={onSendBill}
+        onRefresh={handleRefresh}
+        onAdd={onAdd}
+      />
     </div>
   )
 }

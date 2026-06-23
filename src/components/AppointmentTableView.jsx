@@ -5,7 +5,7 @@ import {
   getPaginationRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { MoreVertical, Pencil, Search, Trash } from "lucide-react";
+import { MoreVertical, Pencil, Search, Trash, CalendarPlus, SearchX } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -13,6 +13,9 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { WarningModal } from "./common/WarningModal";
+import EditAppointment from "./common/EditAppointment";
+import { deletePatientVisit } from "../apis";
+import { toast } from "react-toastify";
 
 
 const SearchData = ({globalFilter, setGlobalFilter}) => {
@@ -30,102 +33,107 @@ const SearchData = ({globalFilter, setGlobalFilter}) => {
   )
 }
 
-const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) => {
-  console.log(appointments, "appointments")
+const AppointmentTableView = ({ appointments, loading, onGeneratePrescription, onRefresh, onAdd }) => {
   const [globalFilter, setGlobalFilter] = useState("");
-  const [showEditModal, setShowEditModal] =  useState(false)
-  const [showDelModal, setShowDelModal] =  useState(false)
-  const [selectedPatient, setSelectedPatient] = useState("")
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDelModal, setShowDelModal] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState(null);
+  const [delLoading, setDelLoading] = useState(false);
+
   const data = useMemo(() => appointments, [appointments]);
 
-  const handleDelAppointment = () => {
+  const handleDelAppointment = async () => {
+    setDelLoading(true);
+    try {
+      await deletePatientVisit(selectedAppointment.id);
+      toast.success("Appointment deleted successfully");
+      setShowDelModal(false);
+      onRefresh?.();
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Failed to delete appointment");
+    } finally {
+      setDelLoading(false);
+    }
+  };
 
-  }
+  const handleEditDetails = () => {
+    setShowEditModal(false);
+    onRefresh?.();
+  };
 
-  // 🔹 Define columns with icons where appropriate
   const columns = useMemo(
     () => [
-        {
-      id: "select",
-      header: ({ table }) => (
-        <input
-          type="checkbox"
-          className="cursor-pointer"
-          checked={table.getIsAllPageRowsSelected()}
-          onChange={table.getToggleAllPageRowsSelectedHandler()}
-        />
-      ),
-      cell: ({ row }) => (
-        <input
-          type="checkbox"
-          className="cursor-pointer"
-          checked={row.getIsSelected()}
-          onChange={row.getToggleSelectedHandler()}
-        />
-      ),
-      size: 50,
-    },
-
-    // ============================
-    // 2️⃣ Serial Number Column
-    // ============================
-    {
-      id: "sno",
-      header: "S.No",
-      cell: ({ row }) => row.index + 1,
-      size: 60,
-    },
-
+      {
+        id: "select",
+        header: ({ table }) => (
+          <input
+            type="checkbox"
+            className="cursor-pointer"
+            checked={table.getIsAllPageRowsSelected()}
+            onChange={table.getToggleAllPageRowsSelectedHandler()}
+          />
+        ),
+        cell: ({ row }) => (
+          <input
+            type="checkbox"
+            className="cursor-pointer"
+            checked={row.getIsSelected()}
+            onChange={row.getToggleSelectedHandler()}
+          />
+        ),
+        size: 50,
+      },
+      {
+        id: "sno",
+        header: "S.No",
+        cell: ({ row }) => row.index + 1,
+        size: 60,
+      },
       {
         accessorKey: "id",
-        header: () => (
-          <div className="flex items-center gap-1">
-            {/* <Users size={14} className="text-gray-400" />  */}
-            ID
-          </div>
-        ),
+        header: () => <div className="flex items-center gap-1">ID</div>,
         size: 60,
       },
       {
         accessorKey: "name",
-        header: () => (
-          <div className="flex items-center gap-1">
-            {/* <User size={14} className="text-gray-400" />  */}
-            Name
-          </div>
-        ),
+        header: () => <div className="flex items-center gap-1">Name</div>,
         cell: ({ row }) => (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 overflow-hidden">
             <img
               src={row.original.image || "https://via.placeholder.com/40"}
               alt={row.original.name}
-              className="w-8 h-8 rounded-full object-cover border border-gray-200"
+              className="w-8 h-8 rounded-full object-cover border border-gray-200 shrink-0"
             />
-            <span className="font-medium text-gray-800">{row.original.name}</span>
+            <span className="font-medium text-gray-800 truncate max-w-[140px]">{row.original.name}</span>
           </div>
         ),
         size: 200,
       },
-      //  {
-      //   accessorKey: "age",
-      //   header: "Age",
-      //   size: 100,
-      // },
       {
         accessorKey: "treatment",
         header: "Treatment",
         size: 100,
       },
-       {
+      {
         accessorKey: "status",
         header: "Status",
-        size: 100,
+        size: 120,
+        cell: ({ getValue }) => {
+          const status = getValue();
+          const styles = {
+            completed: "bg-green-100 text-green-700",
+            pending: "bg-yellow-100 text-yellow-700",
+            cancelled: "bg-red-100 text-red-700",
+            scheduled: "bg-blue-100 text-blue-700",
+          };
+          const cls = styles[status?.toLowerCase()] ?? "bg-gray-100 text-gray-600";
+          return (
+            <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${cls}`}>
+              {status ?? "—"}
+            </span>
+          );
+        },
       },
-      // {
-      //   accessorKey: "gender",
-      //   header: "Gender",
-      //   size: 100,
-      // },
       {
         accessorKey: "time",
         header: "Time",
@@ -134,43 +142,37 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
       {
         id: "actions",
         header: "Actions",
-        cell: ({ row }) => {
-          const employee = row.original;
-
-          return (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <button className="p-2 rounded hover:bg-gray-100">
-                  <MoreVertical size={18} className="text-gray-600" />
-                </button>
-              </DropdownMenuTrigger>
-
-              <DropdownMenuContent align="end" className="w-32">
-                <DropdownMenuItem
-                  onClick={() => {
-                    setShowEditModal(true)
-                    setSelectedPatient(row.original.name)
-                  }}
-                  className="cursor-pointer"
-                >
-                  <Pencil size={14} className="mr-2" />
-                  Edit
-                </DropdownMenuItem>
-
-                <DropdownMenuItem
-                  onClick={() => {
-                    setShowDelModal(true)
-                    setSelectedPatient(row.original.name)
-                  }}
-                  className="cursor-pointer text-red-600 focus:text-red-600"
-                >
-                  <Trash size={14} className="mr-2" />
-                  Delete
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          );
-        },
+        cell: ({ row }) => (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="p-2 rounded hover:bg-gray-100">
+                <MoreVertical size={18} className="text-gray-600" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-32">
+              <DropdownMenuItem
+                onClick={() => {
+                  setShowEditModal(true);
+                  setSelectedAppointment(row.original);
+                }}
+                className="cursor-pointer"
+              >
+                <Pencil size={14} className="mr-2" />
+                Edit
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  setShowDelModal(true);
+                  setSelectedAppointment(row.original);
+                }}
+                className="cursor-pointer text-red-600 focus:text-red-600"
+              >
+                <Trash size={14} className="mr-2" />
+                Delete
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ),
         size: 80,
       },
       {
@@ -185,7 +187,7 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
           </button>
         ),
         size: 120,
-      } 
+      },
     ],
     []
   );
@@ -193,7 +195,7 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
   const table = useReactTable({
     data,
     columns,
-    state: { globalFilter},
+    state: { globalFilter },
     columnResizeMode: "onChange",
     globalFilterFn: "includesString",
     getCoreRowModel: getCoreRowModel(),
@@ -201,14 +203,18 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
     enableRowSelection: true,
   });
 
-  if(loading) return "Loading appointments..."
+  if (loading) return (
+    <div className="w-full flex items-center justify-center py-16 text-gray-400 text-sm">
+      Loading appointments…
+    </div>
+  );
 
   return (
     <div className="w-full bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
-      {/* Toolbar */}
-      <SearchData globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
+      <div className="px-4 pt-4">
+        <SearchData globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
+      </div>
 
-      {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full border-collapse">
           <thead className="bg-gray-100 text-gray-700 text-sm font-medium">
@@ -221,44 +227,69 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
                     style={{ width: header.getSize() }}
                   >
                     {flexRender(header.column.columnDef.header, header.getContext())}
-
-                    {/* Resize Line */}
                     <div
                       onMouseDown={header.getResizeHandler()}
                       onTouchStart={header.getResizeHandler()}
                       className={`absolute right-0 top-0 h-full w-[2px] cursor-col-resize transition-colors ${
-                        header.column.getIsResizing()
-                          ? "bg-blue-500 opacity-80"
-                          : "bg-gray-200"
+                        header.column.getIsResizing() ? "bg-blue-500 opacity-80" : "bg-gray-200"
                       }`}
-                    ></div>
+                    />
                   </th>
                 ))}
               </tr>
             ))}
           </thead>
           <tbody className="text-sm text-gray-700">
-            {table.getRowModel().rows.map((row) => (
-              <tr
-                key={row.id}
-                className="border-b border-gray-100 hover:bg-gray-50 transition"
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className="px-4 py-3 whitespace-nowrap border-r border-gray-100"
-                    style={{ width: cell.column.getSize() }}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
+            {table.getRowModel().rows.length === 0 ? (
+              <tr>
+                <td colSpan={columns.length} className="px-4 py-16 text-center">
+                  {data.length === 0 ? (
+                    <div className="flex flex-col items-center gap-3">
+                      <CalendarPlus size={36} className="text-gray-300" />
+                      <p className="text-gray-500 font-medium">No appointments yet</p>
+                      <p className="text-gray-400 text-xs">Schedule your first appointment to get started</p>
+                      {onAdd && (
+                        <button
+                          onClick={onAdd}
+                          className="mt-1 flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition cursor-pointer"
+                        >
+                          <CalendarPlus size={15} /> Schedule Appointment
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2">
+                      <SearchX size={32} className="text-gray-300" />
+                      <p className="text-gray-500 font-medium">No results for &quot;{globalFilter}&quot;</p>
+                      <button
+                        onClick={() => setGlobalFilter("")}
+                        className="text-blue-600 text-sm hover:underline cursor-pointer"
+                      >
+                        Clear search
+                      </button>
+                    </div>
+                  )}
+                </td>
               </tr>
-            ))}
+            ) : (
+              table.getRowModel().rows.map((row) => (
+                <tr key={row.id} className="border-b border-gray-100 hover:bg-gray-50 transition">
+                  {row.getVisibleCells().map((cell) => (
+                    <td
+                      key={cell.id}
+                      className="px-4 py-3 whitespace-nowrap border-r border-gray-100"
+                      style={{ width: cell.column.getSize() }}
+                    >
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
 
-      {/* Pagination */}
       <div className="p-4 flex items-center justify-between">
         <button
           className="px-3 py-1 text-sm border rounded-lg hover:bg-gray-100 transition cursor-pointer"
@@ -278,7 +309,25 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription}) 
           Next
         </button>
       </div>
-            {showDelModal && <WarningModal isOpen = {showDelModal} onClose = {() => setShowDelModal(false)} onConfirm = {handleDelAppointment} patientName = {selectedPatient} type="appointment" />}
+
+      {showEditModal && (
+        <EditAppointment
+          patient={selectedAppointment}
+          isOpen={showEditModal}
+          onClose={() => setShowEditModal(false)}
+          onSave={handleEditDetails}
+        />
+      )}
+      {showDelModal && (
+        <WarningModal
+          isOpen={showDelModal}
+          onClose={() => setShowDelModal(false)}
+          onConfirm={handleDelAppointment}
+          patientName={selectedAppointment?.name}
+          type="appointment"
+          loading={delLoading}
+        />
+      )}
     </div>
   );
 };

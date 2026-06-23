@@ -1,58 +1,31 @@
 import { createContext, useEffect, useState } from "react";
+import { supabase } from "../utils/supabaseClient";
 
 const MainContext = createContext()
 
 const MainContextProvider = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
     const [signedUp, setSignedUp] = useState(null)
-    const [patients, setPatients] = useState([
-        {
-            "id": 534672354,
-            "name": "Aarav Mehta",
-            "age": 32,
-            "gender": "male",
-            "appointment_date": "2025-09-05",
-            "treatment": "Dental Cleaning"
-        },
-        {
-            "id": 98908099,
-            "name": "Priya Sharma",
-            "age": 27,
-            "gender": "female",
-            "appointment_date": "2025-09-06",
-            "treatment": "Root Canal"
-        },
-        {
-            "id": 213123123,
-            "name": "Rohan Gupta",
-            "age": 45,
-            "gender": "male",
-            "appointment_date": "2025-09-07",
-            "treatment": "Tooth Extraction"
-        },
-        {
-            "id": 656435675,
-            "name": "Simran Kaur",
-            "age": 36,
-            "gender": "female",
-            "appointment_date": "2025-09-08",
-            "treatment": "Braces Consultation"
-        },
-        {
-            "id": 1268789753,
-            "name": "Aditya Verma",
-            "age": 52,
-            "gender": "male",
-            "appointment_date": "2025-09-09",
-            "treatment": "Dental Implant"
-        }
-        ])
-    const [isSubscribed, setIsSubscribed] = useState(false)
-
+    const [patients, setPatients] = useState([])
+    const [isSubscribed, setIsSubscribed] = useState(true)
 
     useEffect(() => {
-        if (localStorage.getItem("token")) setIsLoggedIn(true)
+        if (localStorage.getItem("smileLytics.aiLoginToken")) setIsLoggedIn(true)
     }, [])
+
+    useEffect(() => {
+        if (!isLoggedIn) return;
+        supabase.auth.getUser().then(({ data: { user } }) => {
+            if (user) setSignedUp(user);
+        });
+    }, [isLoggedIn])
+
+    const logout = () => {
+        localStorage.removeItem("smileLytics.aiLoginToken")
+        setIsLoggedIn(false)
+        setSignedUp(null)
+        setPatients([])
+    }
 
     return (
        <MainContext.Provider value ={{
@@ -63,7 +36,8 @@ const MainContextProvider = (props) => {
             isSubscribed,
             setIsSubscribed,
             patients,
-            setPatients
+            setPatients,
+            logout,
         }}
        >
         {props.children}

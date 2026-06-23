@@ -1,7 +1,8 @@
-import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Home, Users, Calendar, BarChart3, ChevronLeft, PanelRightOpen, ChevronRight } from "lucide-react";
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Home, Users, Calendar, BarChart3, ChevronLeft, ChevronRight, LogOut } from "lucide-react";
 import logo from "/assets/smilelytics.png";
+import { MainContext } from "../context/MainContext";
 
 const mainNavItems = [
   { path: "/dashboard", label: "Dashboard", icon: <Home size={20} /> },
@@ -12,6 +13,13 @@ const mainNavItems = [
 
 const Sidebar = ({ collapsed, setCollapsed }) => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useContext(MainContext);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div
@@ -51,7 +59,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
       </div>
 
       {/* Nav Menu */}
-      <nav className="flex-1 w-full px-3 py-4">
+      <nav className="flex-1 w-full px-3 py-4 flex flex-col justify-between">
         <ul className="space-y-2">
           {mainNavItems.map((item) => {
             const isActive = pathname === item.path;
@@ -78,6 +86,20 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             );
           })}
         </ul>
+
+        <div className="mt-4">
+          <button
+            onClick={handleLogout}
+            className={`
+              w-full flex items-center px-3 py-2 rounded-lg font-medium text-gray-700
+              hover:bg-red-50 hover:text-red-600 transition-all duration-200
+              ${collapsed ? "justify-center" : "gap-3"}
+            `}
+          >
+            <LogOut size={20} />
+            {!collapsed && <span>Logout</span>}
+          </button>
+        </div>
       </nav>
     </div>
   );

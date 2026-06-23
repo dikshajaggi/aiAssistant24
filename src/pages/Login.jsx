@@ -5,6 +5,7 @@ import PageWrapper from "./PageWrapper";
 import { MainContext } from "../context/MainContext";
 import { supabase } from "../utils/supabaseClient";
 import { Eye, EyeOff } from "lucide-react";
+import { onboard } from "../apis";
 
 const Login = () => {
     const { isSubscribed, setSignedUp } = useContext(MainContext);
@@ -31,17 +32,9 @@ const Login = () => {
       }
 
       const user = dataUser.user;
-      console.log(user, "getting useeeeeeerrrrrr")
-      setSignedUp(user)
-      navigate("/dashboard")
 
       if (!user.email_confirmed_at) {
-        // resend confirmation email
-        await supabase.auth.resend({
-          type: "signup",
-          email,
-        });
-
+        await supabase.auth.resend({ type: "signup", email });
         setError(
           "Your email is not confirmed. We've sent you a new confirmation link. Please check your inbox."
         );
@@ -49,9 +42,16 @@ const Login = () => {
       }
 
       localStorage.setItem("smileLytics.aiLoginToken", dataUser.session?.access_token);
+      setSignedUp(user);
 
-      // if (email === "jaggisarthak4@gmail.com") navigate("/dashboard");
-      // else navigate("/pricing");
+      // Create backend profile if it doesn't exist yet — idempotent, must not block login
+      try {
+        await onboard();
+      } catch {
+        // intentionally silent
+      }
+
+      navigate("/dashboard");
   };
 
 
@@ -85,10 +85,16 @@ const Login = () => {
               </span>
             </div>
 
+            {error && (
+              <div className="w-full p-3 text-red-700 bg-red-100 border border-red-300 rounded text-sm">
+                {error}
+              </div>
+            )}
+
             <form className="flex flex-col gap-4 w-full">
               {/* Email */}
               <input
-                placeholder="Enter username"
+                placeholder="Enter email"
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

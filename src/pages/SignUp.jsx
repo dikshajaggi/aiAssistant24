@@ -25,7 +25,7 @@ const SignUp = () => {
     e.preventDefault()
     // setError('')
 
-    // const { error } = await supabase.auth.signUp({ email, password, phoneNumber})
+    const { error } = await supabase.auth.signUp({ email, password, phoneNumber})
 
     if (error) {
       setError(error.message)

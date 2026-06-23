@@ -1,5 +1,5 @@
 "use client"
-import { SupabaseClient } from "@supabase/supabase-js"
+import { supabase } from "../utils/supabaseClient"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { CheckCircle, XCircle, AlertTriangle } from "lucide-react"
@@ -20,7 +20,7 @@ export default function ConfirmEmail() {
       return
     }
 
-    SupabaseClient.auth
+    supabase.auth
       .setSession({ access_token, refresh_token })
       .then(async ({ error }) => {
         if (error) {
@@ -28,7 +28,7 @@ export default function ConfirmEmail() {
           return
         }
 
-        const { data: { user }, error: userError } = await SupabaseClient.auth.getUser()
+        const { data: { user }, error: userError } = await supabase.auth.getUser()
         if (userError || !user) {
           setStatus("error")
           return

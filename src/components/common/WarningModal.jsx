@@ -1,3 +1,5 @@
+import { Loader2 } from "lucide-react";
+
 export const WarningModal = ({
   isOpen,
   onClose,
@@ -58,7 +60,12 @@ export const WarningModal = ({
             disabled={loading}
             className="px-4 py-2 text-sm rounded-lg bg-red-600 text-white hover:bg-red-700 transition disabled:opacity-50 cursor-pointer"
           >
-            {loading ? "Deleting…" : "Delete Patient"}
+            {loading ? (
+              <span className="flex items-center gap-2">
+                <Loader2 size={14} className="animate-spin" />
+                Deleting…
+              </span>
+            ) : type === "patient" ? "Delete Patient" : "Delete Appointment"}
           </button>
         </div>
 

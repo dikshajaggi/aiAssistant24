@@ -1,52 +1,55 @@
 import { X } from "lucide-react";
 import React, { useState } from "react";
 import AddPatientForm from "../AddPatientForm";
-import { addPatients } from "../../apis"
+import { addPatients, getPatientByPhone } from "../../apis";
+import { toast } from "react-toastify";
 import moment from "moment";
 
-const PatientModal = ({ isOpen, onClose, saveLabel, headingLabel, caption}) => {
+const PatientModal = ({ isOpen, onClose, onSuccess, saveLabel, headingLabel, caption }) => {
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const [form, setForm] = useState({
     name: "",
-    // age: "",
-    // gender: "",
     phone: "",
     email: "",
     appointment_date: moment(),
     treatment: "",
   });
-  
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e?.preventDefault();
     setLoading(true);
-    setMessage("");
-
     try {
-
-      const resp = await addPatients(form)
-
-      if (resp.ok) {
-        setMessage("Patient added successfully!");
-        setForm({
-          name: "",
-          email: "",
-          phone: "",
-          // age: "",
-          // gender: "",
-          appointment_date: moment(),
-          treatment: "",
-        });
-      } else {
-        setMessage("Error: " + (resp || "Something went wrong"));
+      // Check for duplicate phone before saving
+      try {
+        const existing = await getPatientByPhone(form.phone);
+        if (existing?.data) {
+          toast.error(`A patient with phone ${form.phone} already exists.`);
+          return;
+        }
+      } catch (dupErr) {
+        // 404 means no patient found — safe to proceed
+        if (dupErr.response?.status !== 404) {
+          toast.error("Could not verify phone uniqueness. Please try again.");
+          return;
+        }
       }
+
+      await addPatients({
+        ...form,
+        appointment_date: form.appointment_date
+          ? form.appointment_date.toISOString()
+          : null,
+      });
+      toast.success("Patient added successfully!");
+      setForm({ name: "", email: "", phone: "", appointment_date: moment(), treatment: "" });
+      onSuccess?.();
+      onClose();
     } catch (err) {
-      setMessage("Error: " + err.message);
+      toast.error(err.response?.data?.message || err.message || "Failed to add patient");
     } finally {
       setLoading(false);
     }
-     onClose();
   };
 
   if (!isOpen) return null;
@@ -65,28 +68,30 @@ const PatientModal = ({ isOpen, onClose, saveLabel, headingLabel, caption}) => {
         {/* header */}
         <div className="mb-6">
           <h2 className="text-xl font-semibold text-gray-800">
-           {headingLabel}
+            {headingLabel}
           </h2>
           <p className="text-gray-500 text-sm mt-1">
             {caption}
           </p>
         </div>
 
-        <AddPatientForm handleSubmit={handleSubmit} loading={loading} message={message} formdata={form} setForm={setForm}/>
+        <AddPatientForm handleSubmit={handleSubmit} loading={loading} formdata={form} setForm={setForm} />
 
         {/* footer */}
         <div className="mt-8 flex justify-end gap-3">
           <button
             onClick={onClose}
+            disabled={loading}
             className="flex items-center gap-2 border border-gray-400 text-gray-700 px-3 py-2 rounded-lg text-sm hover:bg-gray-50 transition cursor-pointer"
           >
             Cancel
           </button>
           <button
             onClick={handleSubmit}
-            className="bg-blue-600 text-sm text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium cursor-pointer"
+            disabled={loading}
+            className="bg-blue-600 text-sm text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium disabled:opacity-50 cursor-pointer"
           >
-            {saveLabel}
+            {loading ? "Adding..." : saveLabel}
           </button>
         </div>
       </div>

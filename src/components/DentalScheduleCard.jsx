@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
+import { Calendar, ChevronLeft, ChevronRight, Clock } from "lucide-react";
 
 // helper to format date in dd-mm-yyyy
 const formatKey = (d) => {
@@ -58,7 +58,7 @@ export default function DentalScheduleCard() {
   };
 
   return (
-    <div className="w-full max-w-md bg-[#fafafa] border border-gray-200 rounded-2xl p-5 shadow-sm">
+    <div className="w-full bg-[#fafafa] border border-gray-200 rounded-2xl p-5 shadow-sm">
       {/* Calendar Header */}
       <div className="flex items-center justify-between mb-3">
         <h2 className="text-gray-800 font-semibold text-lg">
@@ -115,32 +115,33 @@ export default function DentalScheduleCard() {
       </div>
 
       {/* Next Appointment Card */}
-      <div className="mt-4 bg-textdark text-white rounded-2xl p-4">
-        {selectedAppointments.length > 0 ? (
-          <>
-            <h3 className="text-lg font-medium">Upcoming Appointments</h3>
-            <ul className="mt-2 space-y-2">
-              {selectedAppointments.map((appt, i) => (
-                <li
-                  key={i}
-                  className="flex items-center justify-between bg-secondary1 rounded-lg p-2"
-                >
-                  <div>
-                    <p className="font-medium">{appt.type}</p>
-                    <p className="text-sm text-white font-semibold">{appt.patient}</p>
-                  </div>
-                  <div className="flex items-center text-sm font-bold text-white">
-                    <Clock className="w-4 h-4 mr-1" />
-                    {appt.time}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </>
-        ) : (
-          <p className="text-white font-medium">No appointments for this day</p>
-        )}
-      </div>
+      {selectedAppointments.length > 0 ? (
+        <div className="mt-4 bg-textdark text-white rounded-2xl p-4">
+          <h3 className="text-lg font-medium">Upcoming Appointments</h3>
+          <ul className="mt-2 space-y-2">
+            {selectedAppointments.map((appt, i) => (
+              <li
+                key={i}
+                className="flex items-center justify-between bg-secondary1 rounded-lg p-2"
+              >
+                <div>
+                  <p className="font-medium">{appt.type}</p>
+                  <p className="text-sm text-white font-semibold">{appt.patient}</p>
+                </div>
+                <div className="flex items-center text-sm font-bold text-white">
+                  <Clock className="w-4 h-4 mr-1" />
+                  {appt.time}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className="mt-4 bg-gray-100 rounded-2xl p-4 flex items-center gap-3">
+          <Calendar className="w-8 h-8 text-gray-400 flex-shrink-0" />
+          <p className="text-gray-500 text-sm font-medium">No appointments on this day</p>
+        </div>
+      )}
     </div>
   );
 }

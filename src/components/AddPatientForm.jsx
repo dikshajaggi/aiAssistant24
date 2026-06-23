@@ -33,7 +33,7 @@ const AddPatientForm = ({message, handleSubmit, formdata, setForm}) => {
             <div>
               <label className="block text-gray-700 font-medium">Email</label>
               <input
-                  type="text"
+                  type="email"
                   name="email"
                   value={formdata.email}
                   onChange={handleChange}
@@ -41,7 +41,7 @@ const AddPatientForm = ({message, handleSubmit, formdata, setForm}) => {
                   className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
               />
             </div>
-            {/* <div>
+            <div>
                 <label className="block text-gray-700 font-medium">Age</label>
                 <input
                     type="number"
@@ -51,12 +51,12 @@ const AddPatientForm = ({message, handleSubmit, formdata, setForm}) => {
                     required
                     className="w-full mt-2 px-4 py-2 border rounded-xl focus:ring-2 focus:ring-secondary1 focus:outline-none"
                 />
-            </div> */}
+            </div>
         </div>
 
       {/* Age & Gender in a row (on md+) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* <div>
+            <div>
             <label className="block text-gray-700 font-medium">Gender</label>
             <select
                 name="gender"
@@ -70,12 +70,12 @@ const AddPatientForm = ({message, handleSubmit, formdata, setForm}) => {
                 <option value="female">Female</option>
                 <option value="other">Other</option>
             </select>
-            </div> */}
+            </div>
 
             <div>
               <label className="block text-gray-700 font-medium">Phone</label>
               <input
-                  type="string"
+                  type="tel"
                   name="phone"
                   value={formdata.phone}
                   onChange={handleChange}

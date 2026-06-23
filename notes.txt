@@ -1,4 +1,152 @@
-    1.	Patient management (CRUD)
+    SmileLytics.AI — Pre-MVP Audit Report
+
+---
+CRITICAL — Fix Before Any Dentist Sees This
+
+┌─────┬───────────────────────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────┐
+│  #  │                                           Issue                                           │                       File                        │
+├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ ✅   │ ConfirmEmail page will crash — SupabaseClient is not imported correctly                   │ src/pages/ConfirmEmail.jsx:23                     │
+├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ ✅  │ Logout button doesn't work — Header "Logout" menu item has no onClick handler             │ src/components/DashboardHeader.jsx:184            │
+├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ 3   │ Password reset missing — "Forgot Password?" is plain text, no handler/route               │ src/pages/Login.jsx:120                           │
+├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ 4   │ Prescription saving broken — form submit only console.logs, never hits API                │ src/components/PrescriptionModal.jsx:42           │
+├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ 5   │ ReminderModal ignores user's date picker — always sends days_after: 1 hardcoded           │ src/components/common/ReminderModal.jsx:126       │
+├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ 6   │ Billing module fully disabled — button is pointerEvents: none, onSave={() => {}} is empty │ src/components/BillingModal.jsx, Reminders.jsx:33 │
+├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ ✅  │ Patients search bar is not working                                                         │  												  │ 
+├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤
+│ ✅  │ No confirmation before deleting patients/appointments — single click = gone              │ src/components/PatientsTableView.jsx:45           │
+└─────┴───────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────┘
+
+---
+HIGH — Severe UX Pain for Dentists
+
+┌─────┬────────────────────────────────────────────────────────────────────────────────────────┬──────────────────────────────────────────────────────────┐
+│  #  │                                         Issue                                          │                           File                           │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ ✅   │ Dashboard greeting hardcoded as "Dr. Admin user" — never fetches real user             │ src/components/DashboardHeader.jsx:98                    │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ 9   │ DentalScheduleCard shows fake data — appointments are hardcoded dummy objects          │ src/components/DentalScheduleCard.jsx:22                 │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ ✅  │ Quick Actions "Send Reminders" goes nowhere — <Link to=""> is empty                    │ src/components/QuickActions.jsx:66                       │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ ✅  │ AppointmentModal doesn't reset on close — old data still in form next time             │ src/components/common/AppointmenModal.jsx:66             │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ ✅  │ EditPatient/EditAppointment are incomplete — can't edit email, date, payment status,   │ src/components/common/EditPatient.jsx,                   │
+│     │ or amount                                                                              │ EditAppointment.jsx                                      │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ ✅  │ No loading spinners on delete, send reminder, save prescription — user clicks          │ Multiple files                                           │
+│     │ repeatedly                                                                             │                                                          │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ ✅  │ No empty states with CTAs — patient/appointment tables say "No data" with no "Add"     │ PatientsTableView.jsx, AppointmentTableView.jsx          │
+│     │ button                                                                                 │                                                          │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ ✅  │ Billing sidebar item shows no "Coming Soon" label — looks broken                       │ src/components/DashboardSidebar.jsx:43                   │
+├─────┼────────────────────────────────────────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────┤
+│ 16  │ getMyProfile() called but result thrown away — console.log only, profile never         │ src/pages/Dashboard.jsx:43                               │
+│     │ displayed                                                                              │                                                          │
+└─────┴────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────┘
+
+---
+MEDIUM — Functional Gaps That Will Cause Complaints
+
+┌─────┬─────────────────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────┐
+│  #  │                                        Issue                                        │                     File                      │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ ✅  │ Can schedule appointments in the past — no future-date validation on DateTimePicker │ src/components/common/AppointmenModal.jsx:124 │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ ✅  │ Duplicate patients allowed — phone uniqueness check API exists but never called     │ src/apis.js → AddPatientForm.jsx              │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ 19  │ AI Analysis is a stub — image uploads but analysis call is commented out            │ src/pages/AIAnalysis.jsx:22                   │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ ✅  │ Double-booking possible — no slot/availability check before saving appointment      │ All appointment flows                         │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ 21  │ Payment amount optional even when status = "Paid" — ₹0 paid appointments valid      │ src/components/common/AppointmenModal.jsx:138 │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ ✅  │ Age and Gender fields commented out in Add Patient — critical for dental records    │ src/components/AddPatientForm.jsx:44-73       │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ 23  │ Automation settings hook disabled — enabled: false, resolves null                   │ src/hooks/useQueries.js:46                    │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ ✅  │ No treatment history view — can't see past visits/diagnoses on a patient profile    │ All patient views                             │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ ✅  │ No prescription PDF letterhead — placeholder logo, no clinic branding upload        │ src/pages/Prescriptions.jsx:316               │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ 26  │ clinic_id never set in localStorage — BillingModal reads it but gets null           │ src/components/BillingModal.jsx:31            │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ 27  │ Backend error messages shown raw to user — "patient_id: invalid format" type errors │ src/pages/Prescriptions.jsx:63                │
+├─────┼─────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────┤
+│ 28  │ Onboarding tour commented out — new users get zero guidance                         │ src/App.jsx:33                                │
+└─────┴─────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────┘
+
+---
+SECURITY — Must Address Before Sharing Credentials
+
+┌─────┬────────────────────────────────────────────────────────────────────────┐
+│  #  │                                 Issue                                  │
+├─────┼────────────────────────────────────────────────────────────────────────┤
+│ 29  │ JWT in localStorage — vulnerable to XSS; no token expiry check         │
+├─────┼────────────────────────────────────────────────────────────────────────┤
+│ 30  │ ProtectedRoute only checks if token exists, not if it's valid/expired  │
+├─────┼────────────────────────────────────────────────────────────────────────┤
+│ 31  │ No role-based access — receptionist can delete patients, same as admin │
+├─────┼────────────────────────────────────────────────────────────────────────┤
+│ 32  │ console.log in Dashboard leaks profile data to browser console         │
+└─────┴────────────────────────────────────────────────────────────────────────┘
+
+---
+LOW — Polish (Post-First-Trial)
+
+- Mobile modal overflow — submit button unreachable on small screens
+- Table resize handles are 0.5px wide, unusable
+- Action dropdowns can render off-screen on right edge
+- Inconsistent button colors (bg-blue-600 vs bg-secondary1 vs bg-primary1)
+- No error reporting service (Sentry etc.) — production bugs invisible
+- External placeholder image requests per patient row (via.placeholder.com)
+
+---
+What's Actually Working Well
+
+- Auth flow (Supabase login/signup) works
+- Patient list + add patient works
+- Appointment scheduling (core flow) works
+- Reminders page structure is solid
+- Prescription builder UI is clean
+- React Query setup is correct
+- ErrorBoundary is in place
+- Toast notifications are wired properly
+
+---
+Recommended Fix Order (3 sprints)
+
+Sprint 1 (Week 1) — Unblock critical flows
+Items 1–7: Crash fixes, logout, prescription save, reminder date fix, delete confirmation
+
+Sprint 2 (Week 2) — UX that will frustrate dentists
+Items 8–16: Real username, real schedule data, empty states, form reset, edit completeness
+
+Sprint 3 (Week 3) — Data integrity + security baseline
+Items 17–26 + security items 29–32
+
+Billing and AI Analysis can stay disabled/coming-soon for the first MVP trial — just label them clearly in the UI.
+
+✻ Baked for 2m 45s
+
+※ recap: Full MVP audit done. 28 issues found across critical bugs, UX gaps, and security. Next step: start fixing the 7 critical blockers before showing this to any dentist. (disable recaps in /config)
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	
+	
+	1.	Patient management (CRUD)
 	2.	Visit management (CRUD)
 	3.	Appointment tracking
 	4.	Treatment records

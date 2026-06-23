@@ -1,126 +1,160 @@
 import { useState } from "react";
-import { User } from "lucide-react";
-import { Input } from "./Reusable";
+import { X, Loader2 } from "lucide-react";
+import { editPatientData } from "../../apis";
+import { toast } from "react-toastify";
 
+const inputCls =
+  "w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-secondary1";
 
-export default function EditPatient({
-    isOpen,
-    onClose,
-    patient,
-    onSave,
-}) {
+const Field = ({ label, className = "", children }) => (
+  <div className={className}>
+    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+    {children}
+  </div>
+);
 
+export default function EditPatient({ isOpen, onClose, patient, onSave }) {
   const [form, setForm] = useState({
-    name: patient.name || "",
-    treatment: patient.treatment || "",
-    phone: patient.phone || "",
+    name:        patient?.name        || "",
+    email:       patient?.email       || "",
+    phone:       patient?.phone       || "",
+    age:         patient?.age         || "",
+    gender:      patient?.gender      || "",
+    treatment:   patient?.treatment   || "",
   });
-
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (key, value) => {
-    setForm((prev) => ({ ...prev, [key]: value }));
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-const handleSubmit = async () => {
-  setLoading(true);
-  onSave()
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      await editPatientData(patient.id, form);
+      toast.success("Patient updated successfully");
+      onSave();
+    } catch (err) {
+      toast.error(err.response?.data?.message || err.message || "Failed to update patient");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//   try {
-//     } catch (err) {
-//       console.error("Update failed", err);
-//       toast.error("Successfully created!")("Failed to update employee");
-//     } finally {
-//       setLoading(false);
-//     }
-};
+  if (!isOpen) return null;
 
-if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-      <div className="flex flex-col bg-white rounded-xl p-6">
-          {/* HEADER */}
-        <div className="flex items-center gap-4 mb-4">
-            <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center">
-                <User className="text-gray-500" />
-            </div>
-            <div>
-                <h2 className="text-lg font-semibold text-gray-900">
-                    {patient.name}
-                </h2>
-            </div>
-        </div>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4">
+      <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-xl max-h-[90vh] overflow-y-auto">
 
-      {/* JOB */}
-      <Section>
-        <Input
-          label="Name"
-          type="text"
-          min={0}
-          value={form.name}
-          onChange={(e) =>
-            handleChange(
-              "name",
-              e.target.value
-            )
-          }
-        />
-
-        <Input
-          label="Treatment"
-          type="text"
-          min={0}
-          value={form.treatment}
-          onChange={(e) =>
-            handleChange(
-              "treatment",
-              e.target.value
-            )
-          }
-        />
-
-        <Input
-          label="Phone"
-          type="number"
-          min={0}
-          value={form.name}
-          onChange={(e) =>
-            handleChange(
-              "phone",
-              e.target.value
-            )
-          }
-        />
-        
-      </Section>
-
-      {/* ACTIONS */}
-      <div className="sticky bottom-0 mt-4 border-t pt-4 flex justify-end gap-3">
-        <button
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 pt-5 pb-4 border-b border-gray-100">
+          <div>
+            <h2 className="text-lg font-semibold text-gray-900">Edit Patient</h2>
+            <p className="text-sm text-gray-400 mt-0.5">{patient?.name}</p>
+          </div>
+          <button
             onClick={onClose}
             disabled={loading}
-            className="px-4 py-2 border rounded-lg cursor-pointer"
-        >
-          Cancel
-        </button>
-        <button
-          onClick={handleSubmit}
-          disabled={loading}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50 cursor-pointer"
-        >
-          {loading ? "Saving..." : "Save Changes"}
-        </button>
-      </div>
+            className="text-gray-400 hover:text-gray-600 transition cursor-pointer"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Body */}
+        <div className="px-6 py-5 space-y-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Field label="Full Name" className="sm:col-span-2">
+              <input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Patient name"
+                className={inputCls}
+              />
+            </Field>
+
+            <Field label="Email" className="sm:col-span-2">
+              <input
+                type="email"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                placeholder="patient@email.com"
+                className={inputCls}
+              />
+            </Field>
+
+            <Field label="Phone">
+              <input
+                type="tel"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                placeholder="+91 98765 43210"
+                className={inputCls}
+              />
+            </Field>
+
+            <Field label="Age">
+              <input
+                type="number"
+                name="age"
+                value={form.age}
+                onChange={handleChange}
+                min="0"
+                placeholder="e.g. 32"
+                className={inputCls}
+              />
+            </Field>
+
+            <Field label="Gender">
+              <select
+                name="gender"
+                value={form.gender}
+                onChange={handleChange}
+                className={inputCls}
+              >
+                <option value="">Select…</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </Field>
+
+            <Field label="Treatment">
+              <input
+                name="treatment"
+                value={form.treatment}
+                onChange={handleChange}
+                placeholder="e.g. Root Canal"
+                className={inputCls}
+              />
+            </Field>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="px-6 pb-5 pt-4 border-t border-gray-100 flex flex-col sm:flex-row justify-end gap-3">
+          <button
+            onClick={onClose}
+            disabled={loading}
+            className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition cursor-pointer disabled:opacity-50"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleSubmit}
+            disabled={loading}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition disabled:opacity-50 cursor-pointer"
+          >
+            {loading ? <><Loader2 size={14} className="animate-spin" /> Saving…</> : "Save Changes"}
+          </button>
+        </div>
       </div>
     </div>
   );
 }
-
-/* helpers */
-const Section = ({ children }) => (
-  <div className="bg-gray-50 rounded-xl p-4">
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      {children}
-    </div>
-  </div>
-);

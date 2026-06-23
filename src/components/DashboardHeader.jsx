@@ -85,18 +85,29 @@
 // export default DashboardHeader;
 
 
-import React, { useEffect, useState } from 'react'
-import { Input } from "@/components/ui/input"
+import React, { useContext, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import { Bell, Sun, Moon } from "lucide-react"
+import { Sun, Moon } from "lucide-react"
 import ExpandableSearch from './common/ExpandableSearch'
+import { MainContext } from '@/context/MainContext'
+
+const THEME_KEY = 'smileLytics.theme';
 
 const DashboardHeader = () => {
+  const { logout, signedUp } = useContext(MainContext)
+  const navigate = useNavigate()
   const [dateTime, setDateTime] = useState(new Date());
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const username = "Dr. Admin user "; // Replace with dynamic username if needed
+  const [isDarkMode, setIsDarkMode] = useState(
+    () => localStorage.getItem(THEME_KEY) === 'dark'
+  );
   const [greeting, setGreeting] = useState("");
+
+  const displayName = signedUp?.email
+    ? "Dr. " + signedUp.email.split("@")[0].replace(/[._]/g, " ").replace(/\b\w/g, c => c.toUpperCase())
+    : "Doctor";
+  const avatarInitials = signedUp?.email ? signedUp.email[0].toUpperCase() : "U";
 
   // Update date & time every second
   useEffect(() => {
@@ -106,18 +117,18 @@ const DashboardHeader = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Update greeting every minute
+  // Update greeting whenever displayName or time changes
   useEffect(() => {
     const updateGreeting = () => {
       const hour = new Date().getHours();
-      if (hour >= 5 && hour < 12) setGreeting(`Good Morning, ${username}`);
-      else if (hour >= 12 && hour < 16) setGreeting(`Good Afternoon, ${username}`);
-      else setGreeting(`Good Evening, ${username}`);
+      if (hour >= 5 && hour < 12) setGreeting(`Good Morning, ${displayName}`);
+      else if (hour >= 12 && hour < 16) setGreeting(`Good Afternoon, ${displayName}`);
+      else setGreeting(`Good Evening, ${displayName}`);
     };
     updateGreeting();
     const interval = setInterval(updateGreeting, 60 * 1000);
     return () => clearInterval(interval);
-  }, [username]);
+  }, [displayName]);
 
   const formattedDate = dateTime.toLocaleDateString("en-GB"); // DD/MM/YYYY
   const formattedTime = dateTime.toLocaleTimeString("en-US", {
@@ -126,15 +137,16 @@ const DashboardHeader = () => {
     hour12: true,
   });
 
-  // Toggle light/dark mode
   const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark", !isDarkMode); // Tailwind dark mode
-  }
+    const next = !isDarkMode;
+    setIsDarkMode(next);
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem(THEME_KEY, next ? 'dark' : 'light');
+  };
 
   return (
-    <div className="w-full">
-      <header className="w-full h-auto py-2 flex items-center justify-between px-4 md:px-8 bg-white">
+    <div className="w-full bg-white dark:bg-slate-900 border-b border-gray-100 dark:border-slate-800 shadow-sm">
+      <header className="w-full h-14 flex items-center justify-between px-4 md:px-8 bg-white dark:bg-slate-900">
         <div className="w-[120px] sm:w-[200px] md:hidden"></div> {/* placeholder to balance layout */}
         
         <div className="hidden sm:block text-sm sm:text-base md:text-lg font-medium text-gray-700 dark:text-gray-200">
@@ -153,35 +165,43 @@ const DashboardHeader = () => {
           {/* Search */}
           <ExpandableSearch />
 
-          {/* Light/Dark Mode Toggle */}
-          {/* <button
-            className='relative text-gray-600 hover:text-gray-800 cursor-pointer'
+          {/* Dark / Light mode toggle */}
+          <button
             onClick={toggleDarkMode}
+            title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-gray-800 hover:bg-gray-100 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-700 transition-colors cursor-pointer"
           >
-            {isDarkMode ? <Moon /> : <Sun />}
-          </button> */}
-
-          {/* Notifications */}
-          {/* <button className="relative text-gray-600 hover:text-gray-800 cursor-pointer">
-            <Bell size={20} />
-            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-red-500"></span>
-          </button> */}
+            {isDarkMode
+              ? <Sun size={17} />
+              : <Moon size={17} />
+            }
+          </button>
 
           {/* User Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-2 cursor-pointer">
               <Avatar>
                 <AvatarImage src="/user.jpg" />
-                <AvatarFallback>AU</AvatarFallback>
+                <AvatarFallback>{avatarInitials}</AvatarFallback>
               </Avatar>
               <div className="hidden sm:flex flex-col text-left">
-                <span className="text-sm font-medium">Admin user </span>
-                <span className="text-xs text-gray-400">Admin</span>
+                <span className="text-sm font-medium">{displayName}</span>
+                <span className="text-xs text-gray-400">{signedUp?.email ?? ""}</span>
               </div>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Logout</DropdownMenuItem>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => navigate("/dashboard/profile")}
+              >
+                Profile
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                className="text-red-600 cursor-pointer"
+                onClick={() => { logout(); navigate("/login"); }}
+              >
+                Logout
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

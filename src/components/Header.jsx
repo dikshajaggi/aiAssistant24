@@ -17,8 +17,6 @@ const Header = ({ isHome = false }) => {
       return null
     }
     setSignedUp(user)
-    
-    console.log(signedUp, "signedUp")
   }
 
   useEffect(() => {

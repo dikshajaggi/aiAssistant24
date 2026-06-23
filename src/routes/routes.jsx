@@ -13,6 +13,7 @@ import About from "../pages/About"
 import Contact from "../pages/Contact"
 import TermsOfService from "../pages/TermsOfService"
 import AuthLayout from "../layouts/AuthLayout"
+import PublicRoute from "./PublicRoute"
 import Dashboard from "../pages/Dashboard"
 import Patients from "../pages/Patients"
 import Appointments from "../pages/Appointments"
@@ -22,6 +23,8 @@ import ConfirmEmail from "../pages/ConfirmEmail"
 import ProtectedRoute from "./ProtectedRoute"
 import Reminders from "@/pages/Reminders"
 import AiAnalysis from "@/pages/AIAnalysis"
+import Prescriptions from "@/pages/Prescriptions"
+import Profile from "@/pages/Profile"
 
 
 const router = createBrowserRouter([
@@ -29,7 +32,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <MainLayout />,
         children: [
-            {index: true, element: <Home />},
+            {index: true, element: <PublicRoute><Home /></PublicRoute>},
             {path: "/pricing", element: <Pricing />},
             {path: "/bookdemo", element: <BookDemo />},
             {path: "/walkthrough", element: <Walkthrough />},
@@ -53,25 +56,31 @@ const router = createBrowserRouter([
             { index: true, element: <Dashboard /> },
             { path: "patients", element: <Patients /> },
             { path: "appointments", element: <Appointments /> },
+            { path: "prescriptions", element: <Prescriptions /> },
             { path: "reminders", element: <Reminders /> },
             { path: "analytics", element: <Analytics /> },
             { path: "ai-analysis", element: <AiAnalysis /> },
+            { path: "profile", element: <Profile /> },
         ],
     },
     {
         path: "/login",
         element: (
-            <AuthLayout>
-                <Login />
-            </AuthLayout>
+            <PublicRoute>
+                <AuthLayout>
+                    <Login />
+                </AuthLayout>
+            </PublicRoute>
         )
     },
     {
         path: "/signup",
         element: (
-            <AuthLayout>
-                <SignUp />
-            </AuthLayout>
+            <PublicRoute>
+                <AuthLayout>
+                    <SignUp />
+                </AuthLayout>
+            </PublicRoute>
         )
     },
     {

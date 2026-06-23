@@ -1,144 +1,91 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageWrapper from "./PageWrapper";
 import SummaryCards from "../components/SummaryCards";
 import QuickActions from "../components/QuickActions";
-import DateTimeDisplay from "../components/DateTimeDisplay";
-import DentalScheduleCard from "../components/DentalScheduleCard";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
+import MiniCalendarCard from "../components/MiniCalendarCard";
+import NextAvailableSlotCard from "../components/NextAvailableSlotCard";
+import TodaysAppointments from "../components/TodaysAppointments";
+import NewPatientsCard from "../components/NewPatientsCard";
+import PendingPaymentsCard from "../components/PendingPaymentsCard";
+import ReminderStatusCard from "../components/ReminderStatusCard";
+import { useDashboard } from "../hooks/useQueries";
+import { readLayout } from "../config/dashboardCards";
 
-import {dashboardData} from "../apis"
-import DashboardHeader from "@/components/DashboardHeader";
+// Map card IDs → rendered JSX
+const UTILITY_MAP = {
+  "quick-actions":  <QuickActions />,
+  "calendar":       <MiniCalendarCard />,
+  "next-slot":      <NextAvailableSlotCard />,
+};
 
-const COLORS = [
-  "#390080", // violet
-  "#EBB813", // yellow
-  "#34F005", // green
-  "#E65B10", // orange
-  "#FF009D", // bright pink
-  "#08805C", // dark green
-];
+const WIDGET_MAP = {
+  "todays-appointments": <TodaysAppointments />,
+  "pending-payments":    <PendingPaymentsCard />,
+  "new-patients":        <NewPatientsCard />,
+  "reminder-impact":     <ReminderStatusCard />,
+};
+
+// Tailwind grid-cols class for N visible utility cards
+const utilColClass = { 1: "md:grid-cols-1", 2: "md:grid-cols-2", 3: "md:grid-cols-3" };
 
 const Dashboard = () => {
-  const [data, setData] = useState(null);
+  const { data, isLoading: loading, isError } = useDashboard();
+  const error = isError ? "Failed to load dashboard data. Please try again." : null;
 
-  useEffect(() => {
-    setData({
-      visitsPerMonth: [
-        { month: "Jan", visits: 120 },
-        { month: "Feb", visits: 90 },
-        { month: "Mar", visits: 150 },
-      ],
-      revenuePerMonth: [
-        { month: "Jan", revenue: 30000 },
-        { month: "Feb", revenue: 45000 },
-        { month: "Mar", revenue: 50000 },
-      ],
-      topTreatments: [
-        { treatment: "Root Canal", count: 40 },
-        { treatment: "Whitening", count: 25 },
-        { treatment: "Implants", count: 18 },
-      ],
-      patientsGrowth: [
-        { month: "Jan", newPatients: 15 },
-        { month: "Feb", newPatients: 22 },
-        { month: "Mar", newPatients: 28 },
-      ],
-    });
-  }, []);
+  // Re-read layout from localStorage each time the dashboard mounts
+  // (handles changes made in Profile → Dashboard Layout settings)
+  const [layout, setLayout] = useState(readLayout);
+  useEffect(() => { setLayout(readLayout()); }, []);
 
-  const getDashboardData = async () => {
-    const res = await dashboardData()
-    console.log(res, "dashboard res")
+  const { utilitiesOrder, widgetsOrder, hidden } = layout;
+
+  // Filter out hidden cards
+  const visibleUtils   = utilitiesOrder.filter((id) => !hidden.includes(id));
+  const visibleWidgets = widgetsOrder.filter((id) => !hidden.includes(id));
+
+  // Pair widgets into 2-col rows
+  const widgetRows = [];
+  for (let i = 0; i < visibleWidgets.length; i += 2) {
+    widgetRows.push(visibleWidgets.slice(i, i + 2));
   }
-
-  useEffect(() => {
-    getDashboardData()
-  }, [])
 
   return (
     <PageWrapper>
-      <div className="w-full mx-auto flex flex-col h-full">
+      <div className="w-full mx-auto flex flex-col gap-6 pb-10">
 
-        {/* Body */}
-        <div className="flex flex-col p-4 rounded-xl shadow-md h-full">
-          <SummaryCards />
+        {/* Row 1 — KPI summary tiles (always first, not customisable) */}
+        <SummaryCards summaryData={data?.cards} loading={loading} error={error} />
+        {error && <p className="text-center text-red-500 text-sm -mt-4">{error}</p>}
 
-          {/* Main Content - 2 Columns on md+, stacked on mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start mt-10">
-            {/* Left Column */}
-            <div className="flex flex-col gap-6 min-w-0">
-              <DentalScheduleCard />
-              {data && (
-                <div className="w-full bg-[#fafafa] rounded-2xl shadow-sm p-5 border border-gray-100">
-                  <h2 className="text-lg font-semibold mb-4 text-gray-700">
-                    Revenue per Month
-                  </h2>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={data.revenuePerMonth}>
-                      <CartesianGrid stroke="#E5E7EB" strokeDasharray="3 3" />
-                      <XAxis dataKey="month" stroke="#6B7280" />
-                      <YAxis stroke="#6B7280" />
-                      <Tooltip />
-                      <Bar
-                        dataKey="revenue"
-                        fill="#FF009D"
-                        radius={[5, 5, 0, 0]}
-                        barSize={30} // responsive bar thickness
-                      />
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              )}
-            </div>
-
-            {/* Right Column */}
-            <div className="flex flex-col gap-6 min-w-0">
-              <QuickActions />
-
-              {data && (
-                <div className="w-full bg-[#fafafa] rounded-2xl shadow-sm p-5 border border-gray-100">
-                  <h2 className="text-lg font-semibold mb-4 text-gray-700">
-                    Top Treatments
-                  </h2>
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={data?.topTreatments}
-                        dataKey="count"
-                        nameKey="treatment"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={100}
-                        label
-                      >
-                        {data?.topTreatments.map((_, index) => (
-                          <Cell
-                            key={index}
-                            fill={COLORS[index % COLORS.length]}
-                          />
-                        ))}
-                      </Pie>
-                      <Tooltip />
-                      <Legend />
-                    </PieChart>
-                  </ResponsiveContainer>
-                </div>
-              )}
-            </div>
+        {/* Row 2 — Utility cards (order + visibility controlled by layout) */}
+        {visibleUtils.length > 0 && (
+          <div
+            className={`grid grid-cols-1 gap-6 ${
+              utilColClass[visibleUtils.length] ?? "md:grid-cols-3"
+            }`}
+          >
+            {visibleUtils.map((id) => (
+              <div key={id} className="min-w-0">
+                {UTILITY_MAP[id]}
+              </div>
+            ))}
           </div>
-        </div>
+        )}
+
+        {/* Rows 3+ — Widget pairs (order + visibility controlled by layout) */}
+        {widgetRows.map((pair, i) => (
+          <div
+            key={i}
+            className={`grid grid-cols-1 gap-6 ${pair.length === 2 ? "md:grid-cols-2" : "md:grid-cols-1"}`}
+          >
+            {pair.map((id) => (
+              <div key={id} className="min-w-0">
+                {WIDGET_MAP[id]}
+              </div>
+            ))}
+          </div>
+        ))}
+
       </div>
     </PageWrapper>
   );

@@ -2,7 +2,7 @@
 import { useEffect, useState, useRef, useContext } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronLeft, Home, Users, Calendar, BarChart3, ClipboardClock, ClipboardPlus } from "lucide-react";
+import { ChevronRight, ChevronLeft, Home, Users, Calendar, BarChart3, ClipboardClock, ClipboardPlus, FileText, CreditCard } from "lucide-react";
 import { LayoutContext } from "@/context/LayoutContext";
 import logo from "/assets/smilelytics.png";
 
@@ -37,9 +37,11 @@ const dashboardSidebar = [
   { path: "/dashboard", main: "Dashboard", icon:Home},
   { path: "/dashboard/patients", main: "Patients", icon:Users},
   { path: "/dashboard/appointments", main: "Appointments", icon:Calendar},
+  { path: "/dashboard/prescriptions", main: "Prescriptions", icon: FileText},
   { path: "/dashboard/reminders", main: "Reminders & Follow Ups", icon: ClipboardClock},
   { path: "/dashboard/analytics", main: "Analytics", icon:BarChart3},
-  { path: "/dashboard/ai-analysis", main: "AI Analysis", icon: ClipboardPlus },
+  { path: "/dashboard/billing", main: "Billing", icon: CreditCard, disabled: true },
+  { path: "/dashboard/ai-analysis", main: "AI Analysis", icon: ClipboardPlus, disabled: true },
 ];
 
 const DashboardSidebar = () => {
@@ -63,13 +65,11 @@ const DashboardSidebar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // show tooltip (portal) for collapsed state
-  const handleShowTooltip = (event, text) => {
-    if (!collapsed) return;
+  // show tooltip for collapsed state, or always for disabled items
+  const handleShowTooltip = (event, text, force = false) => {
+    if (!collapsed && !force) return;
     const rect = event.currentTarget.getBoundingClientRect();
-    // place tooltip to the right of the item (8px gap)
     const x = rect.right + 8;
-    // vertically center against the item
     const y = rect.top + rect.height / 2;
     setTooltip({ visible: true, text, x, y });
   };
@@ -98,7 +98,7 @@ const DashboardSidebar = () => {
       {/* IMPORTANT: keep aside overflow hidden to avoid horizontal scroll caused by inner paddings */}
       <aside
         style={{ paddingLeft: "2px" }}
-        className={`h-screen shrink-0 bg-white flex flex-col shadow-sm transition-all duration-300 
+        className={`h-screen shrink-0 bg-white dark:bg-slate-900 border-r border-transparent dark:border-slate-800 flex flex-col shadow-sm transition-all duration-300
           ${collapsed ? "w-22" : "w-60"} overflow-x-hidden`}
         ref={wrapperRef}
       >
@@ -133,7 +133,7 @@ const DashboardSidebar = () => {
 
           <button
             onClick={() => setCollapsed(!collapsed)}
-            className={`${collapsed ? "mt-4" : "mt-0"} text-gray-500 hover:text-gray-800 transition cursor-pointer`}
+            className={`${collapsed ? "mt-4" : "mt-0"} text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-100 transition cursor-pointer`}
             aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           >
             {collapsed ? <ChevronRight size={24} /> : <ChevronLeft size={24} />}
@@ -141,8 +141,8 @@ const DashboardSidebar = () => {
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto" style={{ paddingTop: "14px" }}>
-          <ul className="flex flex-col gap-5">
+        <nav className="flex-1 overflow-y-auto px-2" style={{ paddingTop: "10px" }}>
+          <ul className="flex flex-col gap-0.5">
             {dashboardSidebar.map((item) => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
@@ -152,21 +152,39 @@ const DashboardSidebar = () => {
               return (
                <li key={item.main} className="relative group">
                   {/* IF HAS NO CHILDREN → NORMAL NAV */}
-                  {!hasChildren && (
+                  {!hasChildren && !item.disabled && (
                    <Link
                       to={item.path}
-                      id={`nav-${item.main.toLowerCase().replace(/ /g, "-")}`} // 🔥 dynamic id added
+                      id={`nav-${item.main.toLowerCase().replace(/ /g, "-")}`}
                       onMouseEnter={(e) => handleShowTooltip(e, item.main)}
                       onMouseLeave={handleHideTooltip}
-                      className={`flex items-center rounded-sm text-sm font-medium transition-all
-                        ${isActive ? "bg-indigo-100 text-indigo-600" : "text-gray-600 hover:bg-gray-100"}
-                        ${collapsed ? "justify-center py-3" : "gap-4 px-3 py-2"}
+                      className={`flex items-center rounded-lg text-sm font-medium transition-all
+                        ${isActive
+                          ? "bg-sky-50 text-sky-600 font-semibold dark:bg-sky-900/30 dark:text-sky-400"
+                          : "text-gray-600 hover:bg-gray-100 dark:text-slate-400 dark:hover:bg-slate-800"}
+                        ${collapsed ? "justify-center py-3" : "gap-3 px-3 py-2.5"}
                       `}
                     >
                       <item.icon size={22} />
                       {!collapsed && <span className="text-base">{item.main}</span>}
                     </Link>
+                  )}
 
+                  {/* DISABLED NAV ITEM */}
+                  {!hasChildren && item.disabled && (
+                    <div
+                      id={`nav-${item.main.toLowerCase().replace(/ /g, "-")}`}
+                      onMouseEnter={(e) => handleShowTooltip(e, "Coming soon", true)}
+                      onMouseLeave={handleHideTooltip}
+                      style={{ opacity: 0.4 }}
+                      className={`flex items-center rounded-lg text-sm font-medium cursor-not-allowed
+                        text-gray-600 dark:text-slate-600
+                        ${collapsed ? "justify-center py-3" : "gap-3 px-3 py-2.5"}
+                      `}
+                    >
+                      <item.icon size={22} />
+                      {!collapsed && <span className="text-base">{item.main}</span>}
+                    </div>
                   )}
 
                   {/* IF HAS CHILDREN → EXPANDABLE MENU */}
@@ -175,9 +193,11 @@ const DashboardSidebar = () => {
                       onClick={() => toggleMenu(item.main)}
                       onMouseEnter={(e) => handleShowTooltip(e, item.main)}
                       onMouseLeave={handleHideTooltip}
-                      className={`flex items-center cursor-pointer rounded-sm text-sm font-medium transition-all
-                        ${isActive ? "bg-indigo-100 text-indigo-600" : "text-gray-600 hover:bg-gray-100"}
-                        ${collapsed ? "justify-center" : "gap-4 px-3 py-2"}
+                      className={`flex items-center cursor-pointer rounded-lg text-sm font-medium transition-all
+                        ${isActive
+                          ? "bg-sky-50 text-sky-600 font-semibold dark:bg-sky-900/30 dark:text-sky-400"
+                          : "text-gray-600 hover:bg-gray-100 dark:text-slate-400 dark:hover:bg-slate-800"}
+                        ${collapsed ? "justify-center py-3" : "gap-3 px-3 py-2.5"}
                       `}
                     >
                       <Icon size={22} />

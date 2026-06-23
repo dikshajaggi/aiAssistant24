@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { X, Plus, Trash2 } from "lucide-react";
 
 const BillingModal = ({ isOpen, onClose, patient, onSave }) => {
-    console.log(isOpen, "checking")
   const [items, setItems] = useState([{ treatment: "", cost: "" }]);
   const [total, setTotal] = useState(0);
 
