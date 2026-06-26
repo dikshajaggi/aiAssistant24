@@ -1,5 +1,5 @@
 import { X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddPatientForm from "../AddPatientForm";
 import { addPatients, getPatientByPhone } from "../../apis";
 import { toast } from "react-toastify";
@@ -15,6 +15,13 @@ const PatientModal = ({ isOpen, onClose, onSuccess, saveLabel, headingLabel, cap
     appointment_date: moment(),
     treatment: "",
   });
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   const handleSubmit = async (e) => {
     e?.preventDefault();
@@ -80,6 +87,7 @@ const PatientModal = ({ isOpen, onClose, onSuccess, saveLabel, headingLabel, cap
         {/* footer */}
         <div className="mt-8 flex justify-end gap-3">
           <button
+            type="button"
             onClick={onClose}
             disabled={loading}
             className="flex items-center gap-2 border border-gray-400 text-gray-700 px-3 py-2 rounded-lg text-sm hover:bg-gray-50 transition cursor-pointer"
@@ -87,7 +95,8 @@ const PatientModal = ({ isOpen, onClose, onSuccess, saveLabel, headingLabel, cap
             Cancel
           </button>
           <button
-            onClick={handleSubmit}
+            type="submit"
+            form="add-patient-form"
             disabled={loading}
             className="bg-blue-600 text-sm text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium disabled:opacity-50 cursor-pointer"
           >

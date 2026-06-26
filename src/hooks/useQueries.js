@@ -1,5 +1,9 @@
 import { useQuery } from "@tanstack/react-query"
-import { getAllPatients, getAllVisits, dashboardData, getClinicProfile } from "../apis"
+import {
+  getAllPatients, getAllVisits, dashboardData, getClinicProfile,
+  getAnalyticsRevenue, getAnalyticsRevenueByTreatment, getAnalyticsRetention,
+  getAnalyticsTopTreatments, getAnalyticsSeasonalTrends, getAnalyticsBusySlots,
+} from "../apis"
 
 export const usePatients = () =>
   useQuery({
@@ -50,4 +54,29 @@ export const useAutomationSettings = () =>
     queryFn: () => Promise.resolve(null),
     staleTime: 30 * 60 * 1000,
     enabled: false,
+  })
+
+export const useAnalytics = (period) =>
+  useQuery({
+    queryKey: ["analytics", period],
+    queryFn: async () => {
+      const [revenue, revByTreatment, retention, topTreatments, seasonal, busySlots] =
+        await Promise.all([
+          getAnalyticsRevenue(period),
+          getAnalyticsRevenueByTreatment(),
+          getAnalyticsRetention(),
+          getAnalyticsTopTreatments(),
+          getAnalyticsSeasonalTrends(),
+          getAnalyticsBusySlots(),
+        ])
+      return {
+        revenue:       revenue.data,
+        revByTreatment: revByTreatment.data,
+        retention:     retention.data,
+        topTreatments: topTreatments.data,
+        seasonal:      seasonal.data,
+        busySlots:     busySlots.data,
+      }
+    },
+    staleTime: 5 * 60 * 1000,
   })

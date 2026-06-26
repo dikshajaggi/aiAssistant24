@@ -3,6 +3,15 @@
 ---
 CRITICAL — Fix Before Any Dentist Sees This
 
+✅. Toasts for login and signup page. for signup page all the details are required. (if all the reqired fields are empty api should not be called)
+2. OTP should be sent to the uer to confirm his mobile number and also on email for confirmation (not required for demo).
+✅. Add patient should open the "add patient" modal on the respective page. Same for appointment also.
+4. check the difference between appointment and reminders.
+5. fix charts also, they appear too light
+✅. keyboard accessibility
+✅. logo should navigate to home page.
+8. if login / signup takes time then show loader between the login and the dashboaard page. same for signup also - show a loader to indicated that things are working 
+9. search in navbar
 ┌─────┬───────────────────────────────────────────────────────────────────────────────────────────┬───────────────────────────────────────────────────┐
 │  #  │                                           Issue                                           │                       File                        │
 ├─────┼───────────────────────────────────────────────────────────────────────────────────────────┼───────────────────────────────────────────────────┤

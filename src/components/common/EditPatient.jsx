@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Loader2 } from "lucide-react";
 import { editPatientData } from "../../apis";
 import { toast } from "react-toastify";
@@ -29,7 +29,15 @@ export default function EditPatient({ isOpen, onClose, patient, onSave }) {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async () => {
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => { if (e.key === "Escape" && !loading) onClose(); };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, loading]);
+
+  const handleSubmit = async (e) => {
+    e?.preventDefault();
     setLoading(true);
     try {
       await editPatientData(patient.id, form);
@@ -64,7 +72,7 @@ export default function EditPatient({ isOpen, onClose, patient, onSave }) {
         </div>
 
         {/* Body */}
-        <div className="px-6 py-5 space-y-4">
+        <form id="edit-patient-form" onSubmit={handleSubmit} className="px-6 py-5 space-y-4">
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Field label="Full Name" className="sm:col-span-2">
@@ -135,11 +143,12 @@ export default function EditPatient({ isOpen, onClose, patient, onSave }) {
               />
             </Field>
           </div>
-        </div>
+        </form>
 
         {/* Footer */}
         <div className="px-6 pb-5 pt-4 border-t border-gray-100 flex flex-col sm:flex-row justify-end gap-3">
           <button
+            type="button"
             onClick={onClose}
             disabled={loading}
             className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50 transition cursor-pointer disabled:opacity-50"
@@ -147,7 +156,8 @@ export default function EditPatient({ isOpen, onClose, patient, onSave }) {
             Cancel
           </button>
           <button
-            onClick={handleSubmit}
+            type="submit"
+            form="edit-patient-form"
             disabled={loading}
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition disabled:opacity-50 cursor-pointer"
           >

@@ -59,6 +59,13 @@ const AppointmentModal = ({ isOpen, onClose, onSuccess, saveLabel, headingLabel,
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   const handleSubmit = async (e) => {
     e?.preventDefault();
 
@@ -112,7 +119,7 @@ const AppointmentModal = ({ isOpen, onClose, onSuccess, saveLabel, headingLabel,
           <p className="text-gray-500 text-sm mt-1">{caption}</p>
         </div>
 
-        <form className="space-y-5" onSubmit={handleSubmit}>
+        <form id="schedule-appointment-form" className="space-y-5" onSubmit={handleSubmit}>
           {/* Patient + Treatment */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
@@ -232,6 +239,7 @@ const AppointmentModal = ({ isOpen, onClose, onSuccess, saveLabel, headingLabel,
 
         <div className="mt-8 flex justify-end gap-3">
           <button
+            type="button"
             onClick={onClose}
             disabled={loading}
             className="flex items-center gap-2 border border-gray-400 text-gray-700 px-3 py-2 rounded-lg text-sm hover:bg-gray-50 transition cursor-pointer"
@@ -239,7 +247,8 @@ const AppointmentModal = ({ isOpen, onClose, onSuccess, saveLabel, headingLabel,
             Cancel
           </button>
           <button
-            onClick={handleSubmit}
+            type="submit"
+            form="schedule-appointment-form"
             disabled={loading || !form.patient_id}
             className="bg-blue-600 text-white text-sm px-5 py-2 rounded-lg hover:bg-blue-700 transition font-medium disabled:opacity-50 cursor-pointer"
           >

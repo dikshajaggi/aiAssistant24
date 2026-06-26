@@ -15,7 +15,7 @@ const AddPatientForm = ({message, handleSubmit, formdata, setForm}) => {
         Add New Patient
         </h2> */}
 
-    <form className="space-y-5" onSubmit={handleSubmit}>
+    <form id="add-patient-form" className="space-y-5" onSubmit={handleSubmit}>
       {/* Name */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
            <div>

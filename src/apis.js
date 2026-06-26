@@ -122,6 +122,38 @@ export const updateClinicProfile = async (data) => {
     return res
 }
 
+// -------------------- analytics ----------------------------------
+
+export const getAnalyticsRevenue = async (period) => {
+  const res = await api.get(`/analytics/revenue?period=${period}`)
+  return res
+}
+
+export const getAnalyticsRevenueByTreatment = async () => {
+  const res = await api.get("/analytics/revenue-by-treatment")
+  return res
+}
+
+export const getAnalyticsRetention = async () => {
+  const res = await api.get("/analytics/retention")
+  return res
+}
+
+export const getAnalyticsTopTreatments = async () => {
+  const res = await api.get("/analytics/top-treatments")
+  return res
+}
+
+export const getAnalyticsSeasonalTrends = async () => {
+  const res = await api.get("/analytics/seasonal-trends")
+  return res
+}
+
+export const getAnalyticsBusySlots = async () => {
+  const res = await api.get("/analytics/busy-slots")
+  return res
+}
+
 // -------------------- prescriptions ----------------------------------
 
 export const generatePrescription = async (data) => {

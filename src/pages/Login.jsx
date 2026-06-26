@@ -1,150 +1,153 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import authBg from "/assets/authBg.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import { MainContext } from "../context/MainContext";
 import { supabase } from "../utils/supabaseClient";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
 import { onboard } from "../apis";
+import { toast } from "react-toastify";
 
 const Login = () => {
-    const { isSubscribed, setSignedUp } = useContext(MainContext);
+    const { setSignedUp } = useContext(MainContext);
     const navigate = useNavigate();
-    const [error, setError] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const location = useLocation()
-    const alertMessage = location.state?.message
+    const [loading, setLoading] = useState(false);
+    const location = useLocation();
+    const alertMessage = location.state?.message;
 
-  const handleLogin = async (e) => {
-      e.preventDefault();
-      setError("");
+    useEffect(() => {
+        if (alertMessage) {
+            toast.error(alertMessage);
+        }
+    }, [alertMessage]);
 
-      const { data: dataUser, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
-      if (error) {
-        setError(error.message);
-        return;
-      }
+        if (!email.trim()) {
+            toast.error("Email is required.");
+            return;
+        }
+        if (!password) {
+            toast.error("Password is required.");
+            return;
+        }
 
-      const user = dataUser.user;
+        setLoading(true);
+        try {
+            const { data: dataUser, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
 
-      if (!user.email_confirmed_at) {
-        await supabase.auth.resend({ type: "signup", email });
-        setError(
-          "Your email is not confirmed. We've sent you a new confirmation link. Please check your inbox."
-        );
-        return;
-      }
+            if (error) {
+                toast.error(error.message);
+                return;
+            }
 
-      localStorage.setItem("smileLytics.aiLoginToken", dataUser.session?.access_token);
-      setSignedUp(user);
+            const user = dataUser.user;
 
-      // Create backend profile if it doesn't exist yet — idempotent, must not block login
-      try {
-        await onboard();
-      } catch {
-        // intentionally silent
-      }
+            if (!user.email_confirmed_at) {
+                await supabase.auth.resend({ type: "signup", email });
+                toast.error(
+                    "Your email is not confirmed. We've sent you a new confirmation link. Please check your inbox."
+                );
+                return;
+            }
 
-      navigate("/dashboard");
-  };
+            localStorage.setItem("smileLytics.aiLoginToken", dataUser.session?.access_token);
+            setSignedUp(user);
 
+            try {
+                await onboard();
+            } catch {
+                // intentionally silent
+            }
 
-  return (
-    <PageWrapper>
-      <>
-        {alertMessage && (
-          <div className="mb-4 p-3 text-red-700 bg-red-100 border border-red-300 rounded">
-              {alertMessage}
-          </div>
-        )}
-        <div className="flex flex-col md:flex-row items-center justify-center">
-          {/* Image Section */}
-          <div className="hidden md:flex md:w-1/2 justify-center items-center">
-            <img
-              src={authBg}
-              alt="bg-image"
-              loading="lazy"
-              className="w-full max-h-screen"
-            />
-          </div>
+            navigate("/dashboard");
+        } finally {
+            setLoading(false);
+        }
+    };
 
-          {/* Form Section */}
-          <div className="relative z-10 md:bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-100px] max-w-md md:max-w-[439px] md:h-[500px] flex flex-col items-center justify-evenly shadow-lg">
-            <div className="flex flex-col items-center justify-center text-center">
-              <h4 className="text-lg md:text-xl font-bold mb-4">
-                Welcome to <span className="text-secondary1">SmileLytics.AI</span>!
-              </h4>
-              <span className="text-placeholder text-sm sm:text-base md:text-base">
-                Smart Clinic Management – From Patients to Payments, AI-Powered and Effortlessly Organized.
-              </span>
+    return (
+        <PageWrapper>
+            <div className="flex flex-col md:flex-row items-center justify-center">
+                {/* Image Section */}
+                <div className="hidden md:flex md:w-1/2 justify-center items-center">
+                    <img
+                        src={authBg}
+                        alt="bg-image"
+                        loading="lazy"
+                        className="w-full max-h-screen"
+                    />
+                </div>
+
+                {/* Form Section */}
+                <div className="relative z-10 md:bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-100px] max-w-md md:max-w-[439px] md:h-[500px] flex flex-col items-center justify-evenly shadow-lg">
+                    <div className="flex flex-col items-center justify-center text-center">
+                        <h4 className="text-lg md:text-xl font-bold mb-4">
+                            Welcome to <span className="text-secondary1">SmileLytics.AI</span>!
+                        </h4>
+                        <span className="text-placeholder text-sm sm:text-base md:text-base">
+                            Smart Clinic Management – From Patients to Payments, AI-Powered and Effortlessly Organized.
+                        </span>
+                    </div>
+
+                    <form className="flex flex-col gap-4 w-full" onSubmit={handleLogin}>
+                        <input
+                            placeholder="Enter email"
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            disabled={loading}
+                            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1 disabled:opacity-50"
+                        />
+
+                        <div className="relative flex flex-col">
+                            <input
+                                placeholder="Enter password"
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                disabled={loading}
+                                className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1 pr-10 disabled:opacity-50"
+                            />
+                            <span
+                                className="absolute right-2 top-1/3 -translate-y-1/2 cursor-pointer"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </span>
+                            <span className="self-end mt-1 text-xs sm:text-sm text-secondary1 hover:underline cursor-pointer">
+                                Forgot Password?
+                            </span>
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="flex items-center justify-center gap-2 cursor-pointer bg-secondary1 text-white p-2 rounded-xl shadow-md shadow-primary1/40 hover:shadow-lg hover:shadow-primary1/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150 disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                            {loading ? <><Loader2 size={16} className="animate-spin" /> Logging in…</> : "Login"}
+                        </button>
+
+                        <div className="text-xs sm:text-sm text-placeholder text-center">
+                            Don't have an account?{" "}
+                            <Link to="/signup">
+                                <span className="text-secondary1 hover:underline cursor-pointer font-bold">
+                                    Sign Up
+                                </span>
+                            </Link>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            {error && (
-              <div className="w-full p-3 text-red-700 bg-red-100 border border-red-300 rounded text-sm">
-                {error}
-              </div>
-            )}
-
-            <form className="flex flex-col gap-4 w-full">
-              {/* Email */}
-              <input
-                placeholder="Enter email"
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1"
-              />
-
-              {/* Password + Show/Hide + Forgot Password */}
-              <div className="relative flex flex-col">
-                <input
-                  placeholder="Enter password"
-                  type={showPassword ? "text" : "password"}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1 pr-10"
-                />
-                {/* Eye Icon */}
-                <span
-                  className="absolute right-2 top-1/3 -translate-y-1/2 cursor-pointer"
-                  onClick={() => setShowPassword(!showPassword)}
-                >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                </span>
-                <span className="self-end mt-1 text-xs sm:text-sm text-secondary1 hover:underline cursor-pointer">
-                  Forgot Password?
-                </span>
-              </div>
-
-              {/* Submit Button */}
-              <button
-                onClick={handleLogin}
-                className="cursor-pointer bg-secondary1 text-white p-2 rounded-xl shadow-md shadow-primary1/40 hover:shadow-lg hover:shadow-primary1/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150"
-              >
-                Login
-              </button>
-
-              {/* Signup link */}
-              <div className="text-xs sm:text-sm text-placeholder text-center">
-                Don’t have an account?{" "}
-                <Link to="/signup">
-                  <span className="text-secondary1 hover:underline cursor-pointer font-bold">
-                    Sign Up
-                  </span>
-                </Link>
-              </div>
-            </form>
-          </div>
-        </div>
-      </>
-    </PageWrapper>
-  );
+        </PageWrapper>
+    );
 };
 
 export default Login;

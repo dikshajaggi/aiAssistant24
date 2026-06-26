@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MainContext } from "../context/MainContext";
 import { deletePatient } from "../apis";
 
 export default function DeleteModal({ isOpen, toggle, title, currentPatient, children }) {
 
     const {patients, setPatients} = useContext(MainContext)
+
+    useEffect(() => {
+        if (!isOpen) return;
+        const handleKeyDown = (e) => { if (e.key === "Escape") toggle(); };
+        document.addEventListener("keydown", handleKeyDown);
+        return () => document.removeEventListener("keydown", handleKeyDown);
+    }, [isOpen]);
 
     const deleteData = async () => {
         try {

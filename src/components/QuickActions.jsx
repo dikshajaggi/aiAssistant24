@@ -8,12 +8,14 @@ const actions = [
     icon: UserPlus,
     color: "bg-blue-100 text-blue-600",
     link: "/dashboard/patients",
+    state: { openModal: true },
   },
   {
     title: "Schedule Appointment",
     icon: CalendarPlus,
     color: "bg-orange-100 text-orange-600",
     link: "/dashboard/appointments",
+    state: { openModal: true },
   },
   {
     title: "Send Reminders",
@@ -30,7 +32,7 @@ const QuickActions = () => (
       {actions.map((action, idx) => {
         const Icon = action.icon;
         return (
-          <Link to={action.link} key={idx}>
+          <Link to={action.link} state={action.state} key={idx}>
             <div className="flex items-center gap-3 bg-textdark rounded-xl px-4 py-3 hover:bg-textdark/90 transition cursor-pointer">
               <span className={`p-1.5 rounded-lg shrink-0 ${action.color}`}>
                 <Icon className="w-4 h-4" />

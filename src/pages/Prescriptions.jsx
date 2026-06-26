@@ -405,7 +405,7 @@ const Prescriptions = () => {
             {/* Medicines */}
             {medicines.some((m) => m.name) && (
               <div className="mb-4">
-                <p className="text-base font-bold text-gray-800 mb-2 italic">Rx</p>
+                <p className="text-base font-bold text-gray-800 mb-2 italic">Diagnosis</p>
                 <div className="border border-gray-300 rounded-lg overflow-hidden divide-y divide-gray-200">
                   {medicines.filter((m) => m.name).map((m, i) => (
                     <div key={i} className="px-3 py-2 text-xs text-gray-700">

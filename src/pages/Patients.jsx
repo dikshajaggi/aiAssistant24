@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 import PatientsList from "../components/PatientsList";
 import PageWrapper from "./PageWrapper";
 import { Plus } from "lucide-react";
@@ -7,7 +8,14 @@ import PatientModal from "@/components/common/PatientModal";
 
 const Patients = () => {
   const queryClient = useQueryClient();
+  const location = useLocation();
   const [openForm, setOpenForm] = useState(false);
+
+  useEffect(() => {
+    if (location.state?.openModal) {
+      setOpenForm(true);
+    }
+  }, []);
 
   const handlePatientSuccess = () => {
     setOpenForm(false);

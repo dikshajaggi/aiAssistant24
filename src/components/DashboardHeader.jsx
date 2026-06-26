@@ -89,14 +89,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import { Sun, Moon } from "lucide-react"
-import ExpandableSearch from './common/ExpandableSearch'
+import { Sun, Moon, Search } from "lucide-react"
 import { MainContext } from '@/context/MainContext'
 
 const THEME_KEY = 'smileLytics.theme';
 
 const DashboardHeader = () => {
-  const { logout, signedUp } = useContext(MainContext)
+  const { logout, signedUp, setIsSearchOpen } = useContext(MainContext)
   const navigate = useNavigate()
   const [dateTime, setDateTime] = useState(new Date());
   const [isDarkMode, setIsDarkMode] = useState(
@@ -163,7 +162,14 @@ const DashboardHeader = () => {
         {/* Right: Icons + User */}
         <div className="flex items-center gap-4">
           {/* Search */}
-          <ExpandableSearch />
+          <button
+            type="button"
+            onClick={() => setIsSearchOpen(true)}
+            title="Search (Ctrl+K)"
+            className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-gray-800 hover:bg-gray-100 dark:text-slate-400 dark:hover:text-slate-100 dark:hover:bg-slate-700 transition-colors cursor-pointer"
+          >
+            <Search size={18} />
+          </button>
 
           {/* Dark / Light mode toggle */}
           <button

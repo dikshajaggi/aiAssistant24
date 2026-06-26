@@ -115,20 +115,22 @@ const DashboardSidebar = () => {
           }`}
         >
           {collapsed ? (
-           <img
-            src={logo}
-            alt="SmileLytics.AI"
-            className={`h-13 transition-all duration-300 `}
-          />
-          ) : (
-            <>
+            <Link to="/dashboard" aria-label="Go to Dashboard">
               <img
                 src={logo}
                 alt="SmileLytics.AI"
-                className={`h-11 transition-all duration-300 `}
+                className="h-13 transition-all duration-300 cursor-pointer"
+              />
+            </Link>
+          ) : (
+            <Link to="/dashboard" className="flex items-center gap-2" aria-label="Go to Dashboard">
+              <img
+                src={logo}
+                alt="SmileLytics.AI"
+                className="h-11 transition-all duration-300 cursor-pointer"
               />
               <h1 className="text-xl font-semibold text-secondary1">SmileLytics.AI</h1>
-            </>
+            </Link>
           )}
 
           <button

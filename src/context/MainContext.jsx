@@ -8,6 +8,7 @@ const MainContextProvider = (props) => {
     const [signedUp, setSignedUp] = useState(null)
     const [patients, setPatients] = useState([])
     const [isSubscribed, setIsSubscribed] = useState(true)
+    const [isSearchOpen, setIsSearchOpen] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem("smileLytics.aiLoginToken")) setIsLoggedIn(true)
@@ -38,6 +39,8 @@ const MainContextProvider = (props) => {
             patients,
             setPatients,
             logout,
+            isSearchOpen,
+            setIsSearchOpen,
         }}
        >
         {props.children}

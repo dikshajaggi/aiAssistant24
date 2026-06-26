@@ -33,7 +33,7 @@ const SearchData = ({globalFilter, setGlobalFilter}) => {
   )
 }
 
-const AppointmentTableView = ({ appointments, loading, onGeneratePrescription, onRefresh, onAdd }) => {
+const AppointmentTableView = ({ appointments, loading, onRefresh, onAdd }) => {
   const [globalFilter, setGlobalFilter] = useState("");
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDelModal, setShowDelModal] = useState(false);
@@ -174,20 +174,7 @@ const AppointmentTableView = ({ appointments, loading, onGeneratePrescription, o
           </DropdownMenu>
         ),
         size: 80,
-      },
-      {
-        id: "prescription",
-        header: "Prescription",
-        cell: ({ row }) => (
-          <button
-            onClick={() => onGeneratePrescription(row.original)}
-            className="cursor-pointer bg-secondary1 text-white px-2 py-1 rounded-lg text-xs hover:opacity-90"
-          >
-            Generate Prescription
-          </button>
-        ),
-        size: 120,
-      },
+      }
     ],
     []
   );

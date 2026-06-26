@@ -1,5 +1,6 @@
 import DashboardHeader from '@/components/DashboardHeader';
 import DashboardSidebar from '@/components/DashboardSidebar';
+import GlobalSearch from '@/components/common/GlobalSearch';
 import { LayoutContext } from '@/context/LayoutContext';
 import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -29,6 +30,7 @@ const DashboardLayout = () => {
           </div>
         </main>
       </div>
+      <GlobalSearch />
     </div>
   );
 };

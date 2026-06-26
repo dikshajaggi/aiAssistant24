@@ -4,122 +4,153 @@ import { Link } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import Modal from "../components/SignUpModal";
 import { supabase } from "../utils/supabaseClient";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
+    const [modalOpen, setModalOpen] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const modalDesc = "Success! Your account is live, and your AI assistant is waiting. Let's start building smiles—one smart step at a time.";
+    const modalTitle = "Your account is ready!";
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const modalDesc = "Success! Your account is live, and your AI assistant is waiting. Let’s start building smiles—one smart step at a time."
-  const modalTitle = "Your account is ready!"
+    const toggleModal = () => setModalOpen(!modalOpen);
 
-  const toggleModal = () => setModalOpen(!modalOpen);
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState("");
 
+    const handleSignUp = async (e) => {
+        e.preventDefault();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [showPassword, setShowPassword] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState(null)
+        if (!username.trim()) {
+            toast.error("Username is required.");
+            return;
+        }
+        if (!email.trim()) {
+            toast.error("Email is required.");
+            return;
+        }
+        if (!phoneNumber.trim()) {
+            toast.error("Phone number is required.");
+            return;
+        }
+        if (!password) {
+            toast.error("Password is required.");
+            return;
+        }
 
-  const handleSignUp = async (e) => {
-    e.preventDefault()
-    // setError('')
+        setLoading(true);
+        try {
+            const { error } = await supabase.auth.signUp({ email, password });
 
-    const { error } = await supabase.auth.signUp({ email, password, phoneNumber})
+            if (error) {
+                toast.error(error.message);
+            } else {
+                toast.success("Account created! Please check your email to confirm your account.");
+                toggleModal();
+            }
+        } finally {
+            setLoading(false);
+        }
+    };
 
-    if (error) {
-      setError(error.message)
-    } else {
-      toggleModal()
-    }
-  }
+    return (
+        <PageWrapper>
+            <div className="flex flex-col md:flex-row items-center justify-center overflow-hidden">
 
-  return (
-    <PageWrapper>
-      <div className="flex flex-col md:flex-row items-center justify-center overflow-hidden">
-      
-      {/* Image Section */}
-      <div className="hidden md:w-1/2 md:flex justify-center items-center">
-        <img
-          src={authBg}
-          loading="lazy"
-          alt="bg-image"
-          className="w-full max-h-screen object-contain md:object-cover"
-        />
-      </div>
+                {/* Image Section */}
+                <div className="hidden md:w-1/2 md:flex justify-center items-center">
+                    <img
+                        src={authBg}
+                        loading="lazy"
+                        alt="bg-image"
+                        className="w-full max-h-screen object-contain md:object-cover"
+                    />
+                </div>
 
-      {/* Form Section */}
-      <div className="relative z-10 md:bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-100px] max-w-md md:max-w-[439px] md:h-[600px] flex flex-col items-center justify-evenly shadow-lg">
-        <div className="flex flex-col items-center justify-center text-center">
-          <h4 className="text-lg md:text-xl font-bold mb-4">Welcome to <span className="text-secondary1">SmileLytics.AI</span>!</h4>
-          <span className="text-placeholder text-sm sm:text-base  md:text-base">
-            Smart Clinic Management – From Patients to Payments, AI-Powered and Effortlessly Organized.
-          </span>
-        </div>
+                {/* Form Section */}
+                <div className="relative z-10 md:bg-white/60 rounded-2xl p-6 sm:p-8 h-[600px] w-[100%] md:ml-[-100px] max-w-md md:max-w-[439px] md:h-[600px] flex flex-col items-center justify-evenly shadow-lg">
+                    <div className="flex flex-col items-center justify-center text-center">
+                        <h4 className="text-lg md:text-xl font-bold mb-4">
+                            Welcome to <span className="text-secondary1">SmileLytics.AI</span>!
+                        </h4>
+                        <span className="text-placeholder text-sm sm:text-base md:text-base">
+                            Smart Clinic Management – From Patients to Payments, AI-Powered and Effortlessly Organized.
+                        </span>
+                    </div>
 
-        <form className="flex flex-col gap-4 w-full">
-          {/* Username */}
-          <input
-            placeholder="Enter username"
-            type="text"
-            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary1"
-          />
+                    <form className="flex flex-col gap-4 w-full" onSubmit={handleSignUp}>
+                        <input
+                            placeholder="Enter username"
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            disabled={loading}
+                            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary1 disabled:opacity-50"
+                        />
 
-          <input
-            placeholder="Enter email"
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary1"
-          />
+                        <input
+                            placeholder="Enter email"
+                            type="text"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            disabled={loading}
+                            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-secondary1 disabled:opacity-50"
+                        />
 
-          <input
-            placeholder="Enter phone no."
-            type="number"
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1"
-          />
+                        <input
+                            placeholder="Enter phone no."
+                            type="number"
+                            value={phoneNumber}
+                            onChange={(e) => setPhoneNumber(e.target.value)}
+                            disabled={loading}
+                            className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1 disabled:opacity-50"
+                        />
 
-          {/* Password + Forgot Password */}
-          <div className="relative flex flex-col">
-            <input
-              placeholder="Enter password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1"
-            />
-            <span
-                className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-              </span>
-          </div>
+                        <div className="relative flex flex-col">
+                            <input
+                                placeholder="Enter password"
+                                type={showPassword ? "text" : "password"}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                disabled={loading}
+                                className="border border-gray-300 rounded-lg p-2 text-sm sm:text-base focus:primary focus:outline focus:outline-primary1 disabled:opacity-50"
+                            />
+                            <span
+                                className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </span>
+                        </div>
 
-          {/* Submit Button */}
-          <button
-            onClick={handleSignUp}
-            className="bg-secondary1 cursor-pointer text-white p-2 rounded-xl shadow-md shadow-primary1/40 hover:shadow-lg hover:shadow-primary1/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150"
-          >
-            Sign Up
-          </button>
-          <div className="text-xs sm:text-sm text-placeholder text-center">
-            Already have an account?{" "}
-            <Link to="/login">
-              <span className="text-secondary1 hover:underline cursor-pointer font-bold">
-                Login
-              </span>
-            </Link>
-          </div>
-        </form>
-      </div>
-      <Modal isOpen={modalOpen} toggle={toggleModal} title={modalTitle}>
-        <p>{modalDesc}</p>
-      </Modal>
-    </div>
-    </PageWrapper>
-  );
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="flex items-center justify-center gap-2 bg-secondary1 cursor-pointer text-white p-2 rounded-xl shadow-md shadow-primary1/40 hover:shadow-lg hover:shadow-primary1/40 active:shadow-inner active:shadow-gray-600 transition-all duration-150 disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                            {loading ? <><Loader2 size={16} className="animate-spin" /> Creating account…</> : "Sign Up"}
+                        </button>
+
+                        <div className="text-xs sm:text-sm text-placeholder text-center">
+                            Already have an account?{" "}
+                            <Link to="/login">
+                                <span className="text-secondary1 hover:underline cursor-pointer font-bold">
+                                    Login
+                                </span>
+                            </Link>
+                        </div>
+                    </form>
+                </div>
+
+                <Modal isOpen={modalOpen} toggle={toggleModal} title={modalTitle}>
+                    <p>{modalDesc}</p>
+                </Modal>
+            </div>
+        </PageWrapper>
+    );
 };
 
 export default SignUp;

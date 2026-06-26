@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
+import { useLocation } from "react-router-dom";
 import PageWrapper from "./PageWrapper";
 import { Plus } from "lucide-react";
 import RecentAppointments from "../components/RecentAppointments";
 import AppointmentModal from "@/components/common/AppointmenModal";
-import PrescriptionModal from "@/components/PrescriptionModal";
 
 const Appointments = () => {
   const queryClient = useQueryClient();
+  const location = useLocation();
   const [openForm, setOpenForm] = useState(false);
-  const [isPrescriptionOpen, setIsPrescriptionOpen] = useState(false);
-  const [selectedPatient, setSelectedPatient] = useState(null);
 
-  const onGeneratePrescription = (patient) => {
-    setSelectedPatient(patient);
-    setIsPrescriptionOpen(true);
-  };
+  useEffect(() => {
+    if (location.state?.openModal) {
+      setOpenForm(true);
+    }
+  }, []);
 
   const handleAppointmentSuccess = () => {
     setOpenForm(false);
@@ -39,17 +39,9 @@ const Appointments = () => {
         </div>
 
         <RecentAppointments
-          onGeneratePrescription={onGeneratePrescription}
           onAdd={() => setOpenForm(true)}
         />
 
-        {isPrescriptionOpen && (
-          <PrescriptionModal
-            isOpen={isPrescriptionOpen}
-            onClose={() => setIsPrescriptionOpen(false)}
-            patient={selectedPatient}
-          />
-        )}
         {openForm && (
           <AppointmentModal
             isOpen={openForm}
