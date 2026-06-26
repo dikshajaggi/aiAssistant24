@@ -5,7 +5,7 @@ import {
   getPaginationRowModel,
   flexRender,
 } from "@tanstack/react-table";
-import { MoreVertical, Pencil, Search, Trash, CalendarPlus, SearchX } from "lucide-react";
+import { MoreVertical, Pencil, Search, Trash, CalendarPlus, SearchX, Loader2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -190,12 +190,6 @@ const AppointmentTableView = ({ appointments, loading, onRefresh, onAdd }) => {
     enableRowSelection: true,
   });
 
-  if (loading) return (
-    <div className="w-full flex items-center justify-center py-16 text-gray-400 text-sm">
-      Loading appointments…
-    </div>
-  );
-
   return (
     <div className="w-full bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
       <div className="px-4 pt-4">
@@ -227,7 +221,16 @@ const AppointmentTableView = ({ appointments, loading, onRefresh, onAdd }) => {
             ))}
           </thead>
           <tbody className="text-sm text-gray-700">
-            {table.getRowModel().rows.length === 0 ? (
+            {loading ? (
+              <tr>
+                <td colSpan={columns.length} className="px-4 py-16 text-center">
+                  <div className="flex flex-col items-center gap-3">
+                    <Loader2 size={32} className="text-gray-300 animate-spin" />
+                    <p className="text-gray-400 text-sm">Loading appointments…</p>
+                  </div>
+                </td>
+              </tr>
+            ) : table.getRowModel().rows.length === 0 ? (
               <tr>
                 <td colSpan={columns.length} className="px-4 py-16 text-center">
                   {data.length === 0 ? (

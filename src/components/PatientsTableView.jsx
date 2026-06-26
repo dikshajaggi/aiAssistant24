@@ -19,7 +19,7 @@ const fuzzyFilter = (row, columnId, filterValue) => {
   return ti === term.length;
 };
 fuzzyFilter.autoRemove = (val) => !val;
-import { MoreVertical, Pencil, Search, Trash, UserPlus, SearchX, History } from "lucide-react";
+import { MoreVertical, Pencil, Search, Trash, UserPlus, SearchX, History, Loader2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -232,12 +232,6 @@ const data = useMemo(() => patients ?? [], [patients]);
     autoResetPageIndex: true,
   });
 
-  if (loading) return (
-    <div className="w-full flex items-center justify-center py-16 text-gray-400 text-sm">
-      Loading patients…
-    </div>
-  );
-
   return (
     <div className="w-full bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden">
       <div className="px-4 pt-4">
@@ -269,7 +263,16 @@ const data = useMemo(() => patients ?? [], [patients]);
             ))}
           </thead>
           <tbody className="text-sm text-gray-700">
-            {table.getRowModel().rows?.length === 0 ? (
+            {loading ? (
+              <tr>
+                <td colSpan={columns.length} className="px-4 py-16 text-center">
+                  <div className="flex flex-col items-center gap-3">
+                    <Loader2 size={32} className="text-gray-300 animate-spin" />
+                    <p className="text-gray-400 text-sm">Loading patients…</p>
+                  </div>
+                </td>
+              </tr>
+            ) : table.getRowModel().rows?.length === 0 ? (
               <tr>
                 <td colSpan={columns.length} className="px-4 py-16 text-center">
                   {data.length === 0 ? (
